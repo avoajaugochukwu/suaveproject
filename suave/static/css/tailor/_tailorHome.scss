@@ -1,0 +1,35 @@
+.below-jumbotron-tailor {
+	background: #212121;
+	color: #80DEEA;
+	// border-top: 3px solid #FFF9C4;
+	// border-bottom: 3px solid #E91E63;
+	// box-shadow: 3px 3px 3px #E91E63;
+	// margin-bottom: 10px;
+}
+
+.below-jumbotron-tailor h2 {
+	font-size: 2.7em;
+	line-height: 100px;
+}
+
+.benefits-tailor {
+	@extend .benefit;
+}
+
+
+
+
+
+
+.action-button-wrapper-tailor {
+	@include margin(70px, auto, auto, auto);
+	text-align: center;
+}
+
+.action-button-tailor {
+	@include myButton(#f60, #000);
+}
+
+.action-button-tailor:hover {
+	@include myButton-hover(#f36315, #000);
+}

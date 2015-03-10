@@ -1,0 +1,48 @@
+.jumbotron {
+	height: 450px;
+	background-color: rgba(101, 123, 23, 0.5);
+	@include padding(10px, 50px, 50px, 90px);
+	color: #ff0;
+	color: #fff;
+}
+.jumbotron h1 {
+	font-size: 5em;
+}
+@media (min-width: 1700px) {
+	.jumbotron-home-page {
+		min-height: 550px;
+	}
+}
+
+.jumbotron-home-page {
+	@extend .jumbotron;
+	// background-image: url('../images/Suave_Stiches.png');
+	background: #e5f1f8;
+	background: #97ccd8;
+	background: #03a9f4;
+	background-image: url('../images/Background_2.png');
+}
+/* should rename this */
+.jumbotron-signup {
+	@extend .jumbotron;
+	background-image: url('../images/Suave_Stiches_3.png');
+}
+
+
+
+@media (max-width: 480px) {
+	.jumbotron-signup {
+		background-position: -150px 0px;
+		max-height: 300px !important;
+	}
+
+	.jumbotron {
+		font-size: 2.4em;
+		text-align: center;
+		@include padding(20px, 20px, 20px, 20px);
+	}
+
+	.jumbotron-action {
+		font-size: 1em;
+	}
+}

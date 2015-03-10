@@ -1,0 +1,238 @@
+#header {
+	margin-top: -10px;
+}
+#header img {
+	width: 80%;
+}
+
+.navbar {
+	background-image: linear-gradient(#54B4EB, #2FA4E7 60%, #1D9CE5);
+	background-repeat: no-repeat;
+	border-bottom: 1px solid #178ACC;
+	box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 0px;
+	margin-bottom: 0px;
+}
+
+.navbar-default {
+	/*background-color: #2FA4E7;*/
+	background: #fff;
+	/*border-color: #1995DC;*/
+	border-color: #fff;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus ,
+.navbar-default .navbar-nav > li > a {
+	color: #007538;
+	font-size: 1.2em;
+}
+
+.navbar-default .navbar-nav > li > a {
+	line-height: 50px;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+	color: #f00;
+	background-color: #e4f4e4;
+}
+/* --------------------------------------------------------------- */
+/* -------------------------FRONT PAGE STYLES ---------------------*/
+.jumbotron-signup {
+	height: 400px;
+	/*padding: 50px;*/
+	background-color: rgba(0, 0, 0, 0.5);
+	background-image: url('../images/Suave_Stiches_3.png');
+}
+
+.jumbotron-home {
+	height: 400px;
+	/*padding: 50px;*/
+	background: #06d;
+	background: #00f;
+	/*background-image: url('../images/Suave_Stiches_3.png');*/
+	background-image: url('../images/Suave_Stiches.png');
+	margin-top: -20px;
+}
+.jumbotron-home h1 {
+	padding: 80px 40px 80px 40px;
+	color: #ff0;
+	font-size: 7em;
+}
+
+.jumbotron-call-to-action {
+	font-size: 4em;
+	background: #0b5;
+	padding: 10px 40px;
+	color: #ccc;
+	/*text-shadow: 2px -2px 2px;*/
+}
+
+.jumbotron-call-to-action:hover {
+	color: #ccc;
+	background: #095;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.white-border-button {
+	margin: 25px auto;
+	border: 1px solid #fff;
+	background: #007538;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 1.1em;
+	width: 200px;
+} 
+.white-border-button:hover {
+	background: #0b5;
+}
+
+
+@media (max-width: 768px) {
+	#header img {
+		max-width: 50%;
+		margin-top: -15px;
+	}
+	button .icon-bar {
+		 color: #fff;
+		 background: #ff0;
+	}
+	.navbar-default .navbar-toggle .icon-bar {
+		background-color: #0b5;
+	}
+	.navbar-default .navbar-toggle {
+		border-color: #0b5;
+	}
+	.navbar-default .navbar-toggle:hover,
+	.navbar-default .navbar-toggle:focus {
+		background-color: #e4f4e4;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('bootstrap-3.min.css');
+@import url('header.css');
+* {
+	border-radius: 0 !important;
+}
+body {
+	font-family: 'weblysleek';
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+input[type=text] {
+	color: #000;
+}
+
+.light-green {
+	background: #cec;
+	padding: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+	height: 400px;
+	background: #f0f0f0;
+	border-top: 3px solid #224020;
+	margin-top: 100px;
+	padding: 30px;
+}
+
+.footer-base {
+	height: 50px;
+	background: #444;
+}
+
+
+
+
+
+
+
+
+
+
+@font-face {
+		font-family: 'weblysleek';
+		
+		/*src: url('../font/weblysleek/weblysleekuisl.ttf') format('truetype');*/
+		src: url('../fonts/weblysleekuil.ttf') format('truetype');
+		font-weight: normal;
+		font-style: normal;
+}

@@ -1,0 +1,83 @@
+{% extends "i/layout/base.html" %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block header %} {{ title }} {% endblock %}
+
+{% block jumbotron %}
+
+
+<div class="jumbotron-home-page">
+	<!-- <h1>Outfits just for you.</h1> -->
+	<h1>Become an affiliate tailor, and watch your career soar.</h1>
+	<div class="col-lg-4">
+	</div>
+	<div class="col-lg-4 action-button-wrapper-tailor">
+		<a href="/suave/tailor/signup" class="action-button-tailor">Join now</a>
+	</div>
+
+</div>
+<div class="below-jumbotron-tailor">
+	<div class="container">
+		<div class="row">
+			<h2>Say goodbye to dry spells, welcome to the world of high paying clients.</h2>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="benefits-tailor">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 first-benefit-tailor" style="height:400px">
+				<h2>Business first</h2>
+				<p>
+					We have a strong payment policy.
+				</p>
+				<p>
+					This ensures that you get your full payment for services rendered, and on time.
+				</p>
+		<!--  -->
+		<!--  -->
+				<h2>Meet your business objectives</h2>
+				<p>
+					You can leverage on our strong online presence and reputation to build a steady pipeline of contracts, so
+					you can meet and exceed your financial goals for any period.
+				</p>
+			</div>
+
+			<div class="col-lg-6 second-benefit-tailor" style="height:400px">
+				<h2>Continuous support</h2>
+				<p>
+					Get to learn and share trade tips and techniques with the best tailors in the industry.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block main_section %}
+	<!--  include 'i/common/_signUp.html' -->
+	<div class="row">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4 action-button-wrapper-tailor">
+			<a href="/suave/tailor/signup" class="action-button-tailor">Join now</a>
+		</div>
+	</div>
+		
+
+
+	<br><br><br>
+{% endblock %}

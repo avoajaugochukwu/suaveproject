@@ -1,0 +1,23 @@
+{% extends "ugo/layout/base.html" %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block header %} {{ title }} {% endblock %}
+
+{% block main_section %}
+
+	{% if jokes %}
+
+		{% for joke in jokes %}
+			<div class="joke">
+				<h3>{{ joke }}</h3>
+				<h4><!-- {{joke.author }} --> .<span class='pull-right'> <i class='inner-category'>Category: </i>{{ joke.category }} </span> </h4>
+			</div>
+		{% endfor %}
+		
+
+	{% else %}
+		<p>No jokes availabe</p>
+	{% endif %}
+
+{% endblock %}

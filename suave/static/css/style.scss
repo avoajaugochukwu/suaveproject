@@ -1,0 +1,40 @@
+@import "bootstrap-3.min.css";
+@import "variables";
+@import "header";
+@import "jumbotron";
+@import "footer";
+@import "signup";
+@import "home";
+@import "tailor/tailorHome";
+/* Variables */
+
+
+
+
+/* header */
+#header {
+	@include margin(-10px, auto, auto, auto);
+}
+* {
+	@include border-radius(0);
+	// @include padding(0, 0, 0, 0);
+}
+.container {
+	// @include padding(0, 0, 0, 0);
+	// padding: 0;
+	// margin: 0;
+}
+
+body {
+	color: #000;
+	font-family: $font-stack;
+}
+
+@font-face {
+		font-family: 'weblysleek';
+		
+		/*src: url('../font/weblysleek/weblysleekuisl.ttf') format('truetype');*/
+		src: url('../fonts/weblysleekuil.ttf') format('truetype');
+		font-weight: normal;
+		font-style: normal;
+}

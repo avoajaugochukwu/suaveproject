@@ -1,0 +1,68 @@
+$white: #fff;
+
+$font-stack: weblysleek, arial;
+
+@mixin margin($mt, $mr, $mb, $ml) {
+  margin: $mt $mr $mb $ml;
+}
+
+@mixin padding($pt, $pr, $pb, $pl) {
+  padding: $pt $pr $pb $pl;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius !important;
+     -moz-border-radius: $radius !important;
+      -ms-border-radius: $radius !important;
+          border-radius: $radius !important;
+}
+
+
+
+@mixin myButton($background, $color) {
+  // -moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+  // -webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+  // box-shadow:inset 0px 1px 3px 0px #91b8b3;
+  background-color:$background;
+  box-shadow: 0px 0px 5px #444;
+  // border:1px solid #566963;
+  border-radius: 5px;
+  display:inline-block;
+  cursor:pointer;
+  color: $color;
+  // font-family:arial;
+  font-size:4.5em;
+  font-weight:bold;
+  padding:11px 23px;
+  text-decoration:none;
+  // text-shadow:0px -1px 0px #2b665e;
+  text-shadow: 0px 1px 0px rgba(255,255,255,.5);
+}
+
+@mixin myButton-hover($background, $color) {
+  background-color:$background;
+  color: $color;
+  box-shadow: none;
+}
+
+
+/* the area of a page that lists the main benefits */
+.benefit {
+  margin: 30px 0;
+  font-size: 1.4em;
+  border-bottom: 1px solid #C5E1A5;
+}
+
+.benefit .col-lg-6 {
+  @include padding(40px, 40px, 40px, 40px);
+}
+
+/* color only first-benefit matches of class */
+.benefit [class*='first-benefit-'] h2 {
+  font-size: 1.8em;
+  color: #900;
+
+}
+.benefit [class*='second-benefit-'] {
+  background: #eef3fa;
+}
