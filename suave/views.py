@@ -43,7 +43,7 @@ def tailorHome(request):
 
 	return render(request, 'i/tailor/tailor_home.html', context_dict)
 
-def customerHome(request):
+def clientHome(request):
 	context_dict = {}
 	context_dict['title'] = 'SuaveStitches - Customer'
 	context_dict['form'] = ClientForm()
