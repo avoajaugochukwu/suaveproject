@@ -2,7 +2,9 @@
 
 {% block title %} {{ title }} {% endblock %}
 
-{% block header %} {{ title }} {% endblock %}
+{% block header %}
+	{% include 'i/client/_client_header.html' %}
+{% endblock %}
 
 
 {% block jumbotron %}
@@ -12,7 +14,7 @@
 	<div class="col-lg-4">
 	</div>
 	<div class="col-lg-4 action-button-wrapper-home">
-		<a href="/suave/signup" class="action-button-home">Get Started</a>
+		<a href="/suave/register" class="action-button-home">Get Started</a>
 	</div>
 
 </div>

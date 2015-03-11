@@ -1,12 +1,13 @@
-<div class="row">
+<br><br><br>
+<!-- <div class="row">
 	<div class="col-lg-4 col-lg-offset-4">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#home" data-toggle="tab">Sign up</a></li>
 			<li><a href="#blog" data-toggle="tab">Login</a></li>
-			<!-- <li><a href="#contact" data-toggle="tab">Contact</a></li> -->
+			<li><a href="#contact" data-toggle="tab">Contact</a></li>
 		</ul>
 	</div>
-</div>
+</div> -->
 <div class="row">
 	<div class="col-lg-4 col-lg-offset-4">
 		<div class="tab-content">
@@ -18,59 +19,20 @@
 							<div class="form-group">
 
 								{% csrf_token %}
-<!-- 			{% for hidden in form.hidden_fields %}
-				{{ hidden }}
-			{% endfor %}
- -->
-<!-- 			{% for field in form.visible_fields %}
-				{{ field.errors }}
-				<h3>{{ field.help_text }}</h3>
-				{{ field  }}
-			{% endfor %} -->
-
-			<!-- {{ user_form.as_p }}
-			{{ user_profile_form.as_p }}
-			{{ client_register_form.as_p }} -->
-
-			{% for field in user_form.visible_fields %}
-			{{ field.errors }}
-			<h3>{{ field.help_text }}</h3>
-			{{ field }}
-			{% endfor %}
-
-			{% for field in client_register_form.visible_fields %}
-			{{ field.errors }}
-			<h3>{{ field.help_text }}</h3>
-			{{ field }}
-			{% endfor %}
-
-<!-- 			{{ user_profile_form.as_p }}
-			{{ client_register_form.as_p }}
- -->
 
 
-								<!-- <label><h3>First Name</h3></label>
-								<input type="text" class="form-control" placeholder="Alade">
+								{% for field in user_form.visible_fields %}
+								{{ field.errors }}
+								<h3>{{ field.help_text }}</h3>
+								{{ field }}
+								{% endfor %}
 
-								<label><h3>Last Name</h3></label>
-								<input type="text" class="form-control" placeholder="Bello">
+								{% for field in other_form.visible_fields %}
+								{{ field.errors }}
+								<h3>{{ field.help_text }}</h3>
+								{{ field }}
+								{% endfor %}
 
-								<label><h3>Email Name</h3></label>
-								<input type="text" class="form-control" placeholder="aladebello@example.com">
-
-								<label><h3>Password</h3></label>
-								<input type="password" class="form-control" placeholder="aladebello@example.com">
-
-								<label><h3>Password (again)</h3></label>
-								<input type="password" class="form-control" placeholder="aladebello@example.com">
-
-								<label><h3>Gender</h3></label>
-								<select>
-									<option></option>
-									<option>Male</option>
-									<option>Female</option>
-								</select>
- -->
 							</div>
 							<div class="form-signup-base">
 								<input type="submit" class="btn btn-success btn-lg" value="Register">

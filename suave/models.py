@@ -3,8 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class UserProfile(models.Model):
-	user = models.OneToOneField(User)
+# class UserProfile(models.Model):
+# 	user = models.OneToOneField(User)
 
 
 class Client(models.Model):
@@ -16,9 +16,7 @@ class Client(models.Model):
 	)
 
 # 	#links UserProfile to django User model
-	user = models.OneToOneField(UserProfile)
-
-
+	user = models.OneToOneField(User)
 
 	address = models.CharField(max_length=200, null=True)
 
@@ -29,16 +27,6 @@ class Client(models.Model):
 	size = models.CharField(max_length=40, null=True)
 
 
-
-
-
-	##
-	# User provides firstname lastname username email password
-	# firstname = models.CharField(max_length=32)
-	# lastname = models.CharField(max_length=32)
-	# email = models.EmailField(max_length=100)
-	# password = models.CharField(max_length=32)
-
 	def __str__(self):
 		return self.user.username
 
@@ -46,7 +34,25 @@ class Client(models.Model):
 
 class Tailor(models.Model):
 # 	#links UserProfile to django User model
-	user = models.OneToOneField(UserProfile)
+	user = models.OneToOneField(User)
 
 	def __str__(self):
 		return self.user.username
+
+
+class MaleSize(models.Model):
+
+	client = models.ForeignKey(Client)
+	center_back = models.IntegerField(default=0)
+	chest = models.IntegerField(default=0)
+	inside_leg = models.IntegerField(default=0)
+	sleeve = models.IntegerField(default=0)
+	waist = models.IntegerField(default=0)
+
+
+# class FemaleSize(models.Model):
+# 	client = models.ForeignKey(Client)
+# 	bust = models.IntegerField(default=0)
+# 	waist = models.IntegerField(default=0)
+# 	hips = models.IntegerField(default=0)
+# 	inside_leg = models.IntegerField(default=0)
