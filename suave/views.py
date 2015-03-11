@@ -4,23 +4,61 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from suave.models import User, UserProfile, Client
+from suave.models import User, Client #UserProfile
 
-from suave.forms import UserForm, UserProfileForm, ClientRegisterForm
+from suave.forms import UserForm, ClientRegisterForm #UserProfileForm,
 
+"""This shows the client home page by default"""
 def index(request):
+
 	context_dict = {}
 	context_dict['title'] = 'SuaveStitches - All the greates tailors in Nigeria at your service'
 
 	return render(request, 'i/index.html', context_dict)
 
-def signUp(request):
+def clientRegister(request):
+	#boolean for inform template about whether registration was successful
+	
+
 	context_dict = {}
+	context_dict['action'] = '/suave/register/'
 	context_dict['title'] = 'SuaveStitches - Sign up'
+	context_dict['registered'] = False
+	if request.method == 'POST':
+		user_form = UserForm(data=request.POST)
+		other_form = ClientRegisterForm(data=request.POST)
+
+		if user_form.is_valid() and other_form.is_valid():
+			#save user info
+			user = user_form.save()
+			print user
+
+			#hash password with set_password() -> save
+			user.set_password(user.password)
+			# user.save()
+
+			#other_data holds other client details like sex preference...
+			other_data = other_form.save(commit=False)
+			other_data.user = user
+			print other_data
+
+			#save client extra details
+			other_data.save()
+
+			context_dict['registered'] = True
+		else:
+			user_form.errors, other_data.errors
+	else:
+		context_dict['user_form'] = UserForm()
+		context_dict['other_form'] = ClientRegisterForm()
+
+	return render(request, 'i/client/client_form.html', context_dict)
+
+
 	context_dict['user_form'] = UserForm()
 	# context_dict['user_profile_form'] = UserProfileForm()
-	context_dict['client_register_form'] = ClientRegisterForm()
-	return render(request, 'i/signUp.html', context_dict)
+	context_dict['other_form'] = ClientRegisterForm()
+	
 
 def tailorHome(request):
 	context_dict = {}
@@ -43,7 +81,7 @@ def tailorHome(request):
 
 	return render(request, 'i/tailor/tailor_home.html', context_dict)
 
-def customerHome(request):
+def clientHome(request):
 	context_dict = {}
 	context_dict['title'] = 'SuaveStitches - Customer'
 	context_dict['form'] = ClientForm()

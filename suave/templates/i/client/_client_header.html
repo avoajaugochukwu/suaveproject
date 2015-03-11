@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+		<div class="row">
+			<!--header section -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<div id="header">
+					<a class="navbar-brand" href="/suave">
+
+						<img src="{% static 'images/suave_logo_1.png' %}">
+
+					</a>
+				</div>
+
+			</div>
+			<!-- menu section -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class=""><a href="" style="background:#">explore</a></li>
+					<li class=""><a href="{% url 'suave:tailorHome' %}"  style="background:#eecccc">tailors</a></li>
+					<li class=""><a href="http://about">sign in</a></li>
+					<li class=""><a href="http://contact">contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav>
