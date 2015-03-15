@@ -1,7 +1,35 @@
 jQuery(document).ready(function($) {
-		// alert("js is working");
-		$('.nav-tabs ul li').click(function(e))
-		{
-			e.preventDefault();
-		}
+		
+		// $('.nav-tabs ul li').click(function(e))
+		// {
+		// 	e.preventDefault();
+		// }
+		$('.new-register').shake({/*direction: "up", distance: 50*/ times: 6, speed: 60});
+		$('.new-register').delay(5000).slideUp(2000);
+		$('.client-dashboard-panel').hide().delay(7000).slideDown(2000);
+		$('.client-order-form-male, .client-order-form-female').hide();
+
+		// $('#id_sex').click(function() {
+		// 	if ($('.client-order-form-female').is(':visible')) {
+		// 		$('.client-order-form-female').hide();
+		// 	};
+		// 	if ($('.client-order-form-male').is(':visible')) {
+		// 		$('.client-order-form-male').hide();
+		// 	};
+		// });
+
+		//make it not function if it is checked
+		$('#id_sex_0').click(function() {
+			if ($('.client-order-form-male').is(':visible')) {
+				$('.client-order-form-male').hide(1000);
+			};
+			$('.client-order-form-female').slideToggle(1000);
+		});
+
+		$('#id_sex_1').click(function() {
+				if ($('.client-order-form-female').is(':visible')) {
+				$('.client-order-form-female').hide(1000);
+			};
+			$('.client-order-form-male').slideToggle(1000);
+		});
 });

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from suave.models import Client, Tailor, MaleSize
+from suave.models import Client, Tailor, Size, Order
 
 
 class UserForm(forms.ModelForm):
@@ -32,7 +32,7 @@ class ClientRegisterForm(forms.ModelForm):
 
 	preference = forms.CharField(max_length=40, required=False, widget=forms.HiddenInput(attrs={'class': 'form-control'}))
 
-	size = forms.CharField(max_length=40, required=False, widget=forms.HiddenInput(attrs={'class': 'form-control'}))
+	# size = forms.CharField(max_length=40, required=False, widget=forms.HiddenInput(attrs={'class': 'form-control'}))
 	##Hidden field ---------------------------------------------------------
 
 	sex = forms.ChoiceField(choices=SEX_CHOICE,  help_text="Sex", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
@@ -60,5 +60,40 @@ class MaleSizeForm(forms.ModelForm):
 	waist = forms.ChoiceField(choices=SIZES, help_text="waist", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
 
 	class Meta:
-		model = MaleSize
+		model = Size
 		fields = ('center_back', 'chest', 'inside_leg', 'sleeve', 'waist')
+
+class FemaleSizeForm(forms.ModelForm):
+	SIZES = (
+		("24", "24"),
+		("25", "25"),
+		("26", "26"), 
+		("27", "27"),
+		("28", "28"),
+		("29", "29"),
+		("30", "30"),
+	)
+	bust = forms.ChoiceField(choices=SIZES, help_text="bust", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+	waist = forms.ChoiceField(choices=SIZES, help_text="waist", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+	hips = forms.ChoiceField(choices=SIZES, help_text="hips", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+
+	class Meta:
+		model = Size
+		fields = ('bust', 'waist', 'hips')
+
+class OrderForm(forms.ModelForm):
+	DELIVERY_OPTION = (
+		("OFFICE PICKUP", "Office pickup"),
+		("HOME DELIVERY","Home Delivery"),
+	)
+
+	SEX_CHOICE = (
+		('F', 'F'),
+		('M', 'M'),
+	)
+	sex = forms.ChoiceField(choices=SEX_CHOICE,  help_text="Sex", required=True, widget=forms.RadioSelect(attrs={'class': ''}))
+	delivery_option = forms.ChoiceField(choices=DELIVERY_OPTION,  help_text="Choose Delivery option", required=True, widget=forms.RadioSelect(attrs={'class': ''}))
+
+	class Meta:
+		model = Order
+		fields = ('sex', 'delivery_option')

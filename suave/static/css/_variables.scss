@@ -1,5 +1,13 @@
 $white: #fff;
-
+/* for django errors*/
+.errorlist {
+  color: red;
+  line-height: 20px;
+  margin: 0;
+  display: inline;
+  float: right;
+  padding-top: 28px;
+}
 $font-stack: weblysleek, arial;
 
 @mixin margin($mt, $mr, $mb, $ml) {

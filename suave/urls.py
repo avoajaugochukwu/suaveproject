@@ -14,10 +14,14 @@ from suave import views
 urlpatterns = patterns('',
 		##
 		#register: found on the homepage links to registration of clients
+		#register-->clientRegister
+
 
 		url(r'^$', views.index, name='index'),
 		url(r'^register/$', views.clientRegister, name='clientRegister'),
 		url(r'^tailor$', views.tailorHome, name='tailorHome'),
 		url(r'^user$', views.clientHome, name='clientHome'),
-		url(r'^sizes/$', views.sizes, name='sizes'),
+		url(r'^order/$', views.order, name='order'),
+		url(r'^dashboard/$', views.clientDashboard, name='clientDashboard'),
+		url(r'^test/$', views.test, name='test'),
 )

@@ -1,73 +1,105 @@
+from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-
+from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from suave.models import User, Client #UserProfile
 
-from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm #UserProfileForm,
+from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm
+""" c_d represents context_dict: Used to reduce clutter"""
+
+
 
 """This shows the client home page by default"""
+# @login_required
 def index(request):
+	# logout(request)
+	c_d = {}
+	c_d['title'] = 'SuaveStitches - All the greates tailors in Nigeria at your service'
 
-	context_dict = {}
-	context_dict['title'] = 'SuaveStitches - All the greates tailors in Nigeria at your service'
-
-	return render(request, 'i/index.html', context_dict)
+	return render(request, 'i/index.html', c_d)
 
 def clientRegister(request):
+	c_d = {}
+	c_d['action'] = '/suave/register/'
+	c_d['title'] = 'SuaveStitches - Sign up'
+
 	#boolean for inform template about whether registration was successful
-
-
-	context_dict = {}
-	context_dict['action'] = '/suave/register/'
-	context_dict['title'] = 'SuaveStitches - Sign up'
-	context_dict['registered'] = False
+	c_d['registered'] = False
 
 	if request.method == 'POST':
 		user_form = UserForm(request.POST)
 		other_form = ClientRegisterForm(request.POST)
 
 		if user_form.is_valid() and other_form.is_valid():
-			# save user info			
+			#DEBUG 
 			data = user_form.cleaned_data
 			print data['username']
-			user = user_form.save()
-			print user_form.username
-
+			print data['password']
+			# save user info
+			user_form_data = user_form.save()
 			#hash password with set_password() -> save
-			user.set_password(user.password)
-			user.save()
+			user_form_data.set_password(user_form_data.password)
+			user_form_data.save()
 
 			#other_data holds other client details like sex preference...
-			other_data = other_form.save(commit=False)
-			other_data.user = user
-			print other_data
+			other_form_data = other_form.save(commit=False)
+			other_form_data.user = user_form_data
 
 			# save client extra details
-			other_data.save()
+			other_form_data.save()
+			
 
-			context_dict['registered'] = True
+			c_d['registered'] = True #@todo use this to display message that last for some time to welcome new users (jquery)
+			user = authenticate(username=data['username'], password=data['password'])
+
+			if user is not None:
+				login(request, user)
+				print 'Login worked'
+			else:
+				print 'Login not work'
+			request.session['client_id'] = int(other_form_data.id)
+			print 'request.session', request.session['client_id']
+			return redirect('suave:clientDashboard')
+			
+
 		else:
-			print user_form.errors, other_form.errors
+			c_d['user_form'] = user_form
+			c_d['other_form'] = other_form
+
+			print c_d['user_form'].errors, c_d['user_form'].errors
 	else:
-		context_dict['user_form'] = UserForm()
-		context_dict['other_form'] = ClientRegisterForm()
+		c_d['user_form'] = UserForm()
+		c_d['other_form'] = ClientRegisterForm()
 
-	return render(request, 'i/client/client_form.html', context_dict)
+	return render(request, 'i/client/form.html', c_d)
 
+def test(request):
+	# me = Client.objects.get(id=request.session['client_id'])
+	me = Client.objects.get(id=59)
+	print me.user.username
+	print me.user.email
+	return HttpResponse('heelllo '+ me.user.username)
 
-	context_dict['user_form'] = UserForm()
-	# context_dict['user_profile_form'] = UserProfileForm()
-	context_dict['other_form'] = ClientRegisterForm()
-
+@login_required #working
+def clientDashboard(request):
+	##Test for login
+	print 'clientDashboard', request.session['client_id']
+	client = Client.objects.get(id=request.session['client_id'])
+	c_d = {}
+	c_d['username'] = client.user.username
+	c_d['email'] = client.user.email
+	c_d['sex'] = client.sex
+	# return HttpResponse('heelllo '+ client.user.username + ' ' + client.user.email + ' ' +  client.sex)
+	return render(request, 'i/client/dashboard.html', c_d)
 
 def tailorHome(request):
-	context_dict = {}
-	# context_dict['form'] = ClientForm()
-	context_dict['action'] = '/suave/account/tailor'
-	context_dict['title'] = 'SuaveStitches - Tailor'
+	c_d = {}
+	# c_d['form'] = ClientForm()
+	c_d['action'] = '/suave/account/tailor'
+	c_d['title'] = 'SuaveStitches - Tailor'
 	if request.method == 'POST':
 		form = ClientRegisterForm(request.POST)
 
@@ -77,20 +109,22 @@ def tailorHome(request):
 			return HttpResponseRedirect('/suave')
 
 		else:
-			print context_dict['form'].errors
+			print c_d['form'].errors
 
 	else:
-		context_dict['form'] = ClientRegisterForm()
+		c_d['form'] = ClientRegisterForm()
 
-	return render(request, 'i/tailor/tailor_home.html', context_dict)
+	return render(request, 'i/tailor/tailor_home.html', c_d)
 
 def clientHome(request):
-	context_dict = {}
-	context_dict['title'] = 'SuaveStitches - Customer'
-	context_dict['form'] = ClientForm()
-	return render(request, 'i/customer/customer_home.html', context_dict)
+	c_d = {}
+	c_d['title'] = 'SuaveStitches - Customer'
+	c_d['form'] = ClientForm()
+	return render(request, 'i/customer/customer_home.html', c_d)
 
-def sizes(request):
-	context_dict = {}
-	context_dict['form'] = MaleSizeForm()
-	return render(request, 'i/common/sizes.html', context_dict)
+def order(request):
+	c_d = {}
+	c_d['maleSize_form'] = MaleSizeForm()
+	c_d['FemaleSize_form'] = FemaleSizeForm()
+	c_d['order_form'] = OrderForm()
+	return render(request, 'i/client/order.html', c_d)
