@@ -1,7 +1,7 @@
 {% extends "i/layout/base.html" %}
 {% block main_section %}
 
-	<form class="form-order" method="POST" action="{{ action }}">
+	<form class="form-order" method="POST" action="{% url 'suave:order' %}">
 	{% csrf_token %}
 		<div class="col-lg-4 col-lg-offset-4">
 			<div class="form-group">
@@ -28,7 +28,7 @@
 			<div class="form-group client-order-form-female">
 			<h3>female size</h3>
 			<hr>
-				{% for field in FemaleSize_form.visible_fields %}
+				{% for field in femaleSize_form.visible_fields %}
 				{{ field.errors }}
 				<h4>{{ field.help_text }}</h4>
 				{{ field }}
@@ -36,7 +36,7 @@
 
 			</div>
 			<div class="form-signup-base">
-				<input type="submit" class="btn btn-success btn-lg" value="Register">
+				<input type="submit" class="btn btn-success btn-lg" value="Submit">
 			</div>
 		</div>
 	</form>

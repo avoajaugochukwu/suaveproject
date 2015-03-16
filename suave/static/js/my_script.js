@@ -5,8 +5,16 @@ jQuery(document).ready(function($) {
 		// 	e.preventDefault();
 		// }
 		$('.new-register').shake({/*direction: "up", distance: 50*/ times: 6, speed: 60});
+
 		$('.new-register').delay(5000).slideUp(2000);
-		$('.client-dashboard-panel').hide().delay(7000).slideDown(2000);
+		if ($('.new-register').is(':visible')){
+			$('.client-dashboard-panel').hide().delay(7000).slideDown(2000);
+		}
+		else {
+			$('.client-dashboard-panel').hide().slideDown(1000);
+			$('.client-dashboard-panel').shake({times: 6, speed: 100});
+		}
+
 		$('.client-order-form-male, .client-order-form-female').hide();
 
 		// $('#id_sex').click(function() {

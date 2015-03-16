@@ -6,13 +6,15 @@
 
 {% block main_section %}
 
-	<!-- {% if registered %} -->
+
+
+	{% if registered %}
 	<div class="new-register">
 		<h3>Thanks for registering, you can place order with greate rate and receive fast response.</h3>
 	</div>
-	<!-- {% endif %} -->
+	{% endif %}
 	<div class="client-dashboard-panel panel panel-body panel-success">
-		<a href="#create-order" class="btn btn-success">create order</a>
+		<a href="{% url 'suave:order' %}" class="btn btn-success">create order</a>
 		<a href="" class="btn btn-info">view order progress</a>
 	</div>
 	<h1>{{ username }}</h1>

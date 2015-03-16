@@ -16,16 +16,16 @@
 
 .jumbotron-home-page {
 	@extend .jumbotron;
-	// background-image: url('../images/Suave_Stiches.png');
+	// background-image: url('../img/Suave_Stiches.png');
 	background: #e5f1f8;
 	background: #97ccd8;
 	background: #03a9f4;
-	background-image: url('../images/Background_2.png');
+	background-image: url('../img/Background_2.png');
 }
 /* should rename this */
 .jumbotron-signup {
 	@extend .jumbotron;
-	background-image: url('../images/Suave_Stiches_3.png');
+	background-image: url('../img/Suave_Stiches_3.png');
 }
 
 

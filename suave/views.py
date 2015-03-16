@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from suave.models import User, Client #UserProfile
+from suave.models import User, Client, Size, Order, Tailor #UserProfile
 
 from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm
 """ c_d represents context_dict: Used to reduce clutter"""
@@ -52,7 +52,7 @@ def clientRegister(request):
 			other_form_data.save()
 			
 
-			c_d['registered'] = True #@todo use this to display message that last for some time to welcome new users (jquery)
+			 #@todo use this to display message that last for some time to welcome new users (jquery)
 			user = authenticate(username=data['username'], password=data['password'])
 
 			if user is not None:
@@ -62,8 +62,9 @@ def clientRegister(request):
 				print 'Login not work'
 			request.session['client_id'] = int(other_form_data.id)
 			print 'request.session', request.session['client_id']
+			request.session['registered'] = 1
 			return redirect('suave:clientDashboard')
-			
+
 
 		else:
 			c_d['user_form'] = user_form
@@ -86,9 +87,15 @@ def test(request):
 @login_required #working
 def clientDashboard(request):
 	##Test for login
+
 	print 'clientDashboard', request.session['client_id']
 	client = Client.objects.get(id=request.session['client_id'])
 	c_d = {}
+	if request.session['registered'] == 1:
+		c_d['registered'] = True
+		request.session['registered'] = 2
+
+
 	c_d['username'] = client.user.username
 	c_d['email'] = client.user.email
 	c_d['sex'] = client.sex
@@ -124,7 +131,41 @@ def clientHome(request):
 
 def order(request):
 	c_d = {}
+	# c_d['action'] = ''
 	c_d['maleSize_form'] = MaleSizeForm()
-	c_d['FemaleSize_form'] = FemaleSizeForm()
+	c_d['femaleSize_form'] = FemaleSizeForm()
 	c_d['order_form'] = OrderForm()
+	client = Client.objects.get(id=request.session['client_id'])
+	# print client['id']
+
+	if request.method == 'POST':
+		sex = request.POST.get('sex')
+		delivery_option = request.POST.get('delivery_option')
+		# size_id = 1
+		print delivery_option
+		if sex == 'F':
+			femaleSize_form = FemaleSizeForm(request.POST)
+			if femaleSize_form.is_valid():
+				femaleSize_form_data = femaleSize_form.save()
+				print femaleSize_form_data.id
+				size_id = femaleSize_form_data.id
+
+		elif(sex == 'M'):
+			maleSize_form = MaleSizeForm(request.POST)
+			if maleSize_form.is_valid():
+				maleSize_form_data = maleSize_form.save()
+				print maleSize_form_data.id
+				size_id = maleSize_form_data.id
+		size = Size.objects.get(id=size_id)
+	#save order
+		order_form = OrderForm(request.POST)
+		if order_form.is_valid():
+			order_form_data = order_form.save(commit=False)
+			order_form_data.client = client
+			order_form_data.size = size
+			order_form_data.sex = sex
+			order_form_data.delivery_option = delivery_option
+			order_form_data.status = 'OPEN'
+			order_form_data.save()
+
 	return render(request, 'i/client/order.html', c_d)

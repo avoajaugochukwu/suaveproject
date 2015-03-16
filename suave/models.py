@@ -36,7 +36,6 @@ class Tailor(models.Model):
 		return self.user.username
 
 class Size(models.Model):
-	client = models.ForeignKey(Client)
 	bust = models.IntegerField(default=0)
 	center_back = models.IntegerField(default=0)
 	chest = models.IntegerField(default=0)
@@ -45,10 +44,14 @@ class Size(models.Model):
 	sleeve = models.IntegerField(default=0)
 	waist = models.IntegerField(default=0)
 
+	def __str__(self):
+		sizeId = str(self.id)
+		return sizeId
+
 
 
 class Order(models.Model):
-	client = models.ForeignKey(Client)
+	client = models.ForeignKey(Client, null=True)
 	size = models.ForeignKey(Size, null=True)
 	tailor = models.ForeignKey(Tailor, null=True)
 	Fabric = models.IntegerField(null=True) #* change to foreign key with Fabric
