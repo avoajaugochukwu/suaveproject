@@ -1,33 +1,30 @@
 from django.core.urlresolvers import reverse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from suave.models import User, Client, Size, Order, Tailor #UserProfile
+from suave.models import User, Client, Size, Order, Tailor
 
 from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm
-""" c_d represents context_dict: Used to reduce clutter"""
 
 
 
 """This shows the client home page by default"""
-# @login_required
 def index(request):
 	# logout(request)
-	c_d = {}
-	c_d['title'] = 'SuaveStitches - All the greates tailors in Nigeria at your service'
+	context = {}
+	context['title'] = 'SuaveStitches - All the greates tailors in Nigeria at your service'
 
-	return render(request, 'i/index.html', c_d)
+	return render(request, 'i/index_test.html', context)
+
+
 
 def clientRegister(request):
-	c_d = {}
-	c_d['action'] = '/suave/register/'
-	c_d['title'] = 'SuaveStitches - Sign up'
-
-	#boolean for inform template about whether registration was successful
-	c_d['registered'] = False
+	context = {}
+	context['action'] = '/suave/register/'
+	context['title'] = 'SuaveStitches - Sign up'
 
 	if request.method == 'POST':
 		user_form = UserForm(request.POST)
@@ -67,15 +64,15 @@ def clientRegister(request):
 
 
 		else:
-			c_d['user_form'] = user_form
-			c_d['other_form'] = other_form
+			context['user_form'] = user_form
+			context['other_form'] = other_form
 
-			print c_d['user_form'].errors, c_d['user_form'].errors
+			print context['user_form'].errors, context['user_form'].errors
 	else:
-		c_d['user_form'] = UserForm()
-		c_d['other_form'] = ClientRegisterForm()
+		context['user_form'] = UserForm()
+		context['other_form'] = ClientRegisterForm()
 
-	return render(request, 'i/client/form.html', c_d)
+	return render(request, 'i/client/form.html', context)
 
 def test(request):
 	# me = Client.objects.get(id=request.session['client_id'])
@@ -90,23 +87,23 @@ def clientDashboard(request):
 
 	print 'clientDashboard', request.session['client_id']
 	client = Client.objects.get(id=request.session['client_id'])
-	c_d = {}
+	context = {}
 	if request.session['registered'] == 1:
-		c_d['registered'] = True
+		context['registered'] = True
 		request.session['registered'] = 2
 
 
-	c_d['username'] = client.user.username
-	c_d['email'] = client.user.email
-	c_d['sex'] = client.sex
+	context['username'] = client.user.username
+	context['email'] = client.user.email
+	context['sex'] = client.sex
 	# return HttpResponse('heelllo '+ client.user.username + ' ' + client.user.email + ' ' +  client.sex)
-	return render(request, 'i/client/dashboard.html', c_d)
+	return render(request, 'i/client/dashboard.html', context)
 
 def tailorHome(request):
-	c_d = {}
-	# c_d['form'] = ClientForm()
-	c_d['action'] = '/suave/account/tailor'
-	c_d['title'] = 'SuaveStitches - Tailor'
+	context = {}
+	# context['form'] = ClientForm()
+	context['action'] = '/suave/account/tailor'
+	context['title'] = 'SuaveStitches - Tailor'
 	if request.method == 'POST':
 		form = ClientRegisterForm(request.POST)
 
@@ -116,47 +113,49 @@ def tailorHome(request):
 			return HttpResponseRedirect('/suave')
 
 		else:
-			print c_d['form'].errors
+			print context['form'].errors
 
 	else:
-		c_d['form'] = ClientRegisterForm()
+		context['form'] = ClientRegisterForm()
 
-	return render(request, 'i/tailor/tailor_home.html', c_d)
+	return render(request, 'i/tailor/tailor_home.html', context)
 
 def clientHome(request):
-	c_d = {}
-	c_d['title'] = 'SuaveStitches - Customer'
-	c_d['form'] = ClientForm()
-	return render(request, 'i/customer/customer_home.html', c_d)
+	context = {}
+	context['title'] = 'SuaveStitches - Customer'
+	context['form'] = ClientForm()
+	return render(request, 'i/customer/customer_home.html', context)
 
 def order(request):
-	c_d = {}
-	# c_d['action'] = ''
-	c_d['maleSize_form'] = MaleSizeForm()
-	c_d['femaleSize_form'] = FemaleSizeForm()
-	c_d['order_form'] = OrderForm()
+	context = {}
+	# context['action'] = ''
+	context['maleSize_form'] = MaleSizeForm()
+	context['femaleSize_form'] = FemaleSizeForm()
+	context['order_form'] = OrderForm()
 	client = Client.objects.get(id=request.session['client_id'])
 	# print client['id']
 
 	if request.method == 'POST':
 		sex = request.POST.get('sex')
 		delivery_option = request.POST.get('delivery_option')
-		# size_id = 1
+
 		print delivery_option
+
 		if sex == 'F':
 			femaleSize_form = FemaleSizeForm(request.POST)
 			if femaleSize_form.is_valid():
 				femaleSize_form_data = femaleSize_form.save()
-				print femaleSize_form_data.id
+
 				size_id = femaleSize_form_data.id
 
 		elif(sex == 'M'):
 			maleSize_form = MaleSizeForm(request.POST)
 			if maleSize_form.is_valid():
 				maleSize_form_data = maleSize_form.save()
-				print maleSize_form_data.id
+
 				size_id = maleSize_form_data.id
 		size = Size.objects.get(id=size_id)
+
 	#save order
 		order_form = OrderForm(request.POST)
 		if order_form.is_valid():
@@ -168,4 +167,4 @@ def order(request):
 			order_form_data.status = 'OPEN'
 			order_form_data.save()
 
-	return render(request, 'i/client/order.html', c_d)
+	return render(request, 'i/client/order.html', context)
