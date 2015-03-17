@@ -1,0 +1,37 @@
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color:#fff">&times;</span></button>
+					<h3 class="modal-title" id="exampleModalLabel">Login</h3>
+				</div>
+			</div>
+
+			<form method="POST" action="{% url 'suave:signin' %}">
+				{% csrf_token %}
+				<div class="modal-body">
+					{% for field in user_login %}
+					{{ field.errors }}
+					<h3>{{ field.help_text }}</h3>
+					{{ field }}
+					{% endfor %}
+					<div class="form-group">
+						<label for="email" class="control-label"><h4>email</h4></label>
+						<input type="text" class="form-control" id="recipient-name" name="email">
+					</div>
+					<div class="form-group">
+						<label for="password" class="control-label"><h4>password</h4></label>
+						<input type="password" class="form-control" id="recipient-name" name="password">
+					</div>
+				</div>
+
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal"><h4>Close</h4></button>
+					<input type="submit" value="Login" class="btn btn-primary">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

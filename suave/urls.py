@@ -24,4 +24,5 @@ urlpatterns = patterns('',
 		url(r'^order/$', views.order, name='order'),
 		url(r'^dashboard/$', views.clientDashboard, name='clientDashboard'),
 		url(r'^test/$', views.test, name='test'),
+		url(r'^signin/$', views.signin, name='signin'),
 )

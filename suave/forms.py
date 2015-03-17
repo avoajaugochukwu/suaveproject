@@ -12,11 +12,12 @@ class UserForm(forms.ModelForm):
 		model = User
 		fields = ('username', 'email', 'password')
 
-
-# class UserProfileForm(forms.ModelForm):
-# 	fields = ()
-# 	class Meta:
-# 		model = UserProfile
+class UserFormLogin(UserForm):
+	username = forms.CharField(max_length=32, required=True, widget=forms.HiddenInput(attrs={'class': 'hide'}))
+	class Meta:
+		model = User
+		fields = ('email', 'password')
+		exclude = ('username',)
 
 
 class ClientRegisterForm(forms.ModelForm):

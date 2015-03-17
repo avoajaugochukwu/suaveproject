@@ -7,13 +7,18 @@ from django.contrib.auth.decorators import login_required
 
 from suave.models import User, Client, Size, Order, Tailor
 
-from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm
+from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm, UserFormLogin
 
 
 
-"""This shows the client home page by default"""
+
+
+
+
 def index(request):
-	# logout(request)
+	"""This shows the client home page by default"""
+
+	logout(request)
 	context = {}
 	context['title'] = 'SuaveStitches - All the greates tailors in Nigeria at your service'
 
@@ -47,7 +52,7 @@ def clientRegister(request):
 
 			# save client extra details
 			other_form_data.save()
-			
+
 
 			 #@todo use this to display message that last for some time to welcome new users (jquery)
 			user = authenticate(username=data['username'], password=data['password'])
@@ -168,3 +173,48 @@ def order(request):
 			order_form_data.save()
 
 	return render(request, 'i/client/order.html', context)
+
+
+
+
+
+"""login a Client or Tailor"""
+def signin(request):
+	context = {}
+	context['user_login'] = UserFormLogin()
+
+	if request.method == 'POST':
+		email = request.POST.get('email')
+		password = request.POST.get('password')
+		# print email
+		# print password
+		checkUser = User.objects.get(email=email)
+
+		username = checkUser.username
+		print username
+
+		user = authenticate(username=username, password=password)
+		if user is not None:
+			login(request, user)
+			client = Client.objects.get(user=user)
+			print 'client', client
+			print 'Login worked'
+		else:
+			print 'Login not work'
+		# request.session['client_id']
+		request.session['client_id'] = client.id
+		request.session['registered'] = 2
+		print client.id
+		print 'type', type(client)
+		return redirect('suave:clientDashboard')
+
+
+	else:
+		return redirect('suave:index')
+
+# def display_login():
+# 	context = {}
+# 	context['user_login'] = UserFormLogin()
+# 	print 'display_login'
+
+# display_login()
