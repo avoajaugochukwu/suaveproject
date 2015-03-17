@@ -27,10 +27,10 @@
 								{{ field }}
 								{% endfor %}
 
-								{% for field in other_form.visible_fields %}
+								{% for field in client_form.visible_fields %}
 								
 								<h3>{{ field.help_text }} &nbsp; &nbsp; &nbsp; {{ field.errors }}</h3>
-		
+
 								{{ field }}
 								{% endfor %}
 
