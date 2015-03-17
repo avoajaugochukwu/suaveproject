@@ -1,7 +1,7 @@
 {% extends "i/layout/base.html" %}
 {% block main_section %}
 
-	<form class="form-order" method="POST" action="{% url 'suave:order' %}">
+	<form class="form-order" method="POST" action="{% url 'suave:createOrder' %}">
 	{% csrf_token %}
 		<div class="col-lg-4 col-lg-offset-4">
 			<div class="form-group">

@@ -7,6 +7,10 @@
 	</head>
 
 	<body>
+		{% block utilityHeader %}
+
+		{% endblock %}
+
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container">
 				<div class="row">
@@ -20,20 +24,27 @@
 						</button>
 						<div id="header">
 							<a class="navbar-brand" href="/suave">
-
 								<img src="{% static 'img/my_logo_1.png' %}">
-
 							</a>
 						</div>
 
 					</div>
 					<!-- menu section -->
 					<div class="collapse navbar-collapse navbar-ex1-collapse">
-						<ul class="nav navbar-nav navbar-right">
+						<!-- <ul class="nav navbar-nav navbar-right"> -->
+						<ul class="nav navbar-nav navbar-left">
 							<li class=""><a href style="background:#">explore</a></li>
-							<li class=""><a href="{% url 'suave:tailorHome' %}"  style="background:#eecccc">tailors</a></li>
-							<li class=""><a href="http://about">sign in</a></li>
+							<li class=""><a href="{% url 'suave:tailorHome' %}">people</a></li>
+							<li class=""><a href="http://about">about</a></li>
 							<li class=""><a href="http://contact">contact</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<!-- <button type="button" class="action-button-signin" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button> -->
+							{% if user.is_authenticated %}
+							<li><a href="{% url 'suave:signout' %}" class="">sign out</a></li>
+							{% else %}
+							<li><a role="button" class="" data-toggle="modal" data-target=".bs-example-modal-sm">sign in</a></li>
+							{% endif %}
 						</ul>
 					</div>
 				</div>

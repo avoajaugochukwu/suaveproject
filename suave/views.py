@@ -22,7 +22,7 @@ def index(request):
 	context = {}
 	context['title'] = 'SuaveStitches - All the greates tailors in Nigeria at your service'
 
-	return render(request, 'i/index_test.html', context)
+	return render(request, 'i/index.html', context)
 
 
 """register Client"""
@@ -112,8 +112,8 @@ def clientDashboard(request):
 		request.session['registered'] = 2
 
 
-	context['username'] = client.user.username
-	context['email'] = client.user.email
+	context['user'] = client.user
+	context['orders'] = Order.objects.filter(client=client)
 	context['sex'] = client.sex
 	# return HttpResponse('heelllo '+ client.user.username + ' ' + client.user.email + ' ' +  client.sex)
 	return render(request, 'i/client/dashboard.html', context)
@@ -145,7 +145,7 @@ def clientHome(request):
 	context['form'] = ClientForm()
 	return render(request, 'i/customer/customer_home.html', context)
 
-def order(request):
+def createOrder(request):
 	context = {}
 
 	context['maleSize_form'] = MaleSizeForm()
@@ -188,7 +188,7 @@ def order(request):
 
 	#prepare order and save
 		order_form = OrderForm(request.POST)
-		if femaleSize_form.is_valid() or maleSize_form.is_valid() and order_form.is_valid():
+		if order_form.is_valid():
 			order_form_data = order_form.save(commit=False)
 			order_form_data.client = client
 			order_form_data.size = size
@@ -226,6 +226,7 @@ def signin(request):
 			print 'Login worked'
 		else:
 			print 'Login not work'
+			return reverse('suave:index')
 		# request.session['client_id']
 		request.session['client_id'] = client.id
 		request.session['registered'] = 2
@@ -237,9 +238,6 @@ def signin(request):
 	else:
 		return redirect('suave:index')
 
-# def display_login():
-# 	context = {}
-# 	context['user_login'] = UserFormLogin()
-# 	print 'display_login'
-
-# display_login()
+def signout(request):
+	logout(request)
+	return redirect('suave:index')

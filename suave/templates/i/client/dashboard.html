@@ -5,24 +5,52 @@
 
 
 {% block main_section %}
+	<div class="col-lg-6 col-lg-offset-3">
+
+		{% if registered %}
+		<div class="new-register">
+			<h3>Thanks for registering, you can place order with greate rate and receive fast response.</h3>
+		</div>
+		{% endif %}
 
 
+		{{ request.session.registered }}
+		<h1>{{ user.username }}</h1>
+		<hr>
+		<h3>{{ user.email }}</h3>
+		<p>You are {{ sex }}</p>
 
-	{% if registered %}
-	<div class="new-register">
-		<h3>Thanks for registering, you can place order with greate rate and receive fast response.</h3>
-	</div>
-	{% endif %}
-	<div class="client-dashboard-panel panel panel-body panel-success">
-		<a href="{% url 'suave:order' %}" class="btn btn-success">create order</a>
-		<a href="" class="btn btn-info">view order progress</a>
-	</div>
-	<h1>{{ username }}</h1>
-	<hr>
-	<h3>{{ email }}</h3>
-	<p>You are {{ sex }}</p>
-	<br><br><br><br><br>
-	<div id="create-order" style="background:#000">
-		llll
+		<br><br>
+		<div class="client-dashboard-panel panel panel-body panel-success">
+			<a href="{% url 'suave:createOrder' %}" class="btn btn-success">create order</a>
+			<a href="" class="btn btn-info">view order progress</a>
+		</div>
+		<br><br>
+
+
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>OrderID</th>
+					<th>Order Status</th>
+					<th>Order Sex</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for order in orders %}
+				<tr>
+					<td>{{ order.id }}</td>
+					<td>{{ order.status|lower }}</td>
+					<td>{{ order.sex }}</td>
+					<td>{{ order.delivery_option|lower }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+
+		<a href="{% url 'suave:signout' %}" class="btn btn-danger btn-lg">logout</a>
+		<br><br><br>
+
 	</div>
 {% endblock %}
