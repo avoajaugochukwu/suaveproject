@@ -14,6 +14,7 @@ class UserForm(forms.ModelForm):
 
 class UserFormLogin(UserForm):
 	username = forms.CharField(max_length=32, required=True, widget=forms.HiddenInput(attrs={'class': 'hide'}))
+
 	class Meta:
 		model = User
 		fields = ('email', 'password')
@@ -92,9 +93,20 @@ class OrderForm(forms.ModelForm):
 		('F', 'F'),
 		('M', 'M'),
 	)
-	sex = forms.ChoiceField(choices=SEX_CHOICE,  help_text="Sex", required=True, widget=forms.RadioSelect(attrs={'class': ''}))
-	delivery_option = forms.ChoiceField(choices=DELIVERY_OPTION,  help_text="Choose Delivery option", required=True, widget=forms.RadioSelect(attrs={'class': ''}))
+	sex = forms.ChoiceField(choices=SEX_CHOICE, help_text="Sex", required=True, widget=forms.RadioSelect(attrs={'class': ''}))
+	delivery_option = forms.ChoiceField(choices=DELIVERY_OPTION, help_text="Choose Delivery option", required=True, widget=forms.RadioSelect(attrs={'class': ''}))
 
 	class Meta:
 		model = Order
 		fields = ('sex', 'delivery_option')
+
+
+class TailorRegisterForm(forms.ModelForm):
+	address = forms.CharField(max_length=200, help_text="Address", required=False, widget=forms. Textarea (attrs={'class': 'form-control'}))
+	phone_number = forms.IntegerField(required=False, help_text="Phone number", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '08012345678'}))
+	rate = forms.IntegerField(required=False, help_text="Rate (in naira)", widget=forms.TextInput(attrs={'class': 'form-control'}))
+	specialty = forms.CharField(max_length=40, help_text="Specialty", required=False, widget=forms. Textarea (attrs={'class': 'form-control', 'placeholder': 'Men\'s wear, Women\'s wear, Children\'s wear'}))
+
+	class Meta:
+		model = Tailor
+		fields = ('rate', 'phone_number', 'specialty', 'address')

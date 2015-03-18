@@ -9,3 +9,10 @@ D - Waist – Wearing trousers and a shirt pull the measuring tape around your w
 E - Inside Leg Seam – This should measure the distance from the top of your inside leg (bottom of the front rise) at the crotch, right down to the hem.
 
 Below Please Find The  Measurements
+
+
+
+return render_to_response('client/account.html', context, context_instance=RequestContext(request))
+
+
+#* add request.context_processors

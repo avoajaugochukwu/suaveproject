@@ -7,8 +7,10 @@ from django.contrib.auth.decorators import login_required
 
 from suave.models import User, Client, Size, Order, Tailor
 
-from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm, UserFormLogin
-
+from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm, UserFormLogin, TailorRegisterForm
+""" 
+	@Todo
+Change Size to have foreign key of Order so we can delete it along with Order-> Client-> and User"""
 
 
 
@@ -92,12 +94,14 @@ def clientRegister(request):
 
 	return render(request, 'i/client/form.html', context)
 
+
 def test(request):
 	# me = Client.objects.get(id=request.session['client_id'])
 	me = Client.objects.get(id=59)
 	print me.user.username
 	print me.user.email
 	return HttpResponse('heelllo '+ me.user.username)
+
 
 @login_required
 def clientDashboard(request):
@@ -117,6 +121,7 @@ def clientDashboard(request):
 	# return HttpResponse('heelllo '+ client.user.username + ' ' + client.user.email + ' ' +  client.sex)
 	return render(request, 'i/client/dashboard.html', context)
 
+
 def tailorHome(request):
 	context = {}
 	# context['form'] = ClientForm()
@@ -127,13 +132,12 @@ def tailorHome(request):
 	return render(request, 'i/tailor/tailor_home.html', context)
 
 
-
-
 def clientHome(request):
 	context = {}
 	context['title'] = 'SuaveStitches - Customer'
 	context['form'] = ClientForm()
 	return render(request, 'i/customer/customer_home.html', context)
+
 
 def createOrder(request):
 	context = {}
@@ -190,7 +194,75 @@ def createOrder(request):
 	return render(request, 'i/client/order.html', context)
 
 
+def tailorRegister(request):
+	context = {}
+	context['tailorPage'] = True
+	context['user_form'] = UserForm()
+	context['tailor_form'] = TailorRegisterForm()
 
+
+	if request.method == 'POST':
+		user_form = UserForm(request.POST)
+		tailor_form = TailorRegisterForm(request.POST)
+
+		if user_form.is_valid() and tailor_form.is_valid():
+
+			data = user_form.cleaned_data
+			#DEBUG ----------------
+			print data['username']
+			print data['password']
+			#DEBUG ----------------
+
+			# save user info
+			user_form_data = user_form.save()
+			#hash password with set_password() -> save
+			user_form_data.set_password(user_form_data.password)
+			user_form_data.save()
+
+			#client_data holds other client details like sex || preference...
+			tailor_form_data = tailor_form.save(commit=False)
+			#make the tailor_form_data aware of its one to one relationship with the User
+			tailor_form_data.user = user_form_data
+
+			# save client along with user object
+			tailor_form_data.save()
+
+			##user is authenticated and login is automatic immediately after registering
+			user = authenticate(username=data['username'], password=data['password'])
+
+			if user is not None:
+				login(request, user)
+			#DEBUG ----------------
+			if user.is_authenticated():
+				print 'Login worked'
+			else:
+				print 'Login not work'
+			#DEBUG ----------------
+
+			request.session['client_id'] = int(tailor_form_data.id)
+			#DEBUG ----------------
+			print 'request.session', request.session['client_id']
+			#DEBUG ----------------
+			# use ['registered'] to make registration welcome notice display only once||on registration
+			request.session['registered'] = 1
+			#redirect to clientDashboard view and its associated 'dashboard' page
+			return redirect('suave:tailorHome')
+
+
+		#invalid form return with errors
+		else:
+			context['user_form'] = user_form
+			context['tailor_form'] = tailor_form
+			#DEBUG ----------------
+			# print context['user_form'].errors, context['user_form'].errors
+			#DEBUG ----------------
+	#request not post display 'register' page
+	else:
+		context['user_form'] = UserForm()
+		context['tailor_form'] = TailorRegisterForm()
+
+
+	return render(request, 'i/tailor/form.html', context)
 
 
 """login a Client or Tailor"""
@@ -231,3 +303,4 @@ def signin(request):
 def signout(request):
 	logout(request)
 	return redirect('suave:index')
+
