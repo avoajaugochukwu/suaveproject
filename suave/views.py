@@ -324,3 +324,8 @@ def signout(request):
 	logout(request)
 	return redirect('suave:index')
 
+
+
+
+def notLoggedIn(request):
+	return render(request, 'i/common/general_login.html')

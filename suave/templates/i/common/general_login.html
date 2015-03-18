@@ -1,0 +1,31 @@
+{% extends "i/layout/base.html" %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block header %} {{ title }} {% endblock %}
+
+
+{% block main_section %}
+<div class="col-lg-4 col-lg-offset-4"><br><br>
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3>Login</h3>
+		</div>
+	</div>
+
+	<form method="POST" action="{% url 'suave:signin' %}">
+		{% csrf_token %}
+
+		<label for="email" class="control-label"><h4>email</h4></label>
+		<input type="text" class="form-control" id="recipient-name" name="email">
+
+		<label for="password" class="control-label"><h4>password</h4></label>
+		<input type="password" class="form-control" id="recipient-name" name="password">
+			<br>
+		<a href="{% url 'suave:index' %}" class="btn btn-danger">Cancel</a>
+		<input type="submit" value="Login" class="btn btn-primary">
+
+	</form>
+</div>
+{% endblock %}

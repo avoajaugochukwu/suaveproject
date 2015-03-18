@@ -93,7 +93,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# LOGIN_URL = 'login'
+LOGIN_URL = '/suave/not/logged/in'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
 	"django.contrib.auth.context_processors.auth",
