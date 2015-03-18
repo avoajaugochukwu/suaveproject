@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect#, render_to_response
+
 from django.http import HttpResponse, HttpResponseRedirect
 
 from django.contrib.auth import authenticate, login, logout
@@ -8,9 +9,25 @@ from django.contrib.auth.decorators import login_required
 from suave.models import User, Client, Size, Order, Tailor
 
 from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm, UserFormLogin, TailorRegisterForm
+
+# from django.template import RequestContext
 """ 
 	@Todo
-Change Size to have foreign key of Order so we can delete it along with Order-> Client-> and User"""
+	Change Size to have foreign key of Order so we can delete it along with Order-> Client-> and User
+	
+	@Todo 
+	Client and User login
+	user = auth
+	try 
+		good
+	except
+		bad
+
+	if user.unique
+		tailor
+	else
+		client
+"""
 
 
 
@@ -78,6 +95,7 @@ def clientRegister(request):
 			request.session['registered'] = 1
 			#redirect to clientDashboard view and its associated 'dashboard' page
 			return redirect('suave:clientDashboard')
+			# return render_to_response('i/client/dashboard.html', context, context_instance=RequestContext(request))
 
 
 		#invalid form return with errors
@@ -118,8 +136,10 @@ def clientDashboard(request):
 	context['user'] = client.user
 	context['orders'] = Order.objects.filter(client=client)
 	context['sex'] = client.sex
+	# print 'request.user.username', request.user.username
 	# return HttpResponse('heelllo '+ client.user.username + ' ' + client.user.email + ' ' +  client.sex)
 	return render(request, 'i/client/dashboard.html', context)
+	# return render_to_response('i/client/dashboard.html', context, context_instance=RequestContext(request))
 
 
 def tailorHome(request):

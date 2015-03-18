@@ -12,7 +12,7 @@ class OrderAdmin(admin.ModelAdmin):
 	list_display = ('client', 'size', 'tailor', 'Fabric', 'details', 'delivery_option', 'sex', 'status', 'cost')
 
 class TailorAdmin(admin.ModelAdmin):
-	list_display = ('id', 'user')
+	list_display = ('id', 'user', 'rate', 'phone_number', 'address', 'specialty')
 
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Size, SizeAdmin)
