@@ -31,6 +31,12 @@ class Client(models.Model):
 class Tailor(models.Model):
 # 	#links UserProfile to django User model
 	user = models.OneToOneField(User)
+	rate = models.IntegerField(default=0)
+	phone_number = models.IntegerField(default=0)
+	address = address = models.CharField(max_length=300, null=True)
+	specialty = models.CharField(max_length=300, null=True)
+	# company_size = models.CharField(max_length=300, null=True)
+	# sample_pics = models.CharField(max_length=300, null=True) #image field
 
 	def __str__(self):
 		return self.user.username

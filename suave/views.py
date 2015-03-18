@@ -18,7 +18,6 @@ from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeFo
 def index(request):
 	"""This shows the client home page by default"""
 
-	logout(request)
 	context = {}
 	context['title'] = 'SuaveStitches - All the greates tailors in Nigeria at your service'
 
@@ -123,21 +122,12 @@ def tailorHome(request):
 	# context['form'] = ClientForm()
 	context['action'] = '/suave/account/tailor'
 	context['title'] = 'SuaveStitches - Tailor'
-	if request.method == 'POST':
-		form = ClientRegisterForm(request.POST)
-
-		if form.is_valid():
-			form.save(commit=True)
-
-			return HttpResponseRedirect('/suave')
-
-		else:
-			print context['form'].errors
-
-	else:
-		context['form'] = ClientRegisterForm()
+	context['tailorPage'] = True
 
 	return render(request, 'i/tailor/tailor_home.html', context)
+
+
+
 
 def clientHome(request):
 	context = {}

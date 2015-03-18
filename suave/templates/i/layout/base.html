@@ -6,12 +6,28 @@
 
 	</head>
 
+	
+	{% if tailorPage %}
+	<body class="tailorPage-color">
+	{% else %}
 	<body>
-		{% block utilityHeader %}
+	{% endif %}
 
-		{% endblock %}
 
+
+
+	{% block utilityHeader %}
+
+	{% endblock %}
+
+
+
+
+	{% if tailorPage %}
+		<nav class="navbar navbar-default" role="navigation" style="background:#B2EBF2">
+	{% else %}
 		<nav class="navbar navbar-default" role="navigation">
+	{% endif %}
 			<div class="container">
 				<div class="row">
 					<!--header section -->
@@ -35,8 +51,11 @@
 						<ul class="nav navbar-nav navbar-left">
 							<li class=""><a href style="background:#">explore</a></li>
 							<li class=""><a href="{% url 'suave:tailorHome' %}">people</a></li>
-							<li class=""><a href="http://about">about</a></li>
-							<li class=""><a href="http://contact">contact</a></li>
+							<li class=""><a >about</a></li>
+							<li class=""><a >contact</a></li>
+							{% if tailorPage %}
+								<li class=""><a class="" style="background:#126ee3;color:#fff">Tailor Page</a></li>
+							{% endif %}
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<!-- <button type="button" class="action-button-signin" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button> -->
@@ -50,8 +69,15 @@
 				</div>
 			</div>
 		</nav>
+
+
+
+
+
 		{% block header %}
-		
+
+
+
 		{% endblock %}
 
 

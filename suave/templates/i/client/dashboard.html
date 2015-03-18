@@ -32,17 +32,18 @@
 			<thead>
 				<tr>
 					<th>OrderID</th>
-					<th>Order Status</th>
 					<th>Order Sex</th>
+					<th>Order Delivery Option</th>
+					<th>Order Status</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for order in orders %}
 				<tr>
 					<td>{{ order.id }}</td>
-					<td>{{ order.status|lower }}</td>
 					<td>{{ order.sex }}</td>
 					<td>{{ order.delivery_option|lower }}</td>
+					<td>{{ order.status|lower }}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
