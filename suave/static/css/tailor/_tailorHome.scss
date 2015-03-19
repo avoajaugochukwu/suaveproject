@@ -33,3 +33,12 @@
 .action-button-tailor:hover {
 	@include myButton-hover(#f36315, #000);
 }
+
+@media (max-width: 480px) {
+	.below-jumbotron-tailor h2 {
+		@include padding(5px, 20px, 5px, 20px);
+		font-size: 1.6em;
+		line-height: 40px;
+	}
+
+}

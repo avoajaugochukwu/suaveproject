@@ -16,17 +16,7 @@ from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeFo
 	Change Size to have foreign key of Order so we can delete it along with Order-> Client-> and User
 	
 	@Todo 
-	Client and User login
-	user = auth
-	try 
-		good
-	except
-		bad
-
-	if user.unique
-		tailor
-	else
-		client
+	View order by tailor on a different page with 
 """
 
 
@@ -136,10 +126,8 @@ def clientDashboard(request):
 	context['user'] = client.user
 	context['orders'] = Order.objects.filter(client=client)
 	context['sex'] = client.sex
-	# print 'request.user.username', request.user.username
-	# return HttpResponse('heelllo '+ client.user.username + ' ' + client.user.email + ' ' +  client.sex)
+	
 	return render(request, 'i/client/dashboard.html', context)
-	# return render_to_response('i/client/dashboard.html', context, context_instance=RequestContext(request))
 
 
 def tailorHome(request):
@@ -273,19 +261,22 @@ def tailorRegister(request):
 		else:
 			context['user_form'] = user_form
 			context['tailor_form'] = tailor_form
-			#DEBUG ----------------
-			# print context['user_form'].errors, context['user_form'].errors
-			#DEBUG ----------------
-	#request not post display 'register' page
+
+	#request not post instantiate forms
 	else:
 		context['user_form'] = UserForm()
 		context['tailor_form'] = TailorRegisterForm()
 
-
+	# display 'register' page
 	return render(request, 'i/tailor/form.html', context)
 
 
-"""login a Client or Tailor"""
+"""
+	corresponding url 'signin'
+	@use Single login logic for Clients and Tailors
+	@logic instantiate a 'client' variable, if it is None -> it means the current user is a tailor 
+	@return client dashboard if user is client or Tailor dashboard if user is tailor
+"""
 def signin(request):
 	context = {}
 	context['user_login'] = UserFormLogin()
@@ -293,31 +284,31 @@ def signin(request):
 	if request.method == 'POST':
 		email = request.POST.get('email')
 		password = request.POST.get('password')
-		# print email
-		# print password
+
 		checkUser = User.objects.get(email=email)
 
-		username = checkUser.username
-		print username
 
-		user = authenticate(username=username, password=password)
+		user = authenticate(username=checkUser.username, password=password)
 		if user is not None:
 			login(request, user)
 			# instantiate client
-			# try to get client or tailor
-			# if client is None redirect to clientDashboard else redirect to tailorDashboard
+			
 			client = None
-
+			# try to get client or tailor
 			try:
 				client = Client.objects.get(user=user)
 			except Exception, e:
 				tailor = Tailor.objects.get(user=user)
 
+			# if client is None redirect to clientDashboard else redirect to tailorDashboard
+
 			if client is None:
 				print 'tailor', tailor.id
 				return redirect('suave:tailorDashboard')
 			else:
+				# instantiate session -> 'registered' so new client registration check won't throw undefined keyError in view::clientDashboard 
 				request.session['registered'] = 2
+				# session -> client id : used to get info of a particular user for view:clientDashboard
 				request.session['client_id'] = client.id
 				print 'client', client
 				return redirect('suave:clientDashboard')
@@ -334,7 +325,7 @@ def signin(request):
 		print 'type', type(client)
 		return redirect('suave:clientDashboard')
 
-	# if request not post send to home page
+	#request not post send to home page
 	else:
 		return redirect('suave:index')
 
@@ -352,4 +343,13 @@ def notLoggedIn(request):
 def tailorDashboard(request):
 	context = {}
 	context['tailorPage'] = True
+	orders = Order.objects.filter(status='OPEN')
+	context['orders'] = orders
 	return render(request, 'i/tailor/dashboard.html', context)
+
+
+# def tailorOrderDetails(request, order_id):
+# 	return HttpResponse(order_id)
+
+def tailorOrderDetails(request):
+	return HttpResponse('Order stuff')

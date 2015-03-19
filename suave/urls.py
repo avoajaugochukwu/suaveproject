@@ -31,6 +31,9 @@ urlpatterns = patterns('',
 		url(r'^tailor/$', views.tailorHome, name='tailorHome'),
 		url(r'^tailor/register$', views.tailorRegister, name='tailorRegister'),
 		url(r'^tailor/dashboard$', views.tailorDashboard, name="tailorDashboard"),
+		url(r'^tailor/view/order/$', views.tailorOrderDetails, name='tailorOrderDetails'), #(?P<category_name_slug>[\w\-]+)
+
 
 		url(r'^not/logged/in$', views.notLoggedIn, name='notLoggedIn'),
+
 )

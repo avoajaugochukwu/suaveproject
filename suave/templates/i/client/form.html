@@ -2,91 +2,41 @@
 
 {% block title %} {{ title }} {% endblock %}
 
-	<!-- <div class="jumbotron-signup"> -->
-		
-	<!-- </div> -->
-
 
 
 
 {% block main_section %}
 	<br><br><br>
-<!-- <div class="row">
-	<div class="col-lg-4 col-lg-offset-4">
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#home" data-toggle="tab">Sign up</a></li>
-			<li><a href="#blog" data-toggle="tab">Login</a></li>
-			<li><a href="#contact" data-toggle="tab">Contact</a></li>
-		</ul>
-	</div>
-</div> -->
-<div class="row">
-	<div class="col-lg-4 col-lg-offset-4">
-		<div class="tab-content">
-			<div id="home" class="tab-pane fade in active"><!-- Start of Sign up tab -->
-				<div class="form-container"><!-- Start of form container -->
-					<form class="form-signup" method="POST" action="{{ action }}">
-						<!-- <div class="col-xs-4 col-xs-offset-8 form-tag">Sign Up</div> -->
-						<div>
-							<div class="form-group">
+		<div class="col-lg-4 col-lg-offset-4">
+			<div class="form-container">
+				<form class="form-signup" method="POST" action="{{ action }}">
+					<div class="form-group">
 
-								{% csrf_token %}
+						{% csrf_token %}
 
 
-								{% for field in user_form.visible_fields %}
-								{{ field.errors }}
-								<h3>{{ field.help_text }}</h3>
-								{{ field }}
-								{% endfor %}
+						{% for field in user_form.visible_fields %}
+						{{ field.errors }}
+						<h3>{{ field.help_text }}</h3>
+						{{ field }}
+						{% endfor %}
 
-								{% for field in client_form.visible_fields %}
-								
-								<h3>{{ field.help_text }} &nbsp; &nbsp; &nbsp; {{ field.errors }}</h3>
+						{% for field in client_form.visible_fields %}
 
-								{{ field }}
-								{% endfor %}
+						<h3>{{ field.help_text }} &nbsp; &nbsp; &nbsp; {{ field.errors }}</h3>
 
-							</div>
-							<div class="form-signup-base">
-								<input type="submit" class="btn btn-success btn-lg" value="Register">
-							</div>
-						</div>
-					</form>
-				</div> <!-- End of form container -->
-			</div> <!-- End of Sign up tab -->
+						{{ field }}
+						{% endfor %}
 
+					</div>
 
+					<div class="form-signup-base">
+						<input type="submit" class="btn btn-success btn-lg" value="Register">
+					</div>
+				</form>
+				<br><br><br>
+			</div> <!-- End of form container -->
+		</div> <!-- End of Sign up tab -->
 
-
-			<div id="blog" class="tab-pane fade">
-				<div class="form-container"><!-- Start of form container -->
-					<form class="form-signup" action="">
-						<!-- <div class="col-xs-4 col-xs-offset-8 form-tag">Login</div> -->
-						<div>
-							<div class="form-group">
-								<label><h3>Email Name</h3></label>
-								<input type="text" class="form-control" placeholder="aladebello@example.com">
-
-								<label><h3>Password</h3></label>
-								<input type="password" class="form-control" placeholder="aladebello@example.com">
-							</div>
-							<div class="form-signup-base">
-								<input type="submit" class="btn btn-success btn-lg" value="Login">
-							</div>
-						</div>
-					</form>
-				</div> <!-- End of form container -->
-			</div>
-
-
-
-
-
-			<!-- <div id="contact" class="tab-pane fade">
-				<h1>contact</h1>
-			</div> -->
-		</div>
-	</div>
-</div>
-<br><br><br>
+		
 {% endblock %}
