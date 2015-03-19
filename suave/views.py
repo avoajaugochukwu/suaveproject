@@ -303,20 +303,38 @@ def signin(request):
 		user = authenticate(username=username, password=password)
 		if user is not None:
 			login(request, user)
-			client = Client.objects.get(user=user)
-			print 'client', client
+			# instantiate client
+			# try to get client or tailor
+			# if client is None redirect to clientDashboard else redirect to tailorDashboard
+			client = None
+
+			try:
+				client = Client.objects.get(user=user)
+			except Exception, e:
+				tailor = Tailor.objects.get(user=user)
+
+			if client is None:
+				print 'tailor', tailor.id
+				return redirect('suave:tailorDashboard')
+			else:
+				request.session['registered'] = 2
+				request.session['client_id'] = client.id
+				print 'client', client
+				return redirect('suave:clientDashboard')
+
 			print 'Login worked'
 		else:
 			print 'Login not work'
 			return reverse('suave:index')
-		# request.session['client_id']
-		request.session['client_id'] = client.id
-		request.session['registered'] = 2
-		print client.id
+
+		print '>>>>>>>', type(user)
+
+
+
 		print 'type', type(client)
 		return redirect('suave:clientDashboard')
 
-
+	# if request not post send to home page
 	else:
 		return redirect('suave:index')
 
@@ -329,3 +347,9 @@ def signout(request):
 
 def notLoggedIn(request):
 	return render(request, 'i/common/general_login.html')
+
+
+def tailorDashboard(request):
+	context = {}
+	context['tailorPage'] = True
+	return render(request, 'i/tailor/dashboard.html', context)

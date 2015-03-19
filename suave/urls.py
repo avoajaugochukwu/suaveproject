@@ -30,6 +30,7 @@ urlpatterns = patterns('',
 
 		url(r'^tailor/$', views.tailorHome, name='tailorHome'),
 		url(r'^tailor/register$', views.tailorRegister, name='tailorRegister'),
+		url(r'^tailor/dashboard$', views.tailorDashboard, name="tailorDashboard"),
 
 		url(r'^not/logged/in$', views.notLoggedIn, name='notLoggedIn'),
 )
