@@ -9,16 +9,16 @@
 
 		{% if registered %}
 		<div class="new-register">
-			<h3>Thanks for registering, you can place order with greate rate and receive fast response.</h3>
+			<h3>Thanks for registering, you can place order with great rate and receive fast response.</h3>
 		</div>
 		{% endif %}
 
-
-		{{ request.session.registered }}
-		<h1>{{ user.username }}  {{request.user.username }}</h1>
+		
+		
+		<h1>{{ user.username }}</h1>
 		<hr>
 		<h3>{{ user.email }}</h3>
-		<p>You are {{ sex }}</p>
+		<p>You are {{ user.client.sex }}</p>
 
 		<br><br>
 		<div class="client-dashboard-panel panel panel-body panel-success">
@@ -40,7 +40,7 @@
 			<tbody>
 				{% for order in orders %}
 				<tr>
-					<td>{{ order.id }}</td>
+					<td style="color:#008"><span>{{ order.main_order_id }}</span></td>
 					<td>{{ order.sex }}</td>
 					<td>{{ order.delivery_option|lower }}</td>
 					<td>{{ order.status|lower }}</td>

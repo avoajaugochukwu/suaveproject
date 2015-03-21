@@ -59,8 +59,12 @@
 							<!-- <button type="button" class="action-button-signin" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button> -->
 							{% if user.is_authenticated %}
 							<li><a href="{% url 'suave:signout' %}" class="">sign out</a></li>
-							<li><a href="{% url 'suave:clientDashboard' %}" class="">Dashboard</a></li>
-							<li><a href="{% url 'suave:clientDashboard' %}" class="">{{user}}</a></li>
+								{% if user.tailor.rate %}
+									<li><a href="{% url 'suave:tailorDashboard' %}" class="">Dashboard</a></li>
+								{% else %}
+									<li><a href="{% url 'suave:clientDashboard' %}" class="">Dashboard</a></li>
+								{% endif %}
+							<li><a class="">{{user}}</a></li>
 							{% else %}
 							<li><a role="button" class="" data-toggle="modal" data-target=".bs-example-modal-sm">sign in</a></li>
 							{% endif %}
@@ -130,7 +134,27 @@
 
 		<div class="footer">
 			<div class="col-lg-6 footer-left">
-				<div class="col-lg-6 footer-left-left">
+				<ul class="col-sm-3">
+					<li>Support</li>
+					<li>Pricing</li>
+					<li>Clients</li>
+					<li>Partners</li>
+					<li>Press</li>
+				</ul>
+				<ul class="col-sm-3">
+					<li>Home</li>
+					<li>About</li>
+					<li>Careers</li>
+					<li>Team</li>
+				</ul>
+				<ul class="col-sm-3">
+					<li>Contact</li>
+					<li>Blog</li>
+					<li>Status</li>
+					<li>Security/Guaranty</li>
+				</ul>
+			</div>
+				<!-- <div class="col-lg-6 footer-left-left">
 					
 				</div>
 				<div class="col-lg-6 footer-left-right">
@@ -138,9 +162,7 @@
 				</div>
 				<div class="col-lg-12 footer-left-base">
 					
-				</div>
-			</div>
-
+				</div> -->
 
 
 

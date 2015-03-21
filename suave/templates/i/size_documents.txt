@@ -18,3 +18,31 @@ return render_to_response('client/account.html', context, context_instance=Reque
 
 
 #* add request.context_processors
+Above message:: We higly recommend that you give us measurement of your best fitting cloth instead of 
+								body measurement
+
+in inches:::
+sizes are e.g 3.00, 3.25, 3.50, 3.75, 4.00 
+men Sizes
+Height
+Weight
+Waist
+Shirt Collar Size - 12 - 28
+Shirt Sleeve Length - 26 - 44
+Chest - 15 - 45
+Mid-section - 15 - 45
+Shoulder - 14 - 25
+Shirt-Length
+
+Arm hole - 17 - 14
+Bicep - 5 - 12
+Hip - 15 - 34
+Cuff - 3 - 6
+
+Looks more closely fit Looks less closely fit
+
+What bothers you about the fit typical off-the-rack shirts,
+and how would you like us to make your personal fit
+
+
+

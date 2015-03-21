@@ -6,17 +6,36 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from suave.models import User, Client, Size, Order, Tailor
+from suave.models import User, Client, Size, Order, Tailor, Fabric
 
 from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm, UserFormLogin, TailorRegisterForm
 
+from suave.helper import *
 # from django.template import RequestContext
 """ 
 	@Todo
 	Change Size to have foreign key of Order so we can delete it along with Order-> Client-> and User
+
+	@Todo
+	save size and order at the same time to 
+
+	@Todo
+	add estimated time of delivery after order is started
 	
 	@Todo 
-	View order by tailor on a different page with 
+	View order by tailor on a different page with
+
+	@Todo
+	Change dashboard to account for tailor and client
+
+	@Todo
+	Create logic for failure in createOrder view
+
+	@Todo
+	Have option where users can use their previous/personal measurement
+
+	@Todo
+	Seperate cost of fabric from cost of sewing
 """
 
 
@@ -44,7 +63,7 @@ def clientRegister(request):
 		client_form = ClientRegisterForm(request.POST)
 
 		if user_form.is_valid() and client_form.is_valid():
-			
+
 			data = user_form.cleaned_data
 			#DEBUG ----------------
 			print data['username']
@@ -113,8 +132,6 @@ def test(request):
 
 @login_required
 def clientDashboard(request):
-	##Test for login
-
 	print 'clientDashboard', request.session['client_id']
 	client = Client.objects.get(id=request.session['client_id'])
 	context = {}
@@ -123,10 +140,8 @@ def clientDashboard(request):
 		request.session['registered'] = 2
 
 
-	context['user'] = client.user
 	context['orders'] = Order.objects.filter(client=client)
-	context['sex'] = client.sex
-	
+
 	return render(request, 'i/client/dashboard.html', context)
 
 
@@ -153,12 +168,15 @@ def createOrder(request):
 	context['maleSize_form'] = MaleSizeForm()
 	context['femaleSize_form'] = FemaleSizeForm()
 	context['order_form'] = OrderForm()
+	# context['fabrics'] = Fabric.objects.all() #change to choose for male and female
+	# print context['fabrics']
 	client = Client.objects.get(id=request.session['client_id'])
 
 
 	if request.method == 'POST':
 		sex = request.POST.get('sex')
 		delivery_option = request.POST.get('delivery_option')
+
 		#DEBUG ----------------
 		print delivery_option
 		#DEBUG ----------------
@@ -192,6 +210,7 @@ def createOrder(request):
 		order_form = OrderForm(request.POST)
 		if order_form.is_valid():
 			order_form_data = order_form.save(commit=False)
+			order_form_data.main_order_id = mainOrderId()
 			order_form_data.client = client
 			order_form_data.size = size
 			order_form_data.sex = sex
@@ -199,7 +218,10 @@ def createOrder(request):
 			order_form_data.status = 'OPEN'
 			order_form_data.save()
 
+			return redirect('suave:clientDashboard')
+
 	return render(request, 'i/client/order.html', context)
+
 
 
 def tailorRegister(request):
@@ -334,8 +356,6 @@ def signout(request):
 	return redirect('suave:index')
 
 
-
-
 def notLoggedIn(request):
 	return render(request, 'i/common/general_login.html')
 
@@ -351,5 +371,23 @@ def tailorDashboard(request):
 # def tailorOrderDetails(request, order_id):
 # 	return HttpResponse(order_id)
 
-def tailorOrderDetails(request):
-	return HttpResponse('Order stuff')
+def tailorOrderDetails(request, main_order_id):
+	try:
+		order = Order.objects.get(main_order_id=main_order_id)
+	except Exception, e:
+		return HttpResponse('can\'t do that %s' %main_order_id) # write better response
+
+	context = {}
+	context['tailorPage'] = True
+	context['order'] = order
+	return render(request, 'i/tailor/order_details.html', context)
+
+def tailorStartOrder(request, main_order_id):
+	user = request.user
+	order = Order.objects.get(main_order_id=main_order_id)
+	tailor = Tailor.objects.get(user=user)
+	# print user
+	order.tailor = tailor
+	order.status = 'IN PROGRESS'
+	order.save()
+	print 'yes'

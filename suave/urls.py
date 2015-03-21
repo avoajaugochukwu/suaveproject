@@ -31,7 +31,10 @@ urlpatterns = patterns('',
 		url(r'^tailor/$', views.tailorHome, name='tailorHome'),
 		url(r'^tailor/register$', views.tailorRegister, name='tailorRegister'),
 		url(r'^tailor/dashboard$', views.tailorDashboard, name="tailorDashboard"),
-		url(r'^tailor/view/order/$', views.tailorOrderDetails, name='tailorOrderDetails'), #(?P<category_name_slug>[\w\-]+)
+		# url(r'^tailor/view/order/$', views.tailorOrderDetails, name='tailorOrderDetails'), #(?P<category_name_slug>[\w\-]+)
+		url(r'^tailor/view/order/(?P<main_order_id>[\w\-]+)$', views.tailorOrderDetails, name='tailorOrderDetails'),
+		url(r'^tailor/start/order/(?P<main_order_id>[\w\-]+)$', views.tailorStartOrder, name="tailorStartOrder"),
+
 
 
 		url(r'^not/logged/in$', views.notLoggedIn, name='notLoggedIn'),

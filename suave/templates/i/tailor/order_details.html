@@ -1,0 +1,15 @@
+{% extends "i/layout/base.html" %}
+
+{% block main_section %}
+<div class="col-lg-6 col-lg-offset-3"><br>
+	<h1 class="page-header">{{ order.client }} Order</h1>
+		<div class="well">
+			<h3>Sex: {{ order.sex }}</h3>
+			<p>{{ order.delivery_option|lower }}</p>
+
+		</div>
+		<td><a href="{% url 'suave:tailorStartOrder' order.main_order_id %}" class="btn btn-success btn-md">start job</a></td>
+	<br><br>
+</div>
+
+{% endblock %}
