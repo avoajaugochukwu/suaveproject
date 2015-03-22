@@ -8,15 +8,16 @@
 {% block main_section %}
 <div class="col-lg-4 col-lg-offset-4"><br><br>
 
-	<div class="panel panel-primary">
+	<div class="panel panel-primary general-login-shake">
 		<div class="panel-heading">
 			<h3>Login</h3>
 		</div>
 	</div>
 
-	<form method="POST" action="{% url 'suave:signin' %}">
+	<form method="POST" action="{% url 'suave:signin' %}" class="general-login-shake">
 		{% csrf_token %}
-
+		<h4 class="errorlist">{{ error }}</h4>
+		<hr>
 		<label for="email" class="control-label"><h4>email</h4></label>
 		<input type="text" class="form-control" id="recipient-name" name="email">
 

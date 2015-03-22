@@ -24,7 +24,18 @@ def mainOrderId():
 	return orderID
 
 
-	#write a function that will add up cost
-	#to be save in the Order table
-	#it will take 3 values ad will be responsible for determining the cost of
-	#swift and basic service
+
+
+"""
+		Sum cost of fabric, style and service charge (made up of choice of service)
+"""
+def totalOrderCost(fabric, style, service_option):
+	fabricCost = fabric.cost
+	styleCost = style.cost
+	if service_option == 'BASIC':
+		service = 1000
+	elif service_option == 'PREMIUM':
+		service = 2000
+
+	totalCost = fabricCost + styleCost + service
+	return totalCost

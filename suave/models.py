@@ -65,7 +65,7 @@ class Fabric(models.Model):
 
 
 	def __str__(self):
-		return self.name
+		return ('%s %s' %(self.name, self.cost))
 
 class Order(models.Model):
 	
@@ -78,12 +78,16 @@ class Order(models.Model):
 
 	details = models.CharField(max_length=250, null=True) #*
 	delivery_option = models.CharField(max_length=100, null=True)
+	service_option = models.CharField(max_length=100, null=True)
 	sex = models.CharField(max_length=2, default=' ')
-	status = models.CharField(max_length=20, default='') #*
-	cost = models.IntegerField(default=0) # final cost of order
+	status = models.CharField(max_length=20, default='OPEN') #*
+	cost = models.IntegerField(default=0000) # final cost of order
 
 
 class Style(models.Model):
 	name = models.CharField(max_length=50)
 	sex = models.CharField(max_length=3)
 	cost = models.IntegerField(default=000)
+
+	def __str__(self):
+		return ('%s N%s sex- %s' %( self.name, self.cost, self.sex))

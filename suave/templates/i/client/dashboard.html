@@ -27,31 +27,28 @@
 		</div>
 		<br><br>
 
-
-		<table class="table table-striped table-hover">
-			<thead>
-				<tr>
-					<th>OrderID</th>
-					<th>Order Sex</th>
-					<th>Delivery Option</th>
-					<th>Order Status</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for order in orders %}
-				<tr>
-					<td style="color:#008"><span>{{ order.main_order_id }}</span></td>
-					<td>{{ order.sex }}</td>
-					<td>{{ order.delivery_option|lower }}</td>
-					<td>{{ order.status|lower }}</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-
-
-		<a href="{% url 'suave:signout' %}" class="btn btn-danger btn-lg">logout</a>
-		<br><br><br>
-
+		{% if orders %}
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>OrderID</th>
+						<th>Order Sex</th>
+						<th>Delivery Option</th>
+						<th>Order Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for order in orders %}
+					<tr>
+						<td style="color:#008"><span>{{ order.main_order_id }}</span></td>
+						<td>{{ order.sex }}</td>
+						<td>{{ order.delivery_option|lower }}</td>
+						<td>{{ order.status|lower }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
+		<br><br>
 	</div>
 {% endblock %}

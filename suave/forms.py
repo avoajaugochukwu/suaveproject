@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from suave.models import Client, Tailor, Size, Order, Fabric
+from suave.models import Client, Tailor, Size, Order, Fabric, Style
 
 
 class UserForm(forms.ModelForm):
@@ -93,13 +93,22 @@ class OrderForm(forms.ModelForm):
 		('F', 'F'),
 		('M', 'M'),
 	)
+
+
+	SERVICE_OPTION = (
+		('BASIC', 'BASIC'),
+		('PREMIUM', 'PREMIUM'),
+	)
+
 	sex = forms.ChoiceField(choices=SEX_CHOICE, help_text="Sex", required=True, widget=forms.RadioSelect(attrs={'class': ''}))
 	delivery_option = forms.ChoiceField(choices=DELIVERY_OPTION, help_text="Choose Delivery option", required=True, widget=forms.RadioSelect(attrs={'class': ''}))
 	fabric = forms.ModelChoiceField(queryset=Fabric.objects.all(), help_text="Choose fabric", widget=forms.Select(attrs={'class': 'form-control'}))
+	style = forms.ModelChoiceField(queryset=Style.objects.all(), help_text="Choose style", widget=forms.Select(attrs={'class': 'form-control'}))
+	service_option = forms.ChoiceField(choices=SERVICE_OPTION, help_text="Service Option", widget=forms.Select(attrs={'class': 'form-control'}))
 
 	class Meta:
 		model = Order
-		fields = ('sex', 'delivery_option', 'fabric')
+		fields = ('sex', 'delivery_option', 'fabric', 'style')
 
 
 class TailorRegisterForm(forms.ModelForm):
