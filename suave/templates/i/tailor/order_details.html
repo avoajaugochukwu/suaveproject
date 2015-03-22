@@ -6,7 +6,7 @@
 		<div class="well">
 			<h3>Sex: {{ order.sex }}</h3>
 			<p>{{ order.delivery_option|lower }}</p>
-
+			<p>{{ order.fabric }}</p>
 		</div>
 		<td><a href="{% url 'suave:tailorStartOrder' order.main_order_id %}" class="btn btn-success btn-md">start job</a></td>
 	<br><br>

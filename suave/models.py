@@ -43,6 +43,7 @@ class Tailor(models.Model):
 
 class Size(models.Model):
 	# order = models.ForeignKey(Order)
+	# client = models.ForeignKey(Client, null=True) # make is optional for repeat clients to enter their measurement for ease
 	bust = models.IntegerField(default=0)
 	center_back = models.IntegerField(default=0)
 	chest = models.IntegerField(default=0)
@@ -58,11 +59,16 @@ class Size(models.Model):
 
 class Fabric(models.Model):
 	name = models.CharField(max_length=100)
+	cost = models.IntegerField(null=True)
+	sex = models.CharField(max_length=2, null=True)
+	pattern = models.CharField(max_length=150, null=True)
+
 
 	def __str__(self):
 		return self.name
 
 class Order(models.Model):
+	
 	client = models.ForeignKey(Client, null=True)
 	size = models.ForeignKey(Size, null=True)
 	tailor = models.ForeignKey(Tailor, null=True)
@@ -74,6 +80,10 @@ class Order(models.Model):
 	delivery_option = models.CharField(max_length=100, null=True)
 	sex = models.CharField(max_length=2, default=' ')
 	status = models.CharField(max_length=20, default='') #*
-	cost = models.IntegerField(default=0) #*
+	cost = models.IntegerField(default=0) # final cost of order
 
 
+class Style(models.Model):
+	name = models.CharField(max_length=50)
+	sex = models.CharField(max_length=3)
+	cost = models.IntegerField(default=000)

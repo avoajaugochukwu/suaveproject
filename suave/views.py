@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from suave.models import User, Client, Size, Order, Tailor, Fabric
+from suave.models import User, Client, Size, Order, Tailor, Fabric, Style
 
 from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm, UserFormLogin, TailorRegisterForm
 
@@ -21,7 +21,7 @@ from suave.helper import *
 
 	@Todo
 	add estimated time of delivery after order is started
-	
+
 	@Todo 
 	View order by tailor on a different page with
 
@@ -36,6 +36,12 @@ from suave.helper import *
 
 	@Todo
 	Seperate cost of fabric from cost of sewing
+
+	@Todo
+	Cost = Service charge (based on the type of service chosen) + type of style chosen + fabric chosen
+
+	@Todo
+	Add date to Order model
 """
 
 

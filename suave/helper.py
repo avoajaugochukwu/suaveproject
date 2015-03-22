@@ -22,3 +22,9 @@ def mainOrderId():
 	orderID = 'T' + orderID
 
 	return orderID
+
+
+	#write a function that will add up cost
+	#to be save in the Order table
+	#it will take 3 values ad will be responsible for determining the cost of
+	#swift and basic service
