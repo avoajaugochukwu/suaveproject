@@ -11,44 +11,25 @@ from suave.models import User, Client, Size, Order, Tailor, Fabric, Style
 from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm, UserFormLogin, TailorRegisterForm
 
 from suave.helper import *
-# from django.template import RequestContext
+
 """ 
 	@Todo
+	>>>>>>>>>>>>>>>>>>>>>>>
 	Change Size to have foreign key of Order so we can delete it along with Order-> Client-> and User
-
-	@Todo
-	save size and order at the same time to 
+	>>>>>>>>>>>>>>>>>>>>>>>
 
 	@Todo
 	add estimated time of delivery after order is started
 
-	@Todo 
-	View order by tailor on a different page with
-
-	@Todo
-	Change dashboard to account for tailor and client
-
-	@Todo
-	Create logic for failure in createOrder view
 
 	@Todo
 	Have option where users can use their previous/personal measurement
 
 	@Todo
-	Seperate cost of fabric from cost of sewing
-
-	@Todo
-	Cost = Service charge (based on the type of service chosen) + type of style chosen + fabric chosen
-
-	@Todo
 	Add date to Order model
 
 	@Todo
-	Saving should be done at the last minute in the login so that you can avoid saving partial forms 
-	TailorRegistration needs to be adjusted because it saves before validating the entire form
-
-	@Todo
-	Make email field in User model unique that is test for email availoability before registering users client or tailor
+	Make email field in User model unique that is test for email availability before registering users client or tailor
 """
 
 
@@ -131,67 +112,75 @@ def createOrder(request):
 	context['femaleSize_form'] = FemaleSizeForm()
 	context['order_form'] = OrderForm()
 	# context['fabrics'] = Fabric.objects.all() #change to choose for male and female
-	# print context['fabrics']
+	
 	client = Client.objects.get(user=request.user)
 
 
 	if request.method == 'POST':
-		sex = request.POST.get('sex')
-		delivery_option = request.POST.get('delivery_option')
-		fabric = Fabric.objects.get(id=request.POST.get('fabric'))
-		style = Style.objects.get(id=request.POST.get('style'))
-		service_option = request.POST.get('service_option')
-
-		total_cost = totalOrderCost(fabric, style, service_option)
-
-		#DEBUG ----------------
-		print 'fabric', fabric.cost
-		print 'style', style.cost
-		print 'service_option', service_option
-		print total_cost
-		print delivery_option
-		#DEBUG ----------------
-		"""
-		order page has two different forms and only one can be submitted-> dictated by sex.
-		process form according to sex
-		and assign the size id to size_id
-		"""
-		if sex == 'F':
-			femaleSize_form = FemaleSizeForm(request.POST)
-			if femaleSize_form.is_valid():
-				femaleSize_form_data = femaleSize_form.save()
-				size_id = femaleSize_form_data.id
-
-			else:
-				context['femaleSize_form'] = femaleSize_form
-
-
-		elif(sex == 'M'):
-			maleSize_form = MaleSizeForm(request.POST)
-			if maleSize_form.is_valid():
-				maleSize_form_data = maleSize_form.save()
-				size_id = maleSize_form_data.id
-
-			else:
-				context['maleSize_form'] = maleSize_form
-
-		# size is saved in the order table
-		size = Size.objects.get(id=size_id)
-
-	#prepare order and save
 		order_form = OrderForm(request.POST)
 		if order_form.is_valid():
+			sex = request.POST.get('sex')
+			delivery_option = request.POST.get('delivery_option')
+			fabric = Fabric.objects.get(id=request.POST.get('fabric'))
+			style = Style.objects.get(id=request.POST.get('style'))
+			service_option = request.POST.get('service_option')
+
+			total_cost = totalOrderCost(fabric, style, service_option)
+
+			#DEBUG ----------------
+			print 'fabric', fabric.cost
+			print 'style', style.cost
+			print 'service_option', service_option
+			print total_cost
+			print delivery_option
+			#DEBUG ----------------
+			"""
+			order page has three forms only two can be submitted
+			the order_form and either or the sex forms
+			>>>>
+			process form according to sex
+			and assign the size id to size_id
+			"""
+
 			order_form_data = order_form.save(commit=False)
 			order_form_data.main_order_id = mainOrderId()
 			order_form_data.client = client
-			order_form_data.size = size
+
 			order_form_data.sex = sex
 			order_form_data.delivery_option = delivery_option
 			order_form_data.service_option = service_option
 			order_form_data.cost = total_cost
-			order_form_data.save()
 
+			if sex == 'F':
+				femaleSize_form = FemaleSizeForm(request.POST)
+				if femaleSize_form.is_valid():
+					femaleSize_form_data = femaleSize_form.save()
+					size_id = femaleSize_form_data.id
+
+				else:
+					context['femaleSize_form'] = femaleSize_form
+					return render(request, 'i/client/order.html', context)
+
+			elif sex == 'M':
+				maleSize_form = MaleSizeForm(request.POST)
+				if maleSize_form.is_valid():
+					maleSize_form_data = maleSize_form.save()
+					size_id = maleSize_form_data.id
+
+				else:
+					context['maleSize_form'] = maleSize_form
+					return render(request, 'i/client/order.html', context)
+			#imputing final data in order form 
+			#size (from either male or female form) is put at the 
+			#last minute after ensuring that all forms are valid
+			size = Size.objects.get(id=size_id)
+			order_form_data.size = size
+			order_form_data.save()
 			return redirect('suave:clientDashboard')
+
+		else:
+			context['order_form'] = order_form
+			render(request, 'i/client/order.html', context)
 
 	return render(request, 'i/client/order.html', context)
 
@@ -354,6 +343,4 @@ def notLoggedIn(request):
 		pass
 
 	return render(request, 'i/common/general_login.html', context)
-
-
 

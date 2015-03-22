@@ -47,6 +47,7 @@ class ClientRegisterForm(forms.ModelForm):
 
 class MaleSizeForm(forms.ModelForm):
 	SIZES = (
+		('', '----'),
 		("24", "24"),
 		("25", "25"),
 		("26", "26"), 
@@ -67,6 +68,7 @@ class MaleSizeForm(forms.ModelForm):
 
 class FemaleSizeForm(forms.ModelForm):
 	SIZES = (
+		('', '----'),
 		("24", "24"),
 		("25", "25"),
 		("26", "26"), 
