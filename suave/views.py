@@ -33,6 +33,12 @@ from suave.helper import *
 
 	@Todo
 	Add notes option to order use the details field
+
+	@Todo
+	Add sizes to the tailor order details
+
+	@Todo
+	Tailor details view should show only service cost i.e cost that relates to the tailor
 """
 
 
