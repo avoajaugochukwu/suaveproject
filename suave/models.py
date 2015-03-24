@@ -93,4 +93,7 @@ class Style(models.Model):
 		return ('%s N%s sex- %s' %( self.name, self.cost, self.sex))
 
 class Inches(models.Model):
-	size = models.IntegerField(default=0000)
+	size = models.FloatField(default=0000)
+	def __str__(self):
+		size = str(self.size)
+		return size

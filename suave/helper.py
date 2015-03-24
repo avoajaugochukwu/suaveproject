@@ -24,7 +24,7 @@ def mainOrderId():
 	return orderID
 
 
-
+print mainOrderId()
 
 """
 		Sum cost of fabric, style and service charge (made up of choice of service)

@@ -30,6 +30,9 @@ from suave.helper import *
 
 	@Todo
 	Make email field in User model unique that is test for email availability before registering users client or tailor
+
+	@Todo
+	Add notes option to order use the details field
 """
 
 

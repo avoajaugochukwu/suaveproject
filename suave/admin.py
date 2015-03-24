@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from suave.models import Client, User, Size, Order, Tailor, Fabric, Style
+from suave.models import Client, User, Size, Order, Tailor, Fabric, Style, Inches
 class ClientAdmin(admin.ModelAdmin):
 	list_display = ('id', 'user', 'sex')
 
@@ -20,9 +20,13 @@ class FabricAdmin(admin.ModelAdmin):
 class StyleAdmin(admin.ModelAdmin):
 	list_display = ('name', 'sex', 'cost')
 
+class InchesAdmin(admin.ModelAdmin):
+	list_display = ('size',)
+
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Size, SizeAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Tailor, TailorAdmin)
 admin.site.register(Fabric, FabricAdmin)
 admin.site.register(Style, StyleAdmin)
+admin.site.register(Inches, InchesAdmin)

@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-		$('.new-register').shake({/*direction: "up", distance: 50*/ times: 6, speed: 60});
+		$('.new_user_check').shake({/*direction: "up", distance: 50*/ times: 6, speed: 60});
 		$('.general-login-shake').shake({times: 3, speed: 80});
 		$('.new-register').delay(5000).slideUp(2000);
 		if ($('.new-register').is(':visible')){
@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
 
 		$('.client-order-form-male, .client-order-form-female').hide();
 
-		
+
 
 		//make it not function if it is checked
 		$('#id_sex_0').click(function() {
