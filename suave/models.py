@@ -44,13 +44,13 @@ class Tailor(models.Model):
 class Size(models.Model):
 	# order = models.ForeignKey(Order)
 	# client = models.ForeignKey(Client, null=True) # make is optional for repeat clients to enter their measurement for ease
-	bust = models.IntegerField(default=0)
-	center_back = models.IntegerField(default=0)
-	chest = models.IntegerField(default=0)
-	inside_leg = models.IntegerField(default=0)
-	hips = models.IntegerField(default=0)
-	sleeve = models.IntegerField(default=0)
-	waist = models.IntegerField(default=0)
+	bust = models.FloatField(default=0)
+	center_back = models.FloatField(default=0)
+	chest = models.FloatField(default=0)
+	inside_leg = models.FloatField(default=0)
+	hips = models.FloatField(default=0)
+	sleeve = models.FloatField(default=0)
+	waist = models.FloatField(default=0)
 
 	def __str__(self):
 		sizeId = str(self.id)
@@ -94,6 +94,9 @@ class Style(models.Model):
 
 class Inches(models.Model):
 	size = models.FloatField(default=0000)
+	# def __str__(self):
+	# 	size = float(self.size)
+	# 	return float(self.size)
+
 	def __str__(self):
-		size = str(self.size)
-		return size
+		return ('%2f' %self.size)

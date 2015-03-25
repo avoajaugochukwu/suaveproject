@@ -50,6 +50,14 @@ from suave.helper import *
 
 	@Todo
 	Add title to pages
+
+	@Todo
+	Make error notification appear on top of order form
+
+	@????
+	better way to iterate over dictionary,
+
+
 """
 
 
@@ -148,11 +156,17 @@ def createOrder(request):
 			total_cost = totalOrderCost(fabric, style, service_option)
 
 			#DEBUG ----------------
-			print 'fabric', fabric.cost
-			print 'style', style.cost
-			print 'service_option', service_option
-			print total_cost
-			print delivery_option
+			sleeve = request.POST.get('sleeve')
+			print type(sleeve)
+			print 'sleeve', sleeve
+			sleeve = float(sleeve)
+			print type(sleeve)
+			
+			# print 'fabric', fabric.cost
+			# print 'style', style.cost
+			# print 'service_option', service_option
+			# print total_cost
+			# print delivery_option
 			#DEBUG ----------------
 			"""
 			order page has three forms only two can be submitted
@@ -283,8 +297,12 @@ def tailorOrderDetails(request, main_order_id):
 	context['tailorPage'] = True
 	context['order'] = order
 
-	context['size'] = Size.objects.filter(id=order.size.id).values()
-	# context['size'] = serializers.serialize("python", Size.objects.filter(id=order.size.id))
+	# context['sizes'] = Size.objects.filter(id=order.size.id).values()
+	# print type(context['size'])
+	# print size
+	# for i in size:
+	# 	print size[i]
+	context['size'] = serializers.serialize("python", Size.objects.filter(id=order.size.id))
 	return render(request, 'i/tailor/order_details.html', context)
 
 
