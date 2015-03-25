@@ -1,6 +1,8 @@
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect#, render_to_response
 
+from django.core import serializers
+
 from django.http import HttpResponse, HttpResponseRedirect
 
 from django.contrib.auth import authenticate, login, logout
@@ -39,6 +41,15 @@ from suave.helper import *
 
 	@Todo
 	Tailor details view should show only service cost i.e cost that relates to the tailor
+
+	@????
+	How to dynamically check if a field is empty or 0
+
+	@Todo
+	Show only fields whose value is not 0 in tailorOrderDetails
+
+	@Todo
+	Add title to pages
 """
 
 
@@ -271,6 +282,9 @@ def tailorOrderDetails(request, main_order_id):
 	context = {}
 	context['tailorPage'] = True
 	context['order'] = order
+
+	context['size'] = Size.objects.filter(id=order.size.id).values()
+	# context['size'] = serializers.serialize("python", Size.objects.filter(id=order.size.id))
 	return render(request, 'i/tailor/order_details.html', context)
 
 
