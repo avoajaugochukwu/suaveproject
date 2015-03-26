@@ -55,7 +55,6 @@ class Size(models.Model):
 	#waistline -> waist for men having validation issues with using wiast for male and female
 	waistline = models.CharField(max_length=7, null=True)
 
-
 	def __str__(self):
 		sizeId = str(self.id)
 		return sizeId
@@ -98,6 +97,9 @@ class Style(models.Model):
 
 class Inches(models.Model):
 	size = models.FloatField(default=0000)
+	# def __str__(self):
+	# 	size = float(self.size)
+	# 	return float(self.size)
+
 	def __str__(self):
-		size = str(self.size)
-		return size
+		return ('%2f' %self.size)

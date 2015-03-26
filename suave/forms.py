@@ -77,10 +77,10 @@ class FemaleSizeForm(forms.ModelForm):
 		("29", "29"),
 		("30", "30"),
 	)
-	bust = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="bust", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
-	waist = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="waist", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+	bust = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), to_field_name="size", help_text="bust", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+	waist = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), to_field_name="size", help_text="waist", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
 	# hips = forms.ChoiceField(choices=SIZES, help_text="hips", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
-	hips = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), required=True, help_text="hips", widget=forms.Select(attrs={'class': 'form-control'}))
+	hips = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), to_field_name="size", required=True, help_text="hips", widget=forms.Select(attrs={'class': 'form-control'}))
 	class Meta:
 		model = Size
 		fields = ('bust', 'waist', 'hips')
