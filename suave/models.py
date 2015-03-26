@@ -42,6 +42,7 @@ class Tailor(models.Model):
 		return self.user.username
 
 class Size(models.Model):
+	#some how I couldnot get a size entry to be deleted along with its related order 'might casue bloated size table when fulfilled orders are dropped'
 	# order = models.ForeignKey(Order)
 	client = models.ForeignKey(Client, null=True) # make is optional for repeat clients to enter their measurement for ease
 	bust = models.CharField(max_length=7, null=True)

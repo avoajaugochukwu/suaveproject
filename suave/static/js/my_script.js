@@ -2,8 +2,8 @@ jQuery(document).ready(function($) {
 
 		$('.new_user_check').shake({/*direction: "up", distance: 50*/ times: 6, speed: 60});
 		$('.general-login-shake').shake({times: 3, speed: 80});
-		$('.new-register').delay(5000).slideUp(2000);
-		if ($('.new-register').is(':visible')){
+		$('.new_user_check').delay(5000).slideUp(2000);
+		if ($('.new_user_check').is(':visible')){
 			$('.client-dashboard-panel').hide().delay(7000).slideDown(2000);
 		}
 		else {
