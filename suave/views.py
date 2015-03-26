@@ -283,8 +283,8 @@ def tailorOrderDetails(request, main_order_id):
 	context['tailorPage'] = True
 	context['order'] = order
 
-	context['size'] = Size.objects.filter(id=order.size.id).values()
-	# context['size'] = serializers.serialize("python", Size.objects.filter(id=order.size.id))
+	# context['size'] = Size.objects.filter(id=order.size.id).values()
+	context['size'] = serializers.serialize("python", Size.objects.filter(id=order.size.id))
 	return render(request, 'i/tailor/order_details.html', context)
 
 

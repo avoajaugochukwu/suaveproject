@@ -15,15 +15,9 @@
 				{% for instance in size %}
 			    {% for field, value in instance.fields.items %}
 			    		{% if value != 0 %}
-			        	{{ field }}: {{ value }}
+			        	<p>{{ field }}: {{ value }} </p>
 			        {% endif %}
 			    {% endfor %}
-				{% endfor %}
-
-				{% for i in size %}
-					<!-- {% if i != 0 %} -->
-						{{ i }}
-					<!-- {% endif %} -->
 				{% endfor %}
 				{% if order.sex == 'F' %}
 				<h3>Sex: {{ order.sex }}</h3>
