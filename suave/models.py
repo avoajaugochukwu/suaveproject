@@ -43,14 +43,18 @@ class Tailor(models.Model):
 
 class Size(models.Model):
 	# order = models.ForeignKey(Order)
-	# client = models.ForeignKey(Client, null=True) # make is optional for repeat clients to enter their measurement for ease
-	bust = models.IntegerField(default=0)
-	center_back = models.IntegerField(default=0)
-	chest = models.IntegerField(default=0)
-	inside_leg = models.IntegerField(default=0)
-	hips = models.IntegerField(default=0)
-	sleeve = models.IntegerField(default=0)
-	waist = models.IntegerField(default=0)
+	client = models.ForeignKey(Client, null=True) # make is optional for repeat clients to enter their measurement for ease
+	bust = models.CharField(max_length=7, null=True)
+	center_back = models.CharField(max_length=7, null=True)
+	chest = models.CharField(max_length=7, null=True)
+	inside_leg = models.CharField(max_length=7, null=True)
+	hips = models.CharField(max_length=7, null=True)
+	sleeve = models.CharField(max_length=7, null=True)
+	waist = models.CharField(max_length=7, null=True)
+
+	#waistline -> waist for men having validation issues with using wiast for male and female
+	waistline = models.CharField(max_length=7, null=True)
+
 
 	def __str__(self):
 		sizeId = str(self.id)

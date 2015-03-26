@@ -132,7 +132,7 @@ def createOrder(request):
 	context['femaleSize_form'] = FemaleSizeForm()
 	context['order_form'] = OrderForm()
 	# context['fabrics'] = Fabric.objects.all() #change to choose for male and female
-	
+
 	client = Client.objects.get(user=request.user)
 
 

@@ -60,11 +60,11 @@ class MaleSizeForm(forms.ModelForm):
 	chest = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="chest", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
 	inside_leg = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="inside_leg", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
 	sleeve = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="sleeve", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
-	waist = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="waist", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+	waistline = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="waistline", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
 
 	class Meta:
 		model = Size
-		fields = ('center_back', 'chest', 'inside_leg', 'sleeve', 'waist')
+		fields = ('center_back', 'chest', 'inside_leg', 'sleeve', 'waistline')
 
 class FemaleSizeForm(forms.ModelForm):
 	SIZES = (
