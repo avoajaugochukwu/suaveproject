@@ -26,7 +26,9 @@
 	// padding: 0;
 	// margin: 0;
 }
-
+.page-header {
+	font-family: 'GothamRoundedMedium';
+}
 body {
 	color: #000;
 	font-family: $font-stack;
@@ -39,4 +41,9 @@ body {
 		src: url('../fonts/weblysleekuil.ttf') format('truetype');
 		font-weight: normal;
 		font-style: normal;
+}
+@font-face {
+		font-family: 'GothamRoundedMedium';
+		src: url('../fonts/GothamRoundedMedium.ttf') format('truetype');
+		font-weight: lighter;
 }

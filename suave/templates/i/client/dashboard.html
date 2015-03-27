@@ -1,6 +1,6 @@
 {% extends "i/layout/base.html" %}
 
-{% block title %} {{ title }} {% endblock %}
+{% block title %} {{ user }} - Dashboard {{ title }} {% endblock %}
 
 
 
@@ -14,8 +14,7 @@
 		{% endif %}
 
 
-		<h1>{{ user.username }}</h1>
-		<hr>
+		<h1 class="page-header">{{ user.username }}</h1>
 		<h3>{{ user.email }}</h3>
 		<p>You are {{ user.client.sex }}</p>
 

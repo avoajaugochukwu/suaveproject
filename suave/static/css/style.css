@@ -429,6 +429,10 @@ a:hover {
   border-radius: 0 !important;
 }
 
+.page-header {
+  font-family: 'GothamRoundedMedium';
+}
+
 body {
   color: #000;
   font-family: weblysleek, arial;
@@ -440,6 +444,11 @@ body {
   src: url("../fonts/weblysleekuil.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+}
+@font-face {
+  font-family: 'GothamRoundedMedium';
+  src: url("../fonts/GothamRoundedMedium.ttf") format("truetype");
+  font-weight: lighter;
 }
 
 /*# sourceMappingURL=style.css.map */

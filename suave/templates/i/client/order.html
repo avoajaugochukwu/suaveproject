@@ -1,9 +1,8 @@
 {% extends "i/layout/base.html" %}
+{% block title %} {{ user }} -  {{ title }} {% endblock %}
 {% block main_section %}
 	<div class="col-lg-6 col-lg-offset-3">
-		<div class="page-header">
-			<h1>Create an order</h1>
-		</div>
+		<h1 class="page-header">Create an order</h1>
 
 		<form class="form-order" method="POST" action="{% url 'suave:createOrder' %}">
 		{% csrf_token %}

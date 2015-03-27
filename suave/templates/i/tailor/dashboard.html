@@ -1,8 +1,6 @@
 {% extends "i/layout/base.html" %}
 
-{% block title %} {{ title }} {% endblock %}
-
-{% block header %} {{ title }} {% endblock %}
+{% block title %} {{ user }} | {{ title }} {% endblock %}
 
 
 {% block main_section %}
@@ -26,7 +24,7 @@
 				<td>{{ order.sex }}</td>
 				<td>{{ order.delivery_option|lower }}</td>
 				<td>{{ order.status|lower }}</td>
-				<td><a href="{% url 'suave:tailorOrderDetails' order.main_order_id %}" class="btn btn-success btn-sm">view Details</a></td>
+				<td><a href="{% url 'suave:tailorOrderDetails' order.main_order_id %}" class="btn btn-success btn-sm">iew details</a></td>
 			</tr>
 			{% endfor %}
 		</tbody>
@@ -39,8 +37,9 @@
 			</div>
 		</div>
 	{% endif %}
-	<div class="dashboard-button-panel panel panel-body panel-success">
+	<div class="dashboard-button-panel">
 		<a href="" class="btn btn-success btn-info">Work in progress</a>
 	</div>
+	<br><br>
 </div>
 {% endblock %}

@@ -46,9 +46,6 @@ from suave.helper import *
 	Tailor details view should show only service cost i.e cost that relates to the tailor
 
 	@Todo
-	Show only fields whose value is not 0 in tailorOrderDetails
-
-	@Todo
 	Add title to pages
 
 	@Todo
@@ -119,6 +116,7 @@ def clientRegister(request):
 @login_required
 def clientDashboard(request):
 	context = {}
+	context['title'] = 'SuaveStitches Nigeria'
 	client = Client.objects.get(user=request.user)
 
 	# if new_user_check is 1 then display welcome message
@@ -134,7 +132,7 @@ def clientDashboard(request):
 @login_required
 def createOrder(request):
 	context = {}
-
+	context['title'] = 'Create order SuaveStitches Nigeria'
 	context['maleSize_form'] = MaleSizeForm()
 	context['femaleSize_form'] = FemaleSizeForm()
 	context['order_form'] = OrderForm()
@@ -216,7 +214,7 @@ def tailorHome(request):
 	context = {}
 	# context['form'] = ClientForm()
 	context['action'] = '/suave/account/tailor'
-	context['title'] = 'SuaveStitches - Tailor'
+	context['title'] = 'Tailor --- SuaveStitches Nigeria'
 	context['tailorPage'] = True
 
 	return render(request, 'i/tailor/tailor_home.html', context)
@@ -224,6 +222,7 @@ def tailorHome(request):
 
 def tailorRegister(request):
 	context = {}
+	context['title'] = 'Tailor Register --- SuaveStitches Nigeria'
 	context['tailorPage'] = True
 	context['user_form'] = UserForm()
 	context['tailor_form'] = TailorRegisterForm()
@@ -273,6 +272,7 @@ def tailorRegister(request):
 @login_required
 def tailorDashboard(request):
 	context = {}
+	context['title'] = 'Tailor - SuaveStitches Nigeria'
 	context['tailorPage'] = True
 	orders = Order.objects.filter(status='OPEN')
 	context['orders'] = orders
@@ -287,6 +287,7 @@ def tailorOrderDetails(request, main_order_id):
 		return HttpResponse('can\'t do that %s' %main_order_id) # write better response
 
 	context = {}
+	context['title'] = 'Order details -- SuaveStitches Nigeria'
 	context['tailorPage'] = True
 	context['order'] = order
 
