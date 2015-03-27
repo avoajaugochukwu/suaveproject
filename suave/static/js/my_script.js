@@ -4,11 +4,11 @@ jQuery(document).ready(function($) {
 		$('.general-login-shake').shake({times: 3, speed: 80});
 		$('.new_user_check').delay(5000).slideUp(2000);
 		if ($('.new_user_check').is(':visible')){
-			$('.client-dashboard-panel').hide().delay(7000).slideDown(2000);
+			$('.dashboard-button-panel').hide().delay(7000).slideDown(2000);
 		}
 		else {
-			$('.client-dashboard-panel').hide().slideDown(500);
-			$('.client-dashboard-panel').shake({times: 3, speed: 100});
+			$('.dashboard-button-panel').hide().slideDown(500);
+			$('.dashboard-button-panel').shake({times: 3, speed: 100});
 		}
 
 		$('.client-order-form-male, .client-order-form-female').hide();

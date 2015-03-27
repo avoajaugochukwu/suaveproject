@@ -1,5 +1,8 @@
+import string
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect#, render_to_response
+
+
 
 from django.core import serializers
 
@@ -42,9 +45,6 @@ from suave.helper import *
 	@Todo
 	Tailor details view should show only service cost i.e cost that relates to the tailor
 
-	@????
-	How to dynamically check if a field is empty or 0
-
 	@Todo
 	Show only fields whose value is not 0 in tailorOrderDetails
 
@@ -54,9 +54,8 @@ from suave.helper import *
 	@Todo
 	Make error notification appear on top of order form
 
-	@????
-	better way to iterate over dictionary,
-
+	@Todo
+	Tailor should be able to view his work in progress and mark it as done
 
 """
 
@@ -156,12 +155,6 @@ def createOrder(request):
 			total_cost = totalOrderCost(fabric, style, service_option)
 
 			#DEBUG ----------------
-			sleeve = request.POST.get('sleeve')
-			print type(sleeve)
-			print 'sleeve', sleeve
-			sleeve = float(sleeve)
-			print type(sleeve)
-			
 			# print 'fabric', fabric.cost
 			# print 'style', style.cost
 			# print 'service_option', service_option

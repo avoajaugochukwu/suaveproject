@@ -103,4 +103,5 @@ class Inches(models.Model):
 	# 	return float(self.size)
 
 	def __str__(self):
-		return ('%2f' %self.size)
+		size = str(self.size)
+		return size

@@ -9,6 +9,10 @@
   background: #f6f1c4;
 }
 
+.col-lg-6 a {
+  font-size: 1.2em;
+}
+
 .errorlist {
   color: red;
   line-height: 20px;
@@ -396,10 +400,6 @@ a:hover {
   line-height: 40px;
   text-align: center;
   padding: 20px;
-}
-
-.client-dashboard-panel a {
-  font-size: 1.2em;
 }
 
 #id_sex li {
