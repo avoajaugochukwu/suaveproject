@@ -92,8 +92,8 @@ class OrderForm(forms.ModelForm):
 	)
 
 	SEX_CHOICE = (
-		('F', 'F'),
-		('M', 'M'),
+		('F', 'Female'),
+		('M', 'Male'),
 	)
 
 
@@ -102,7 +102,7 @@ class OrderForm(forms.ModelForm):
 		('PREMIUM', 'PREMIUM'),
 	)
 
-	sex = forms.ChoiceField(choices=SEX_CHOICE, help_text="Sex", required=True, widget=forms.RadioSelect(attrs={'class': ''}))
+	sex = forms.ChoiceField(choices=SEX_CHOICE, help_text="Sex", required=True, widget=forms.RadioSelect(attrs={'class': '', 'style': 'color:#ff0'}))
 	delivery_option = forms.ChoiceField(choices=DELIVERY_OPTION, help_text="Choose Delivery option", required=True, widget=forms.RadioSelect(attrs={'class': ''}))
 	fabric = forms.ModelChoiceField(queryset=Fabric.objects.all(), help_text="Choose fabric", widget=forms.Select(attrs={'class': 'form-control'}))
 	style = forms.ModelChoiceField(queryset=Style.objects.all(), help_text="Choose style", widget=forms.Select(attrs={'class': 'form-control'}))

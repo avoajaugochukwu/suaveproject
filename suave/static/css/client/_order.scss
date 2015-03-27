@@ -9,3 +9,19 @@
 	display: inline-block;
 	padding-left: 20px;
 }
+
+.order-tabs.nav-tabs>li.active>a {
+	border: 1px solid #f00;
+	border-top-color: transparent;
+	margin-top: -1px;
+}
+.order-tabs.nav-tabs {
+  border-top: 1px solid #ddd;
+  border-top: 1px solid #f00;
+  border-bottom-color: transparent;
+  
+  margin-top: 0;
+}
+.order-tab-content {
+	min-height: 400px;
+}

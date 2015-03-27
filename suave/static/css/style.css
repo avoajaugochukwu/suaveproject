@@ -289,39 +289,6 @@ a:hover {
   box-shadow: none;
 }
 
-.nav-tabs > li {
-  width: 50%;
-}
-
-.nav-tabs > li > a {
-  margin-right: 0px;
-  line-height: 1.42857143;
-  border: 1px solid transparent;
-  border-radius: 4px 4px 0 0;
-  background: #099887;
-  font-size: 2em;
-  color: #fff;
-}
-
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:focus {
-  color: #555;
-  cursor: default;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-bottom-color: transparent;
-  background: #0b5;
-  color: #fff;
-}
-
-.nav-tabs > li.active > a:hover {
-  background: #f00;
-}
-
-.nav-tabs > li > a:hover {
-  background: #f00;
-}
-
 .action-button-wrapper-home {
   margin: 40px auto auto auto;
   text-align: center;
@@ -414,6 +381,23 @@ a:hover {
 #id_delivery_option li {
   display: inline-block;
   padding-left: 20px;
+}
+
+.order-tabs.nav-tabs > li.active > a {
+  border: 1px solid #f00;
+  border-top-color: transparent;
+  margin-top: -1px;
+}
+
+.order-tabs.nav-tabs {
+  border-top: 1px solid #ddd;
+  border-top: 1px solid #f00;
+  border-bottom-color: transparent;
+  margin-top: 0;
+}
+
+.order-tab-content {
+  min-height: 400px;
 }
 
 /* Variables */

@@ -151,14 +151,6 @@ def createOrder(request):
 			service_option = request.POST.get('service_option')
 
 			total_cost = totalOrderCost(fabric, style, service_option)
-
-			#DEBUG ----------------
-			# print 'fabric', fabric.cost
-			# print 'style', style.cost
-			# print 'service_option', service_option
-			# print total_cost
-			# print delivery_option
-			#DEBUG ----------------
 			"""
 			order page has three forms only two can be submitted
 			the order_form and either or the sex forms
@@ -184,6 +176,7 @@ def createOrder(request):
 
 				else:
 					context['femaleSize_form'] = femaleSize_form
+					context['error'] = 'Something went wrong - Please enter your measurements'
 					return render(request, 'i/client/order.html', context)
 
 			elif sex == 'M':
@@ -194,6 +187,7 @@ def createOrder(request):
 
 				else:
 					context['maleSize_form'] = maleSize_form
+					context['error'] = 'Something went wrong - Please enter your measurements'
 					return render(request, 'i/client/order.html', context)
 			#imputing final data in order form 
 			#size (from either male or female form) is put at the 
@@ -205,6 +199,7 @@ def createOrder(request):
 
 		else:
 			context['order_form'] = order_form
+			context['error'] = 'Something went wrong - please fill all required fields'
 			render(request, 'i/client/order.html', context)
 
 	return render(request, 'i/client/order.html', context)

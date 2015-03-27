@@ -1,25 +1,29 @@
 {% extends "i/layout/base.html" %}
 {% block title %} {{ user }} -  {{ title }} {% endblock %}
 {% block main_section %}
-	<div class="col-lg-6 col-lg-offset-3">
+	<div class="col-lg-10 col-lg-offset-1">
 		<h1 class="page-header">Create an order</h1>
 
 		<form class="form-order" method="POST" action="{% url 'suave:createOrder' %}">
+		{% if error %}
+			<div class=""><h3 class="alert alert-danger">{{ error }}</h3></div>
+		{% endif %}
+
+
 		{% csrf_token %}
-			<div class="col-lg-6 col-lg-offset-3">
+<!-- 			<div class="col-lg-4 col-lg-offset-1">
 				<div class="form-group">
 					{% for field in order_form.visible_fields %}
 					{{ field.errors }}
 					<h4>{{ field.help_text }}</h4>
-					{{ field }}
+					<ul class="list-group">
+						{{ field }}
+					</ul>
+					
 					{% endfor %}
 				</div>
-
-
-
-
-
-
+			</div>
+			<div class="col-lg-4">
 
 				<div class="form-group client-order-form-male">
 					<h3>male size</h3>
@@ -42,10 +46,87 @@
 					{% endfor %}
 
 				</div>
-				<div class="form-signup-base">
+			</div>
+			<div class="form-signup-base">
 					<input type="submit" class="btn btn-success btn-lg" value="Submit">
+				</div> -->
+
+			<div class="tab-content order-tab-content">
+				<div role="tabpanel" class="tab-pane active" id="home">
+					<div class="row">
+						<div class="col-lg-6 col-lg-offset-3 order-tab-content" style="">
+							<div class="form-group">
+								{% for field in order_form.visible_fields %}
+								{{ field.errors }}
+								<h4>{{ field.help_text }}</h4>
+								<ul class="list-group">
+									{{ field }}
+								</ul>
+								{% endfor %}
+							</div>
+						</div>
+						</div>
+				</div>
+
+
+
+				<div role="tabpanel" class="tab-pane" id="female">
+					<div class="row">
+							<div class="col-lg-6 col-lg-offset-3 order-tab-content" style="">
+								<div class="form-group client-order-form-male">
+									<h3>female size</h3>
+								<hr>
+									{% for field in femaleSize_form.visible_fields %}
+									{{ field.errors }}
+									<h4>{{ field.help_text }}</h4>
+									{{ field }}
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="male">
+					<div class="row">
+						<div class="col-lg-6 col-lg-offset-3 order-tab-content" style="">
+							<div class="form-group client-order-form-female">
+								<h3>male size</h3>
+									<hr>
+									{% for field in maleSize_form.visible_fields %}
+									{{ field.errors }}
+									<h4>{{ field.help_text }}</h4>
+									{{ field }}
+									{% endfor %}
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				<div role="tabpanel" class="tab-pane" id="settings">
+					<div class="row">
+							<div class="col-lg-6 col-lg-offset-3 order-tab-content" style="">
+								<textarea class="form-control">
+
+								</textarea>
+								<div class="form-signup-base">
+									<input type="submit" class="btn btn-success btn-lg" value="Submit">
+								</div>
+							</div>
+						</div>
 				</div>
 			</div>
+			<br><br>
+			<div>
+				<ul class="nav nav-tabs order-tabs col-lg-6 col-lg-offset-3" role="tablist">
+					<!-- <ul class="nav nav-pills order-tabs col-lg-6 col-lg-offset-3" role="tablist"> -->
+					<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-envelope"></span> Home</a></li>
+					<li role="presentation"><a href="#female" aria-controls="female" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-camera"></span> Female</a></li>
+					<li role="presentation"><a href="#male" aria-controls="male" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-camera"></span> Male</a></li>
+					<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span> Last</a></li>
+				</ul>
+			</div>
+			
+			<br><br>
 		</form>
 	</div>
 {% endblock %}
