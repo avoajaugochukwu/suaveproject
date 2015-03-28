@@ -1,4 +1,5 @@
 @import url(bootstrap-3.min.css);
+@import url(font_awesome.css);
 /* for django errors*/
 .tailorPage-color {
   background: #90A4AE;
