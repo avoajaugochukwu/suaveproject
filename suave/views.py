@@ -155,8 +155,11 @@ def createOrder(request):
 
 		if order_form.is_valid() and size_table != None:
 			delivery_option = request.POST.get('delivery_option')
+
 			fabric = Fabric.objects.get(id=request.POST.get('fabric'))
+
 			style = Style.objects.get(id=request.POST.get('style'))
+
 			service_option = request.POST.get('service_option')
 
 			total_cost = totalOrderCost(fabric, style, service_option)
