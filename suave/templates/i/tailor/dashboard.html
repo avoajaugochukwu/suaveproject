@@ -24,7 +24,7 @@
 				<td>{{ order.sex }}</td>
 				<td>{{ order.delivery_option|lower }}</td>
 				<td>{{ order.status|lower }}</td>
-				<td><a href="{% url 'suave:tailorOrderDetails' order.main_order_id %}" class="btn btn-success btn-sm">iew details</a></td>
+				<td><a href="{% url 'suave:tailorOrderDetails' order.main_order_id %}" class="btn btn-success btn-sm">View details</a></td>
 			</tr>
 			{% endfor %}
 		</tbody>
