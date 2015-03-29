@@ -54,6 +54,10 @@ from suave.helper import *
 	@Todo
 	Tailor should be able to view his work in progress and mark it as done
 
+	@Todo
+	Create table of measurement and let the choice be radio button indicating L, XL, XXL
+	From the measurment table I have
+
 """
 
 
