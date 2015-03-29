@@ -67,14 +67,27 @@ class Fabric(models.Model):
 	sex = models.CharField(max_length=2, null=True)
 	pattern = models.CharField(max_length=150, null=True)
 
-
 	def __str__(self):
 		return ('%s %s' %(self.name, self.cost))
 
+
+class SizeTable(models.Model):
+	size_value = models.CharField(max_length=15)
+	collar = models.CharField(max_length=10)
+	waist = models.CharField(max_length=10)
+	hips = models.CharField(max_length=10)
+
+	def __str__(self):
+		return self.size_value
+
+
 class Order(models.Model):
-	
+
 	client = models.ForeignKey(Client, null=True)
 	size = models.ForeignKey(Size, null=True)
+	#--sizetable
+	sizetable = models.ForeignKey(SizeTable, null=True)
+	#sizetable
 	tailor = models.ForeignKey(Tailor, null=True)
 	fabric = models.ForeignKey(Fabric, null=True) #* change to foreign key with Fabric
 
@@ -105,3 +118,4 @@ class Inches(models.Model):
 	def __str__(self):
 		size = str(self.size)
 		return size
+

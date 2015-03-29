@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from suave.models import Client, Tailor, Size, Order, Fabric, Style, Inches
+from suave.models import Client, Tailor, Size, Order, Fabric, Style, Inches, SizeTable
 
 
 class UserForm(forms.ModelForm):
@@ -102,15 +102,15 @@ class OrderForm(forms.ModelForm):
 		('PREMIUM', 'PREMIUM'),
 	)
 
-	sex = forms.ChoiceField(choices=SEX_CHOICE, help_text="Sex", required=True, widget=forms.RadioSelect(attrs={'class': '', 'style': 'color:#ff0'}))
-	delivery_option = forms.ChoiceField(choices=DELIVERY_OPTION, help_text="Choose Delivery option", required=True, widget=forms.RadioSelect(attrs={'class': ''}))
-	fabric = forms.ModelChoiceField(queryset=Fabric.objects.all(), help_text="Choose fabric", widget=forms.Select(attrs={'class': 'form-control'}))
-	style = forms.ModelChoiceField(queryset=Style.objects.all(), help_text="Choose style", widget=forms.Select(attrs={'class': 'form-control'}))
-	service_option = forms.ChoiceField(choices=SERVICE_OPTION, help_text="Service Option", widget=forms.Select(attrs={'class': 'form-control'}))
+	# sex = forms.ChoiceField(choices=SEX_CHOICE, help_text="Sex", required=True, widget=forms.RadioSelect(attrs={'class': '', 'style': 'color:#ff0'}))
+	delivery_option = forms.ChoiceField(choices=DELIVERY_OPTION, help_text="Choose Delivery option", required=True, widget=forms.RadioSelect(attrs={'class': 'input-xs'}))
+	fabric = forms.ModelChoiceField(queryset=Fabric.objects.all(), help_text="Choose fabric", widget=forms.Select(attrs={'class': 'form-control input-xs'}))
+	style = forms.ModelChoiceField(queryset=Style.objects.all(), help_text="Choose style", widget=forms.Select(attrs={'class': 'form-control input-xs'}))
+	service_option = forms.ChoiceField(choices=SERVICE_OPTION, help_text="Service Option", widget=forms.Select(attrs={'class': 'form-control input-xs'}))
 
 	class Meta:
 		model = Order
-		fields = ('sex', 'delivery_option', 'fabric', 'style')
+		fields = ('delivery_option', 'fabric', 'style')
 
 
 class TailorRegisterForm(forms.ModelForm):
@@ -122,3 +122,4 @@ class TailorRegisterForm(forms.ModelForm):
 	class Meta:
 		model = Tailor
 		fields = ('rate', 'phone_number', 'specialty', 'address')
+

@@ -11,7 +11,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from suave.models import User, Client, Size, Order, Tailor, Fabric, Style
+from suave.models import User, Client, Size, Order, Tailor, Fabric, Style, SizeTable
 
 from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm, UserFormLogin, TailorRegisterForm
 
@@ -53,6 +53,9 @@ from suave.helper import *
 
 	@Todo
 	Tailor should be able to view his work in progress and mark it as done
+
+	@Todo
+	Create function that will create input tag and pass it a dynamic VALUE
 
 """
 
@@ -136,6 +139,9 @@ def createOrder(request):
 	context['maleSize_form'] = MaleSizeForm()
 	context['femaleSize_form'] = FemaleSizeForm()
 	context['order_form'] = OrderForm()
+	context['male_size_table'] = SizeTable.objects.filter(size_value__startswith='Ma')
+	context['female_size_table'] = SizeTable.objects.filter(size_value__startswith='Fe')
+
 	# context['fabrics'] = Fabric.objects.all() #change to choose for male and female
 
 	client = Client.objects.get(user=request.user)
@@ -143,57 +149,33 @@ def createOrder(request):
 
 	if request.method == 'POST':
 		order_form = OrderForm(request.POST)
-		if order_form.is_valid():
-			sex = request.POST.get('sex')
+		size_table = None
+		size_table = request.POST.get('sizeTable')
+
+
+		if order_form.is_valid() and size_table != None:
 			delivery_option = request.POST.get('delivery_option')
 			fabric = Fabric.objects.get(id=request.POST.get('fabric'))
 			style = Style.objects.get(id=request.POST.get('style'))
 			service_option = request.POST.get('service_option')
 
 			total_cost = totalOrderCost(fabric, style, service_option)
-			"""
-			order page has three forms only two can be submitted
-			the order_form and either or the sex forms
-			>>>>
-			process form according to sex
-			and assign the size id to size_id
-			"""
+
+			sex = checkSex(size_table)
+
+			new_size_table = SizeTable.objects.get(size_value=size_table)
+
 
 			order_form_data = order_form.save(commit=False)
 			order_form_data.main_order_id = mainOrderId()
 			order_form_data.client = client
 
-			order_form_data.sex = sex
 			order_form_data.delivery_option = delivery_option
 			order_form_data.service_option = service_option
 			order_form_data.cost = total_cost
+			order_form_data.sex = sex
+			order_form_data.sizetable = new_size_table
 
-			if sex == 'F':
-				femaleSize_form = FemaleSizeForm(request.POST)
-				if femaleSize_form.is_valid():
-					femaleSize_form_data = femaleSize_form.save()
-					size_id = femaleSize_form_data.id
-
-				else:
-					context['femaleSize_form'] = femaleSize_form
-					context['error'] = 'Something went wrong - Please enter your measurements'
-					return render(request, 'i/client/order.html', context)
-
-			elif sex == 'M':
-				maleSize_form = MaleSizeForm(request.POST)
-				if maleSize_form.is_valid():
-					maleSize_form_data = maleSize_form.save()
-					size_id = maleSize_form_data.id
-
-				else:
-					context['maleSize_form'] = maleSize_form
-					context['error'] = 'Something went wrong - Please enter your measurements'
-					return render(request, 'i/client/order.html', context)
-			#imputing final data in order form 
-			#size (from either male or female form) is put at the 
-			#last minute after ensuring that all forms are valid
-			size = Size.objects.get(id=size_id)
-			order_form_data.size = size
 			order_form_data.save()
 			return redirect('suave:clientDashboard')
 

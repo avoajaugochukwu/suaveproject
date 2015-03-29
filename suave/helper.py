@@ -23,9 +23,6 @@ def mainOrderId():
 
 	return orderID
 
-
-print mainOrderId()
-
 """
 		Sum cost of fabric, style and service charge (made up of choice of service)
 """
@@ -39,3 +36,11 @@ def totalOrderCost(fabric, style, service_option):
 
 	totalCost = fabricCost + styleCost + service
 	return totalCost
+
+"""Check sex by cutting the sizetable response"""
+def checkSex(word):
+	cut = word[:1]
+	if cut == 'M':
+		return 'M'
+	else:
+		return 'F'

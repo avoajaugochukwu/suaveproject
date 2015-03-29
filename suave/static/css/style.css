@@ -1,5 +1,4 @@
 @import url(bootstrap-3.min.css);
-@import url(font_awesome.css);
 /* for django errors*/
 .tailorPage-color {
   background: #90A4AE;
@@ -399,6 +398,28 @@ a:hover {
 
 .order-tab-content {
   min-height: 400px;
+}
+
+.size-table {
+  background: #2c2626;
+  background-color: #111010;
+  color: #fff;
+}
+
+.size-table.table > thead > tr > th,
+.size-table.table > thead > tr > td {
+  background-color: #258ee3;
+}
+
+.size-table.table-striped > tbody > tr:nth-child(odd) > td,
+.size-table.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #474444;
+  background-color: #3f3b3b;
+}
+
+.size-table.table-hover > tbody > tr:hover > td,
+.size-table.table-hover > tbody > tr:hover > th {
+  background-color: #5f5555;
 }
 
 /* Variables */
