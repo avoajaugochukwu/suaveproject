@@ -53,6 +53,8 @@ from suave.helper import *
 	@????
 	how do I write a function that will take a variable|value from template and work on it
 
+	@Optimize join tailorRegister and clientRegister into one
+
 """
 
 
