@@ -11,6 +11,8 @@
 			$('.dashboard-button-panel').shake({times: 3, speed: 100});
 		}
 
+		$('.shaker').shake({times: 5, speed: 80});
+
 
 
 

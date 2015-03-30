@@ -8,6 +8,8 @@ from django.core import serializers
 
 from django.http import HttpResponse, HttpResponseRedirect
 
+# from django.contrib import messages
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -31,16 +33,10 @@ from suave.helper import *
 	Have option where users can use their previous/personal measurement
 
 	@Todo
-	Add date to Order model
-
-	@Todo
 	Make email field in User model unique that is test for email availability before registering users client or tailor
 
 	@Todo
 	Add notes option to order use the details field
-
-	@Todo
-	Add sizes to the tailor order details
 
 	@Todo
 	Tailor details view should show only service cost i.e cost that relates to the tailor
@@ -52,17 +48,17 @@ from suave.helper import *
 	Make error notification appear on top of order form
 
 	@Todo
-	Tailor should be able to view his work in progress and mark it as done
+	Tailor should be able to view his work in progress and mark it as done >>>>>
 
-	@Todo
-	Create function that will create input tag and pass it a dynamic VALUE
+	@????
+	how do I write a function that will take a variable|value from template and work on it
 
 """
 
 
 def index(request):
 	"""This shows the client home page by default"""
-
+	# messages.success(request, 'Welcome son')
 	context = {}
 	context['title'] = 'SuaveStitches - All the greates tailors in Nigeria at your service'
 
@@ -200,6 +196,7 @@ def tailorHome(request):
 	return render(request, 'i/tailor/tailor_home.html', context)
 
 
+
 def tailorRegister(request):
 	context = {}
 	context['title'] = 'Tailor Register --- SuaveStitches Nigeria'
@@ -285,6 +282,15 @@ def tailorStartOrder(request, main_order_id):
 	order.status = 'IN PROGRESS'
 	order.save()
 	print 'yes'
+	return redirect('suave:tailorDashboard')
+
+@login_required
+def tailorWorkInProgress(request):
+	context = {}
+	tailor_obj = Tailor.objects.get(user=request.user)
+	context['work'] = Order.objects.filter(tailor=tailor_obj, status='IN PROGRESS')
+
+	return render(request, 'i/tailor/work.html', context)
 
 
 """

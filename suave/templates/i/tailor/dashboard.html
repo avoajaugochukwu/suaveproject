@@ -24,7 +24,7 @@
 				<td>{{ order.sex }}</td>
 				<td>{{ order.delivery_option|lower }}</td>
 				<td>{{ order.status|lower }}</td>
-				<td><a href="{% url 'suave:tailorOrderDetails' order.main_order_id %}" class="btn btn-success btn-sm">View details</a></td>
+				<td><a href="{% url 'suave:tailorOrderDetails' order.main_order_id %}" class="btn btn-success">View details</a></td>
 			</tr>
 			{% endfor %}
 		</tbody>
@@ -38,7 +38,7 @@
 		</div>
 	{% endif %}
 	<div class="dashboard-button-panel">
-		<a href="" class="btn btn-success btn-info">Work in progress</a>
+		<a href="{% url 'suave:tailorWorkInProgress' %}" class="btn btn-success btn-info btn-lg">Work in progress</a>
 	</div>
 	<br><br>
 </div>
