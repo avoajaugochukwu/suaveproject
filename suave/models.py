@@ -99,6 +99,7 @@ class Order(models.Model):
 	sex = models.CharField(max_length=2, default=' ')
 	status = models.CharField(max_length=20, default='OPEN') #*
 	cost = models.IntegerField(default=0000) # final cost of order
+	date = models.DateField(auto_now_add=True)
 
 
 class Style(models.Model):

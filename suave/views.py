@@ -1,4 +1,4 @@
-import string
+#import string
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect#, render_to_response
 
