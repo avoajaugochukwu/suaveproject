@@ -13,6 +13,10 @@
 
 		$('.shaker').shake({times: 5, speed: 80});
 
+		$('.size-container').click(function() {
+			$('.size-container').removeClass('size-new-color');
+			$(this).addClass('size-new-color');
+		})
 
 
 

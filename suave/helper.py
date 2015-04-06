@@ -15,6 +15,7 @@ def mainOrderId():
 	orderID = orderID[2:]
 	orderID += '0'
 	orderID += str(datetime.datetime.today().month)
+	orderID += '0'
 	orderID += str(datetime.datetime.today().day)
 
 	for i in range(0, 4):

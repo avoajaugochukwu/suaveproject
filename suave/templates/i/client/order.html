@@ -26,6 +26,7 @@
 								</ul>
 								{% endfor %}
 							</div>
+							
 						</div>
 						</div>
 				</div>
@@ -34,29 +35,31 @@
 
 				<div role="tabpanel" class="tab-pane" id="female">
 					<div class="row">
-							<div class="col-lg-6 col-lg-offset-3 order-tab-content" style="">
-								<table class="size-table table table-striped table-bordered table-hover table-condensed">
-							<thead>
-								<tr>
-									<th></th>
-									<th>Chest</th>
-									<th>Waist</th>
-									<th>Hips</th>
-								</tr>
-							</thead>
-							<tbody>
-								{% for i in female_size_table %}
-								<tr>
-									<td><input type="radio" name="sizeTable" value="{{ i }}">{{ i | cut:'Fe'}}</td>
-									<td>{{ i.collar  }}</td>
-									<td>{{ i.waist }}</td>
-									<td>{{ i.hips }}</td>
-								</tr>
-								{% endfor %}
-							</tbody>
-						</table>
+						<div class="col-lg-6 col-lg-offset-3 order-tab-content" style="">
+							<div class="size-details size-details-head">__
+								<li>Size</li>
+								<li>Chest</li>
+								<li>Waist</li>
+								<li>Hips</li>
+								<li>Sleeve</li>
+								<li>Collar</li>
 							</div>
+
+						{% for i in female_size_table %}
+						<div class="size-container">
+							<label for="{{ i.id }}">
+							<div class="size-details">.
+								<input type="radio" id="{{ i.id }}" value="{{ i }}" name="sizeTable">
+								<li>{{ i | cut:'Fe'}}</li>
+								<li>{{ i.collar }}</li>
+								<li>{{ i.waist }}</li>
+								<li>{{ i.hips }}</li>
+							</div>
+							</label>
 						</div>
+						{% endfor %}
+						</div>
+					</div>
 				</div>
 
 
@@ -64,26 +67,28 @@
 				<div role="tabpanel" class="tab-pane" id="male">
 					<div class="row">
 						<div class="col-lg-6 col-lg-offset-3 order-tab-content" style="">
-							<table class="size-table table table-striped table-bordered table-hover table-condensed">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Chest</th>
-										<th>Waist</th>
-										<th>Hips</th>
-									</tr>
-								</thead>
-								<tbody>
-										{% for i in male_size_table %}
-										<tr>
-											<td><input type="radio" name="sizeTable" value="{{ i }}">{{ i | cut:'Ma'}}</td>
-											<td>{{ i.collar  }}</td>
-											<td>{{ i.waist }}</td>
-											<td>{{ i.hips }}</td>
-										</tr>
-										{% endfor %}
-								</tbody>
-							</table>
+							<div class="size-details size-details-head">__
+								<li>Size</li>
+								<li>Chest</li>
+								<li>Waist</li>
+								<li>Hips</li>
+								<li>Sleeve</li>
+								<li>Collar</li>
+							</div>
+
+						{% for i in male_size_table %}
+						<div class="size-container">
+							<label for="{{ i.id }}">
+							<div class="size-details">.
+								<input type="radio" id="{{ i.id }}" value="{{ i }}" name="sizeTable">
+								<li>{{ i | cut:'Ma'}}</li>
+								<li>{{ i.collar }}</li>
+								<li>{{ i.waist }}</li>
+								<li>{{ i.hips }}</li>
+							</div>
+							</label>
+						</div>
+						{% endfor %}
 						</div>
 					</div>
 				</div>
