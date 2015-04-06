@@ -6,7 +6,8 @@
   background: #B2EBF2;
   background: #d8f0f3;
   background: #e8f2f3;
-  background: #f6f1c4; }
+  background: #f6f1c4;
+}
 
 .errorlist {
   color: red;
@@ -14,29 +15,35 @@
   margin: 0;
   display: inline;
   float: right;
-  padding-top: 28px; }
+  padding-top: 28px;
+}
 
 /* the area of a page that lists the main benefits */
 .benefit, .benefits-home, .benefits-tailor {
   margin: 30px 0;
   font-size: 1.4em;
-  border-bottom: 1px solid #C5E1A5; }
+  border-bottom: 1px solid #C5E1A5;
+}
 
 .benefit .col-lg-6, .benefits-home .col-lg-6, .benefits-tailor .col-lg-6 {
-  padding: 40px 40px 40px 40px; }
+  padding: 40px 40px 40px 40px;
+}
 
 /* color only first-benefit matches of class */
 .benefit [class*='first-benefit-'] h2, .benefits-home [class*='first-benefit-'] h2, .benefits-tailor [class*='first-benefit-'] h2 {
   font-size: 1.8em;
-  color: #900; }
+  color: #900;
+}
 
 .benefit [class*='second-benefit-'], .benefits-home [class*='second-benefit-'], .benefits-tailor [class*='second-benefit-'] {
-  background: #eef3fa; }
+  background: #eef3fa;
+}
 
 /*header variables*/
 /* ----------------------------------------------- */
 .register-tailor-header {
-  padding: 5px 0px; }
+  padding: 5px 0px;
+}
 
 .action-button-header-register {
   background-color: #FF5722;
@@ -52,12 +59,14 @@
   text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
   font-size: 1.4em;
   box-shadow: 0px 0px 1px #444;
-  font-weight: lighter; }
+  font-weight: lighter;
+}
 
 .action-button-header-register:hover {
   background-color: #FF7043;
   color: #fff;
-  box-shadow: none; }
+  box-shadow: none;
+}
 
 .action-button-header-tailor {
   background-color: #76d518;
@@ -73,154 +82,194 @@
   text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
   font-size: 1.4em;
   box-shadow: 0px 0px 1px #444;
-  font-weight: lighter; }
+  font-weight: lighter;
+}
 
 .action-button-header-tailor:hover {
   background-color: #76d553;
   color: #fff;
-  box-shadow: none; }
+  box-shadow: none;
+}
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 a:hover {
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 #header img {
-  width: 65%; }
+  width: 65%;
+}
 
 .navbar {
   background-repeat: no-repeat;
   border-bottom: 1px solid #178ACC;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
   border-radius: 0px;
-  margin-bottom: 0px; }
+  margin-bottom: 0px;
+}
 
 .navbar-default {
   background: #fff;
-  border-color: #fff; }
+  border-color: #fff;
+}
 
 .navbar-default .navbar-brand,
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-nav > li > a {
   color: #007538;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+}
 
 .navbar-default .navbar-nav > li > a {
-  line-height: 35px; }
+  line-height: 35px;
+}
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: #f00;
-  background-color: #e4f4e4; }
+  background-color: #e4f4e4;
+}
 
 @media (max-width: 768px) {
   .register-tailor-header {
-    padding-left: 30px; }
+    padding-left: 30px;
+  }
 
   #header img {
     max-width: 70%;
-    margin-top: -15px; }
+    margin-top: -15px;
+  }
 
   button .icon-bar {
     color: #fff;
-    background: #ff0; }
+    background: #ff0;
+  }
 
   .navbar-default .navbar-toggle .icon-bar {
-    background-color: #0b5; }
+    background-color: #0b5;
+  }
 
   .navbar-default .navbar-toggle {
-    border-color: #0b5; }
+    border-color: #0b5;
+  }
 
   .navbar-default .navbar-toggle:hover,
   .navbar-default .navbar-toggle:focus {
-    background-color: #e4f4e4; } }
+    background-color: #e4f4e4;
+  }
+}
 .jumbotron, .jumbotron-home-page, .jumbotron-signup {
   height: 450px;
   background-color: rgba(101, 123, 23, 0.5);
   padding: 10px 50px 50px 90px;
   color: #ff0;
-  color: #fff; }
+  color: #fff;
+}
 
 .jumbotron h1, .jumbotron-home-page h1, .jumbotron-signup h1 {
-  font-size: 5em; }
+  font-size: 5em;
+}
 
 @media (min-width: 1700px) {
   .jumbotron-home-page {
-    min-height: 550px; } }
+    min-height: 550px;
+  }
+}
 .jumbotron-home-page {
   background: #e5f1f8;
   background: #97ccd8;
   background: #03a9f4;
-  background-image: url("../img/Background_2.png"); }
+  background-image: url("../img/Background_2.png");
+}
 
 /* should rename this */
 .jumbotron-signup {
-  background-image: url("../img/Suave_Stiches_3.png"); }
+  background-image: url("../img/Suave_Stiches_3.png");
+}
 
 @media (max-width: 768px) {
   .jumbotron, .jumbotron-home-page, .jumbotron-signup {
     font-size: 0.74em;
-    padding: 10px 20px 20px 20px; } }
+    padding: 10px 20px 20px 20px;
+  }
+}
 @media (max-width: 480px) {
   .jumbotron-signup {
     background-position: -150px 0px;
-    max-height: 300px !important; }
+    max-height: 300px !important;
+  }
 
   .jumbotron, .jumbotron-home-page, .jumbotron-signup {
     font-size: 0.74em;
     text-align: center;
-    padding: 0px 20px 20px 20px; }
+    padding: 0px 20px 20px 20px;
+  }
 
   .jumbotron-action {
-    font-size: 1em; } }
+    font-size: 1em;
+  }
+}
 /* footet */
 .footer {
   min-height: 300px;
   background: #f2f2f2;
   padding: 50px;
-  border-top: 2px #e0dada solid; }
+  border-top: 2px #e0dada solid;
+}
 
 .footer-left-left {
-  height: 150px; }
+  height: 150px;
+}
 
 .footer-left-right {
   height: 150px;
-  border-left: 1px #cec solid; }
+  border-left: 1px #cec solid;
+}
 
 .footer-left-base {
   height: 10px;
-  border-top: 1px #cec solid; }
+  border-top: 1px #cec solid;
+}
 
 .footer-right {
   height: 150px;
-  border-left: 1px #cec solid; }
+  border-left: 1px #cec solid;
+}
 
 .form-signup {
   border: 1px #cec solid;
-  border: 1px #5fc35f solid; }
+  border: 1px #5fc35f solid;
+}
 
 .form-container {
-  padding: 0; }
+  padding: 0;
+}
 
 .form-tag {
   padding: 10px;
   background: #0b5;
   text-align: center;
   color: #fff;
-  font-size: 2em; }
+  font-size: 2em;
+}
 
 .form-group {
-  padding: 0 20px 0 20px; }
+  padding: 0 20px 0 20px;
+}
 
 .form-signup-base {
-  padding: 0 20px 20px 20px; }
+  padding: 0 20px 20px 20px;
+}
 
 .form-signup input[type=text] {
   font-size: 1.5em;
   height: 40px;
-  color: #000; }
+  color: #000;
+}
 
 .form-signup-base input[type=submit] {
   line-height: 40px;
@@ -229,14 +278,17 @@ a:hover {
   box-shadow: 0px 0px 3px #000;
   text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.5);
   background: #ff5852;
-  border-color: transparent; }
+  border-color: transparent;
+}
 
 .form-signup-base input[type=submit]:hover {
-  box-shadow: none; }
+  box-shadow: none;
+}
 
 .action-button-wrapper-home {
   margin: 40px auto auto auto;
-  text-align: center; }
+  text-align: center;
+}
 
 .action-button-home {
   background-color: #f60;
@@ -249,27 +301,34 @@ a:hover {
   font-weight: bold;
   padding: 5px 23px;
   text-decoration: none;
-  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5); }
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+}
 
 .action-button-home:hover {
   background-color: #f36315;
   color: #000;
-  box-shadow: none; }
+  box-shadow: none;
+}
 
 @media (max-width: 480px) {
   .delivery h2, .tailor h2, .fabric h2 {
-    line-height: 50px; } }
+    line-height: 50px;
+  }
+}
 .below-jumbotron-tailor {
   background: #212121;
-  color: #80DEEA; }
+  color: #80DEEA;
+}
 
 .below-jumbotron-tailor h2 {
   font-size: 2.7em;
-  line-height: 100px; }
+  line-height: 100px;
+}
 
 .action-button-wrapper-tailor {
   margin: 70px auto auto auto;
-  text-align: center; }
+  text-align: center;
+}
 
 .action-button-tailor {
   background-color: #f60;
@@ -282,95 +341,116 @@ a:hover {
   font-weight: bold;
   padding: 5px 23px;
   text-decoration: none;
-  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5); }
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+}
 
 .action-button-tailor:hover {
   background-color: #f36315;
   color: #000;
-  box-shadow: none; }
+  box-shadow: none;
+}
 
 @media (max-width: 480px) {
   .below-jumbotron-tailor h2 {
     padding: 5px 20px 5px 20px;
     font-size: 1.6em;
-    line-height: 40px; } }
+    line-height: 40px;
+  }
+}
 .new_user_check {
   background: #AD1457;
   color: #ff0;
   line-height: 40px;
   text-align: center;
-  padding: 20px; }
+  padding: 20px;
+}
 
 #id_sex li {
   display: inline-block;
-  padding-left: 20px; }
+  padding-left: 20px;
+}
 
 #id_sex li label, #id_delivery_option li label {
-  font-weight: lighter; }
+  font-weight: lighter;
+}
 
 #id_delivery_option li {
   display: inline-block;
-  padding-left: 20px; }
+  padding-left: 20px;
+}
 
 .order-tabs.nav-tabs > li.active > a {
   border: 1px solid #f00;
   border-top-color: transparent;
-  margin-top: -1px; }
+  margin-top: -1px;
+}
 
 .order-tabs.nav-tabs {
   border-top: 1px solid #ddd;
   border-top: 1px solid #f00;
   border-bottom-color: transparent;
-  margin-top: 0; }
+  margin-top: 0;
+}
 
 .order-tab-content {
-  min-height: 340px; }
+  min-height: 340px;
+}
 
 .size-table {
   background: #2c2626;
   background-color: #111010;
-  color: #fff; }
+  color: #fff;
+}
 
 .size-table.table > thead > tr > th,
 .size-table.table > thead > tr > td {
-  background-color: #258ee3; }
+  background-color: #258ee3;
+}
 
 .size-table.table-striped > tbody > tr:nth-child(odd) > td,
 .size-table.table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #474444;
-  background-color: #3f3b3b; }
+  background-color: #3f3b3b;
+}
 
 .size-table.table-hover > tbody > tr:hover > td,
 .size-table.table-hover > tbody > tr:hover > th {
-  background-color: #5f5555; }
+  background-color: #5f5555;
+}
 
 /* Variables */
 /* header */
 #header {
-  margin: -10px auto auto auto; }
+  margin: -10px auto auto auto;
+}
 
 * {
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   -ms-border-radius: 0 !important;
-  border-radius: 0 !important; }
+  border-radius: 0 !important;
+}
 
 .page-header {
-  font-family: 'GothamRoundedMedium'; }
+  font-family: 'GothamRoundedMedium';
+}
 
 body {
   color: #000;
-  font-family: weblysleek, arial; }
+  font-family: weblysleek, arial;
+}
 
 @font-face {
   font-family: 'weblysleek';
   /*src: url('../font/weblysleek/weblysleekuisl.ttf') format('truetype');*/
   src: url("../fonts/Raleway-ExtraLight.ttf") format("truetype");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+}
 @font-face {
   font-family: 'GothamRoundedMedium';
   src: url("../fonts/GothamRoundedMedium.ttf") format("truetype");
-  font-weight: lighter; }
+  font-weight: lighter;
+}
 
 /*# sourceMappingURL=style.css.map */
