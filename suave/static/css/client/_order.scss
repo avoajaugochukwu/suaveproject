@@ -47,3 +47,52 @@
 .size-table.table-hover > tbody > tr:hover > th {
   background-color: #5f5555;
 }
+.size-details {
+	width: 100%;
+}
+
+.size-details-head, .size-details-head li {
+	background: #FF3D00;
+	background: #B3E5FC;
+	margin-bottom: 5px;
+	border: none !important;
+}
+
+.size-details li {
+	border-right: 1px #000 solid;
+
+	line-height: 30px;
+	display: inline-block;
+	margin: 0;
+	width: 70px;
+	text-align: center;
+}
+
+.size-container:nth-child(odd) {
+	background: #80DEEA;
+}
+
+.size-container {
+	background: #cec;
+}
+
+.size-container:hover {
+	background: #4CAF50;
+}
+
+label {
+  display: block;
+  font-weight: lighter;
+}
+
+label input:checked ~ .size-container {
+	background: #000;
+}
+
+.size-container:target {
+	background: #000;
+}
+
+.size-new-color {
+	background: #FF8F00 !important;
+}
