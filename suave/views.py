@@ -41,15 +41,6 @@ from suave.helper import *
 	@Todo
 	Tailor details view should show only service cost i.e cost that relates to the tailor
 
-	@Todo
-	Add title to pages
-
-	@Todo
-	Make error notification appear on top of order form
-
-	@Todo
-	Tailor should be able to view his work in progress and mark it as done >>>>>
-
 	@????
 	how do I write a function that will take a variable|value from template and work on it
 
