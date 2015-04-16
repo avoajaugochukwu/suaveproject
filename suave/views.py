@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 
 from suave.models import User, Client, Size, Order, Tailor, Fabric, Style, SizeTable
 
-from suave.forms import UserForm, ClientRegisterForm, MaleSizeForm, FemaleSizeForm, OrderForm, UserFormLogin, TailorRegisterForm
+from suave.forms import UserForm, ClientRegisterForm, OrderForm, UserFormLogin, TailorRegisterForm #, MaleSizeForm, FemaleSizeForm
 
 from suave.helper import *
 
@@ -55,6 +55,11 @@ from suave.helper import *
 
 	@Optimize join tailorRegister and clientRegister into one
 
+	@Todo
+	Scrutinize Inches and Sizes model
+
+	@Todo
+	Clients should edit their orders up to a certain time
 """
 
 
@@ -134,13 +139,13 @@ def clientDashboard(request):
 def createOrder(request):
 	context = {}
 	context['title'] = 'Create order SuaveStitches Nigeria'
-	context['maleSize_form'] = MaleSizeForm()
-	context['femaleSize_form'] = FemaleSizeForm()
+	# context['maleSize_form'] = MaleSizeForm()
+	# context['femaleSize_form'] = FemaleSizeForm()
 	context['order_form'] = OrderForm()
 	context['male_size_table'] = SizeTable.objects.filter(size_value__startswith='Ma')
 	context['female_size_table'] = SizeTable.objects.filter(size_value__startswith='Fe')
 
-	# context['fabrics'] = Fabric.objects.all() #change to choose for male and female
+	context['fabrics'] = Fabric.objects.all() #change to choose for male and female
 
 	client = Client.objects.get(user=request.user)
 
@@ -172,6 +177,7 @@ def createOrder(request):
 			order_form_data.client = client
 
 			order_form_data.delivery_option = delivery_option
+			order_form_data.fabric = fabric
 			order_form_data.service_option = service_option
 			order_form_data.cost = total_cost
 			order_form_data.sex = sex
@@ -255,6 +261,9 @@ def tailorDashboard(request):
 	context['tailorPage'] = True
 	orders = Order.objects.filter(status='OPEN')
 	context['orders'] = orders
+
+	tailor_obj = Tailor.objects.get(user=request.user)
+	context['work'] = len(Order.objects.filter(tailor=tailor_obj, status='IN PROGRESS'))
 	return render(request, 'i/tailor/dashboard.html', context)
 
 
@@ -269,7 +278,7 @@ def tailorOrderDetails(request, main_order_id):
 	context['title'] = 'Order details -- SuaveStitches Nigeria'
 	context['tailorPage'] = True
 	context['order'] = order
-
+	print 'order', order.fabric
 	# context['size'] = serializers.serialize("python", Size.objects.filter(id=order.size.id))
 	context['size'] = serializers.serialize("python", SizeTable.objects.filter(id=order.sizetable.id))
 	return render(request, 'i/tailor/order_details.html', context)

@@ -17,7 +17,7 @@
 #header {
 	@include margin(-10px, auto, auto, auto);
 }
-* {
+*:not(span) {
 	@include border-radius(0);
 	// @include padding(0, 0, 0, 0);
 }
@@ -36,12 +36,12 @@ body {
 
 @font-face {
 		font-family: 'weblysleek';
-		
-		/*src: url('../font/weblysleek/weblysleekuisl.ttf') format('truetype');*/
-		// src: url('../fonts/weblysleekuil.ttf') format('truetype');
+
+		src: url('../font/weblysleek/weblysleekuisl.ttf') format('truetype');
+		src: url('../fonts/weblysleekuil.ttf') format('truetype');
 		// src: url('../fonts/Raleway-Thin.ttf') format('truetype');
 		// src: url('../fonts/Raleway-ExtraBold.ttf') format('truetype');
-		src: url('../fonts/Raleway-ExtraLight.ttf') format('truetype');
+		// src: url('../fonts/Raleway-ExtraLight.ttf') format('truetype');
 		font-weight: normal;
 		font-style: normal;
 }

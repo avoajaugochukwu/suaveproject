@@ -66,7 +66,8 @@ class Fabric(models.Model):
 	cost = models.IntegerField(null=True)
 	sex = models.CharField(max_length=2, null=True)
 	pattern = models.CharField(max_length=150, null=True)
-
+	image_url = models.CharField(max_length=150)
+	description = models.CharField(max_length=200, null=True)
 	def __str__(self):
 		return ('%s %s' %(self.name, self.cost))
 
@@ -89,7 +90,7 @@ class Order(models.Model):
 	sizetable = models.ForeignKey(SizeTable, null=True)
 	#sizetable
 	tailor = models.ForeignKey(Tailor, null=True)
-	fabric = models.ForeignKey(Fabric, null=True) #* change to foreign key with Fabric
+	fabric = models.CharField(max_length=50, null=True) #* change to foreign key with Fabric
 
 	main_order_id = models.CharField(max_length=15, null=True)
 
