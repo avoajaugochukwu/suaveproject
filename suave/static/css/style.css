@@ -372,9 +372,19 @@ a:hover {
 
 label {
   display: block;
-  font-weight: lighter; }
+  font-weight: lighter;
+  cursor: pointer; }
 
-label input:checked ~ .size-container {
+.fabric {
+  text-align: center;
+  border-bottom: 1px solid #cec;
+  padding: 10px; }
+
+.fabric input {
+  display: block;
+  display: none; }
+
+label input:checked ~ .size-container, label input:checked ~ .fabric {
   background: #000; }
 
 .size-container:target {

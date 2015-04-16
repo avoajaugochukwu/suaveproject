@@ -18,15 +18,19 @@
 					<div class="row">
 						<div class="col-lg-6 col-lg-offset-3 order-tab-content" style="">
 							<div class="form-group">
-								<h4>Fabric</h4>
-								{% for fabric in fabrics %}
-								{{ fabric.name }}
-								<hr>
-								<label for="{{ fabric.image_url }}">
-									<input type="radio" id="{{ fabric.image_url }}" name="fabric" value="{{ fabric.id }}">
-									<img src="/static/img/fabrics/{{ fabric.image_url }}">
-								</label>
-								{% endfor %}
+								<div class="row">
+									<h4>Select choice of fabric</h4>
+									{% for fabric in fabrics %}
+										<div class="fabric col-lg-6">
+											
+											<label for="{{ fabric.image_url }}">
+												<input type="radio" id="{{ fabric.image_url }}" name="fabric" value="{{ fabric.id }}">
+												<img src="/static/img/fabrics/{{ fabric.image_url }}" height="200" width="200">
+											</label>
+											<p>{{ fabric.name }}</p>
+										</div>
+									{% endfor %}
+								</div>
 								{% for field in order_form.visible_fields %}
 								{{ field.errors }}
 								<h4>{{ field.help_text }}</h4>
@@ -35,9 +39,9 @@
 								</ul>
 								{% endfor %}
 							</div>
-							
+
 						</div>
-						</div>
+					</div>
 				</div>
 
 

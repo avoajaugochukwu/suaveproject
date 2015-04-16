@@ -111,7 +111,7 @@ class OrderForm(forms.ModelForm):
 	class Meta:
 		model = Order
 		# fields = ('delivery_option', 'fabric', 'style')
-		fields = ('delivery_option', 'style')
+		fields = ('style', 'service_option', 'delivery_option')
 
 
 class TailorRegisterForm(forms.ModelForm):
