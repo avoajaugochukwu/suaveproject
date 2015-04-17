@@ -2,8 +2,6 @@
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 
-
-
 from django.core import serializers
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -184,6 +182,7 @@ def createOrder(request):
 			order_form_data.service_option = service_option
 			order_form_data.cost = total_cost
 			order_form_data.sex = sex
+			order_form_data.style = style
 			order_form_data.sizetable = new_size_table
 
 			order_form_data.save()

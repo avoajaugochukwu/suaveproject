@@ -33,16 +33,8 @@ class Migration(migrations.Migration):
                 ('cost', models.IntegerField(null=True)),
                 ('sex', models.CharField(max_length=2, null=True)),
                 ('pattern', models.CharField(max_length=150, null=True)),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='Inches',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('size', models.FloatField(default=0)),
+                ('image_url', models.CharField(max_length=150)),
+                ('description', models.CharField(max_length=200, null=True)),
             ],
             options={
             },
@@ -52,6 +44,8 @@ class Migration(migrations.Migration):
             name='Order',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('fabric', models.CharField(max_length=50, null=True)),
+                ('style', models.CharField(max_length=100, null=True)),
                 ('main_order_id', models.CharField(max_length=15, null=True)),
                 ('details', models.CharField(max_length=250, null=True)),
                 ('delivery_option', models.CharField(max_length=100, null=True)),
@@ -59,26 +53,21 @@ class Migration(migrations.Migration):
                 ('sex', models.CharField(default=b' ', max_length=2)),
                 ('status', models.CharField(default=b'OPEN', max_length=20)),
                 ('cost', models.IntegerField(default=0)),
+                ('date', models.DateField(auto_now_add=True)),
                 ('client', models.ForeignKey(to='suave.Client', null=True)),
-                ('fabric', models.ForeignKey(to='suave.Fabric', null=True)),
             ],
             options={
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Size',
+            name='SizeTable',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('bust', models.CharField(max_length=7, null=True)),
-                ('center_back', models.CharField(max_length=7, null=True)),
-                ('chest', models.CharField(max_length=7, null=True)),
-                ('inside_leg', models.CharField(max_length=7, null=True)),
-                ('hips', models.CharField(max_length=7, null=True)),
-                ('sleeve', models.CharField(max_length=7, null=True)),
-                ('waist', models.CharField(max_length=7, null=True)),
-                ('waistline', models.CharField(max_length=7, null=True)),
-                ('client', models.ForeignKey(to='suave.Client', null=True)),
+                ('size_value', models.CharField(max_length=15)),
+                ('collar', models.CharField(max_length=10)),
+                ('waist', models.CharField(max_length=10)),
+                ('hips', models.CharField(max_length=10)),
             ],
             options={
             },
@@ -91,6 +80,9 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=50)),
                 ('sex', models.CharField(max_length=3)),
                 ('cost', models.IntegerField(default=0)),
+                ('pattern', models.CharField(max_length=150, null=True)),
+                ('image_url', models.CharField(max_length=150)),
+                ('description', models.CharField(max_length=200, null=True)),
             ],
             options={
             },
@@ -112,8 +104,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='order',
-            name='size',
-            field=models.ForeignKey(to='suave.Size', null=True),
+            name='sizetable',
+            field=models.ForeignKey(to='suave.SizeTable', null=True),
             preserve_default=True,
         ),
         migrations.AddField(

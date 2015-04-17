@@ -10,7 +10,6 @@ class Client(models.Model):
 		(MALE, 'M'),
 	)
 
-# 	#links UserProfile to django User model
 	user = models.OneToOneField(User)
 
 	address = models.CharField(max_length=200, null=True)
@@ -71,6 +70,7 @@ class Order(models.Model):
 	#sizetable
 	tailor = models.ForeignKey(Tailor, null=True)
 	fabric = models.CharField(max_length=50, null=True)
+	style = models.CharField(max_length=100, null=True)
 
 	main_order_id = models.CharField(max_length=15, null=True)
 
