@@ -18,13 +18,14 @@
 			<div class="tab-content order-tab-content">
 				<div role="tabpanel" class="tab-pane active" id="home">
 					<div class="row">
-						<div class="col-lg-6 col-lg-offset-3 order-tab-content" style="">
+						<div class="order-tab-content" style="">
 							<div class="form-group">
+								<!-- Choose Fabric -->
 								<div class="row">
 									<h4>Select choice of fabric</h4>
 									{% for fabric in fabrics %}
 
-										<div class="fabric col-lg-6">
+										<div class="fabric col-sm-3">
 											<label for="{{ fabric.image_url }}">
 												<input type="radio" id="{{ fabric.image_url }}" name="fabric" value="{{ fabric.id }}">
 												<img src="/static/img/fabrics/{{ fabric.image_url }}" height="200" width="200">
@@ -34,6 +35,8 @@
 									{% endfor %}
 
 								</div>
+								
+
 
 								{% for field in order_form.visible_fields %}
 								{{ field.errors }}
@@ -47,6 +50,31 @@
 						</div>
 					</div>
 				</div>
+
+
+
+				<div role="tabpanel" class="tab-pane" id="style">
+					<div class="row">
+						<div class="order-tab-content" style="">
+							<!-- Choose Style -->
+								<div class="row">
+									<h4>Select Style</h4>
+									{% for style in styles %}
+
+										<div class="fabric col-xs-3">
+											<label for="{{ style.image_url }}">
+												<input type="radio" id="{{ style.image_url }}" name="style" value="{{ style.id }}">
+												<img src="/static/img/styles/{{ style.image_url }}" height="200" width="200">
+											</label>
+											<p>{{ style.name }}</p>
+										</div>
+									{% endfor %}
+								</div>
+						</div>
+					</div>
+				</div>
+
+
 
 
 
@@ -66,7 +94,7 @@
 						<div class="size-container">
 							<label for="{{ i.id }}">
 							<div class="size-details">.
-								<input type="radio" id="{{ i.id }}" value="{{ i }}" name="sizeTable">
+								<input type="radio" id="{{ i.id }}" value="{{ i }}" name="size">
 								<li>{{ i | cut:'Fe'}}</li>
 								<li>{{ i.collar }}</li>
 								<li>{{ i.waist }}</li>
@@ -97,7 +125,7 @@
 						<div class="size-container">
 							<label for="{{ i.id }}">
 							<div class="size-details">.
-								<input type="radio" id="{{ i.id }}" value="{{ i }}" name="sizeTable">
+								<input type="radio" id="{{ i.id }}" value="{{ i }}" name="size">
 								<li>{{ i | cut:'Ma'}}</li>
 								<li>{{ i.collar }}</li>
 								<li>{{ i.waist }}</li>
@@ -131,6 +159,7 @@
 				<ul class="nav nav-tabs order-tabs col-lg-6 col-lg-offset-3" role="tablist">
 					<!-- <ul class="nav nav-pills order-tabs col-lg-6 col-lg-offset-3" role="tablist"> -->
 					<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><span class="fa fa-info fa-lg"></span> Home</a></li>
+					<li role="presentation"><a href="#style" aria-controls="settings" role="tab" data-toggle="tab"><span class="fa fa-spinner fa-spin"></span> Style</a></li>
 					<li role="presentation"><a href="#female" aria-controls="female" role="tab" data-toggle="tab"><span class="fa fa-scissors fa-lg"></span> Female</a></li>
 					<li role="presentation"><a href="#male" aria-controls="male" role="tab" data-toggle="tab"><span class="fa fa-scissors fa-lg"></span> Male</a></li>
 					<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><span class="fa fa-spinner fa-spin"></span> Last</a></li>

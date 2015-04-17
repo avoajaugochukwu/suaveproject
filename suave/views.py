@@ -141,6 +141,7 @@ def createOrder(request):
 	context['female_size_table'] = SizeTable.objects.filter(size_value__startswith='Fe')
 
 	context['fabrics'] = Fabric.objects.all() #change to choose for male and female
+	context['styles'] = Style.objects.all()
 
 	client = Client.objects.get(user=request.user)
 
@@ -149,7 +150,7 @@ def createOrder(request):
 		order_form = OrderForm(request.POST)
 
 		#create list from inputs not in a form
-		check_input = ['fabric', 'sizeTable']
+		check_input = ['fabric', 'style', 'size']
 
 		checker = checkInput(request, check_input)
 
@@ -164,7 +165,7 @@ def createOrder(request):
 
 			total_cost = totalOrderCost(fabric, style, service_option)
 
-			size_table = request.POST.get('sizeTable')
+			size_table = request.POST.get('size')
 
 
 			sex = checkSex(size_table)

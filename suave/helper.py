@@ -49,17 +49,14 @@ def checkSex(word):
 
 
 """Check if Fabric was selected"""
-
 def checkInput(request, check_input):
 	# fields_dict = {'sizeTable': 'size table', 'fabric': }
 	for i in check_input:
-		# a = None
 		check = request.POST.get(i)
 		if check == None:
 
 			return "'" + i + "'" + " field is required"
-		print check
-	print 'Higly successful'
+	# logic only gets here if all fields are provided
 	return True
 
 

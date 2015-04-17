@@ -76,12 +76,13 @@ class OrderForm(forms.ModelForm):
 
 	# sex = forms.ChoiceField(choices=SEX_CHOICE, help_text="Sex", required=True, widget=forms.RadioSelect(attrs={'class': '', 'style': 'color:#ff0'}))
 	delivery_option = forms.ChoiceField(choices=DELIVERY_OPTION, help_text="Choose Delivery option", required=True, widget=forms.RadioSelect(attrs={'class': 'input-xs'}))
-	style = forms.ModelChoiceField(queryset=Style.objects.all(), help_text="Choose style", widget=forms.Select(attrs={'class': 'form-control input-xs'}))
+	# style = forms.ModelChoiceField(queryset=Style.objects.all(), help_text="Choose style", widget=forms.Select(attrs={'class': 'form-control input-xs'}))
 	service_option = forms.ChoiceField(choices=SERVICE_OPTION, help_text="Service Option", widget=forms.Select(attrs={'class': 'form-control input-xs'}))
 
 	class Meta:
 		model = Order
-		fields = ('style', 'service_option', 'delivery_option')
+		fields = ('service_option', 'delivery_option')
+		exclude = ('style',)
 
 
 class TailorRegisterForm(forms.ModelForm):
