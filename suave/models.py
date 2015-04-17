@@ -1,7 +1,6 @@
 from django.db import models
 
 from django.contrib.auth.models import User
-##tables that are stared will be reviewed later
 
 class Client(models.Model):
 	FEMALE = 'F'

@@ -1,6 +1,6 @@
 #import string
 from django.core.urlresolvers import reverse
-from django.shortcuts import render, redirect#, render_to_response
+from django.shortcuts import render, redirect
 
 
 
@@ -13,9 +13,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable#, Size
+from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 
-from suave.forms import UserForm, ClientRegisterForm, OrderForm, UserFormLogin, TailorRegisterForm #, MaleSizeForm, FemaleSizeForm
+from suave.forms import UserForm, ClientRegisterForm, OrderForm, UserFormLogin, TailorRegisterForm
 
 from suave.helper import *
 
@@ -54,6 +54,9 @@ from suave.helper import *
 
 	@Todo
 	Write function to check if form feilds of order is valid
+
+	@Todo
+	Sex should be radio button that dictates size table display
 """
 
 
@@ -133,8 +136,6 @@ def clientDashboard(request):
 def createOrder(request):
 	context = {}
 	context['title'] = 'Create order SuaveStitches Nigeria'
-	# context['maleSize_form'] = MaleSizeForm()
-	# context['femaleSize_form'] = FemaleSizeForm()
 	context['order_form'] = OrderForm()
 	context['male_size_table'] = SizeTable.objects.filter(size_value__startswith='Ma')
 	context['female_size_table'] = SizeTable.objects.filter(size_value__startswith='Fe')
@@ -146,8 +147,6 @@ def createOrder(request):
 
 	if request.method == 'POST':
 		order_form = OrderForm(request.POST)
-		# size_table, fabric = None, None
-		# size_table = request.POST.get('sizeTable')
 
 		#create list from inputs not in a form
 		check_input = ['fabric', 'sizeTable']

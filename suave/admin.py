@@ -1,12 +1,9 @@
 from django.contrib import admin
 
 # Register your models here.
-from suave.models import Client, User, Order, Tailor, Fabric, Style, SizeTable#, Size, Inches
+from suave.models import Client, User, Order, Tailor, Fabric, Style, SizeTable
 class ClientAdmin(admin.ModelAdmin):
 	list_display = ('id', 'user', 'sex')
-
-# class SizeAdmin(admin.ModelAdmin):
-# 	list_display = ('id', 'center_back', 'chest', 'sleeve', 'inside_leg', 'bust', 'hips', 'waistline', 'waist')
 
 class OrderAdmin(admin.ModelAdmin):
 	list_display = ('client', 'tailor', 'fabric', 'details', 'delivery_option', 'sex', 'status', 'cost', 'main_order_id', 'service_option', 'sizetable', 'date')
@@ -18,19 +15,14 @@ class FabricAdmin(admin.ModelAdmin):
 	list_display = ('name', 'cost', 'sex', 'pattern', 'image_url', 'description')
 
 class StyleAdmin(admin.ModelAdmin):
-	list_display = ('name', 'sex', 'cost')
-
-# class InchesAdmin(admin.ModelAdmin):
-# 	list_display = ('size',)
+	list_display = ('name', 'cost', 'sex', 'pattern', 'image_url', 'description')
 
 class SizeTableAdmin(admin.ModelAdmin):
 	list_display = ('size_value', 'collar', 'waist', 'hips')
 
 admin.site.register(Client, ClientAdmin)
-# admin.site.register(Size, SizeAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Tailor, TailorAdmin)
 admin.site.register(Fabric, FabricAdmin)
 admin.site.register(Style, StyleAdmin)
-# admin.site.register(Inches, InchesAdmin)
 admin.site.register(SizeTable, SizeTableAdmin)
