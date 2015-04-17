@@ -13,7 +13,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from suave.models import User, Client, Size, Order, Tailor, Fabric, Style, SizeTable
+from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable#, Size
 
 from suave.forms import UserForm, ClientRegisterForm, OrderForm, UserFormLogin, TailorRegisterForm #, MaleSizeForm, FemaleSizeForm
 
@@ -150,7 +150,7 @@ def createOrder(request):
 		# size_table = request.POST.get('sizeTable')
 
 		#create list from inputs not in a form
-		check_input = ['sizeTable', 'fabric']
+		check_input = ['fabric', 'sizeTable']
 
 		checker = checkInput(request, check_input)
 
@@ -165,10 +165,13 @@ def createOrder(request):
 
 			total_cost = totalOrderCost(fabric, style, service_option)
 
+			size_table = request.POST.get('sizeTable')
+
+
 			sex = checkSex(size_table)
 
 
-			size_table = request.POST.get('sizeTable')
+
 			new_size_table = SizeTable.objects.get(size_value=size_table)
 
 

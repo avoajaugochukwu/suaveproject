@@ -41,25 +41,6 @@ class Tailor(models.Model):
 	def __str__(self):
 		return self.user.username
 
-class Size(models.Model):
-	#some how I couldnot get a size entry to be deleted along with its related order 'might casue bloated size table when fulfilled orders are dropped'
-	# order = models.ForeignKey(Order)
-	client = models.ForeignKey(Client, null=True) # make is optional for repeat clients to enter their measurement for ease
-	bust = models.CharField(max_length=7, null=True)
-	center_back = models.CharField(max_length=7, null=True)
-	chest = models.CharField(max_length=7, null=True)
-	inside_leg = models.CharField(max_length=7, null=True)
-	hips = models.CharField(max_length=7, null=True)
-	sleeve = models.CharField(max_length=7, null=True)
-	waist = models.CharField(max_length=7, null=True)
-
-	#waistline -> waist for men having validation issues with using wiast for male and female
-	waistline = models.CharField(max_length=7, null=True)
-
-	def __str__(self):
-		sizeId = str(self.id)
-		return sizeId
-
 
 class Fabric(models.Model):
 	name = models.CharField(max_length=100)
@@ -85,12 +66,12 @@ class SizeTable(models.Model):
 class Order(models.Model):
 
 	client = models.ForeignKey(Client, null=True)
-	size = models.ForeignKey(Size, null=True)
+
 	#--sizetable
 	sizetable = models.ForeignKey(SizeTable, null=True)
 	#sizetable
 	tailor = models.ForeignKey(Tailor, null=True)
-	fabric = models.CharField(max_length=50, null=True) #* change to foreign key with Fabric
+	fabric = models.CharField(max_length=50, null=True)
 
 	main_order_id = models.CharField(max_length=15, null=True)
 
@@ -107,17 +88,11 @@ class Style(models.Model):
 	name = models.CharField(max_length=50)
 	sex = models.CharField(max_length=3)
 	cost = models.IntegerField(default=000)
+	pattern = models.CharField(max_length=150, null=True)
+	image_url = models.CharField(max_length=150)
+	description = models.CharField(max_length=200, null=True)
+
+
 
 	def __str__(self):
 		return ('%s N%s sex- %s' %( self.name, self.cost, self.sex))
-
-class Inches(models.Model):
-	size = models.FloatField(default=0000)
-	# def __str__(self):
-	# 	size = float(self.size)
-	# 	return float(self.size)
-
-	def __str__(self):
-		size = str(self.size)
-		return size
-

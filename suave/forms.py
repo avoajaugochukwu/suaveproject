@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from suave.models import Client, Tailor, Size, Order, Fabric, Style, Inches, SizeTable
+from suave.models import Client, Tailor, Order, Fabric, Style, SizeTable #, Size, Inches
 """
 	@Todo
 	Code for password verifier in comments

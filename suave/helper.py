@@ -57,7 +57,7 @@ def checkInput(request, check_input):
 		check = request.POST.get(i)
 		if check == None:
 
-			return i + ' field is required'
+			return "'" + i + "'" + " field is required"
 		print check
 	print 'Higly successful'
 	return True
