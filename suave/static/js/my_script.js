@@ -13,10 +13,17 @@
 
 		$('.shaker').shake({times: 5, speed: 80});
 
+
+		//Code for selecting male and female size
 		$('.size-container').click(function() {
 			$('.size-container').removeClass('size-new-color');
 			$(this).addClass('size-new-color');
-		})
+		});
+
+		$('.fabric').click(function() {
+			$('.fabric').removeClass('size-new-color');
+			$(this).addClass('size-new-color');
+		});
 
 
 

@@ -15,7 +15,7 @@ class TailorAdmin(admin.ModelAdmin):
 	list_display = ('id', 'user', 'rate', 'phone_number', 'address', 'specialty')
 
 class FabricAdmin(admin.ModelAdmin):
-	list_display = ('name', 'cost', 'sex', 'pattern')
+	list_display = ('name', 'cost', 'sex', 'pattern', 'image_url', 'description')
 
 class StyleAdmin(admin.ModelAdmin):
 	list_display = ('name', 'sex', 'cost')

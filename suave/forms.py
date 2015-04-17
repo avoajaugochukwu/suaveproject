@@ -1,12 +1,25 @@
 from django import forms
 from django.contrib.auth.models import User
 from suave.models import Client, Tailor, Size, Order, Fabric, Style, Inches, SizeTable
+"""
+	@Todo
+	Code for password verifier in comments
 
+"""
 
 class UserForm(forms.ModelForm):
 	username = forms.CharField(max_length=32, help_text="Username", required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'alade'}))
 	email = forms.EmailField(max_length=40, help_text="Email", required=True, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'alademusa@example.com'}))
 	password = forms.CharField(max_length=32, help_text="Password", required=True, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+	# password above will be changed to 'password1'
+	#password2 = forms.CharField(max_length=32, help_text="Password", required=True, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+	# def clean_pass(self):
+	# 	password1 = self.cleaned_data.get("password1", "")
+	# 	password2 = self.cleaned_data.get("password2")
+	# 	if password1 != password2:
+	# 		raise forms.ValidationError("Two password not the same")
+	# 	return password2
 
 	class Meta:
 		model = User
@@ -45,45 +58,45 @@ class ClientRegisterForm(forms.ModelForm):
 		fields = ('sex',)
 		# exclude = ('preference', 'address', 'size')
 
-class MaleSizeForm(forms.ModelForm):
-	SIZES = (
-		('', '----'),
-		("24", "24"),
-		("25", "25"),
-		("26", "26"), 
-		("27", "27"),
-		("28", "28"),
-		("29", "29"),
-		("30", "30"),
-		)
-	center_back = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="center_back", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
-	chest = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="chest", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
-	inside_leg = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="inside_leg", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
-	sleeve = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="sleeve", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
-	waistline = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="waistline", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+# class MaleSizeForm(forms.ModelForm):
+# 	SIZES = (
+# 		('', '----'),
+# 		("24", "24"),
+# 		("25", "25"),
+# 		("26", "26"), 
+# 		("27", "27"),
+# 		("28", "28"),
+# 		("29", "29"),
+# 		("30", "30"),
+# 		)
+# 	center_back = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="center_back", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+# 	chest = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="chest", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+# 	inside_leg = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="inside_leg", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+# 	sleeve = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="sleeve", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+# 	waistline = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), help_text="waistline", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
 
-	class Meta:
-		model = Size
-		fields = ('center_back', 'chest', 'inside_leg', 'sleeve', 'waistline')
+# 	class Meta:
+# 		model = Size
+# 		fields = ('center_back', 'chest', 'inside_leg', 'sleeve', 'waistline')
 
-class FemaleSizeForm(forms.ModelForm):
-	SIZES = (
-		('', '----'),
-		("24", "24"),
-		("25", "25"),
-		("26", "26"), 
-		("27", "27"),
-		("28", "28"),
-		("29", "29"),
-		("30", "30"),
-	)
-	bust = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), to_field_name="size", help_text="bust", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
-	waist = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), to_field_name="size", help_text="waist", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+# class FemaleSizeForm(forms.ModelForm):
+# 	SIZES = (
+# 		('', '----'),
+# 		("24", "24"),
+# 		("25", "25"),
+# 		("26", "26"), 
+# 		("27", "27"),
+# 		("28", "28"),
+# 		("29", "29"),
+# 		("30", "30"),
+# 	)
+# 	bust = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), to_field_name="size", help_text="bust", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+# 	waist = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), to_field_name="size", help_text="waist", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
 	# hips = forms.ChoiceField(choices=SIZES, help_text="hips", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
-	hips = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), to_field_name="size", required=True, help_text="hips", widget=forms.Select(attrs={'class': 'form-control'}))
-	class Meta:
-		model = Size
-		fields = ('bust', 'waist', 'hips')
+	# hips = forms.ModelChoiceField(queryset=Inches.objects.filter(size__gt=7.5, size__lt=30), to_field_name="size", required=True, help_text="hips", widget=forms.Select(attrs={'class': 'form-control'}))
+	# class Meta:
+	# 	model = Size
+	# 	fields = ('bust', 'waist', 'hips')
 
 class OrderForm(forms.ModelForm):
 	DELIVERY_OPTION = (
@@ -104,13 +117,14 @@ class OrderForm(forms.ModelForm):
 
 	# sex = forms.ChoiceField(choices=SEX_CHOICE, help_text="Sex", required=True, widget=forms.RadioSelect(attrs={'class': '', 'style': 'color:#ff0'}))
 	delivery_option = forms.ChoiceField(choices=DELIVERY_OPTION, help_text="Choose Delivery option", required=True, widget=forms.RadioSelect(attrs={'class': 'input-xs'}))
-	fabric = forms.ModelChoiceField(queryset=Fabric.objects.all(), help_text="Choose fabric", widget=forms.Select(attrs={'class': 'form-control input-xs'}))
+	# fabric = forms.ModelChoiceField(queryset=Fabric.objects.all(), help_text="Choose fabric", widget=forms.Select(attrs={'class': 'form-control input-xs'}))
 	style = forms.ModelChoiceField(queryset=Style.objects.all(), help_text="Choose style", widget=forms.Select(attrs={'class': 'form-control input-xs'}))
 	service_option = forms.ChoiceField(choices=SERVICE_OPTION, help_text="Service Option", widget=forms.Select(attrs={'class': 'form-control input-xs'}))
 
 	class Meta:
 		model = Order
-		fields = ('delivery_option', 'fabric', 'style')
+		# fields = ('delivery_option', 'fabric', 'style')
+		fields = ('style', 'service_option', 'delivery_option')
 
 
 class TailorRegisterForm(forms.ModelForm):
