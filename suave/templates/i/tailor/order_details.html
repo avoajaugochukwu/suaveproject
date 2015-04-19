@@ -3,19 +3,21 @@
 {% block title %} {{ order.client }} | {{ title }} {% endblock %}
 
 {% block main_section %}
-<div class="col-lg-6 col-lg-offset-3"><br>
-	<h1 class="page-header">Name: {{ order.client }} Order <sup>( {{ order.sex }} )</sup></h1>
-		<h4>orderId : {{ order.main_order_id }}</h4>
-		<h4>{{ order.delivery_option|lower }}</h4>
-		<h5><b>Sex</b> {{ order.sex }}</h5>
+<div class="col-lg-6 col-lg-offset-3 tailor-order-details"><br>
+	<h1 class="page-header">{{ order.client }} <sup>( {{ order.sex }} )</sup></h1>
+	<div class="row alert" style="background:#0f6bba;color:#fff">
+		<h4 class="col-lg-6">ID : {{ order.main_order_id }}</h4>
+		<h4 class="col-lg-4 col-lg-offset-2">{{ order.delivery_option|lower }}</h4>
+	</div>
+		<!-- <h3 class="alert alert-success"><b>Sex</b> {{ order.sex }}</h3> -->
 
 
-		<table class="table table-striped table-hover">
+
+		<table class="table table-striped table-hover table-bordered">
 			<tr>
 				<th>Body region</th>
 				<th>Measurement</th>
 			</tr>
-
 {% for instance in size %}
 	{% for field, value in instance.fields.items %}
 		{% if value != None %}
@@ -28,12 +30,25 @@
 {% endfor %}
 
 		</table>
-		<img src="/static/img/fabrics/{{ fabric.image_url }}">
-		<img src="/static/img/styles/{{ style.image_url }}">
+		<div class="tailor-order-details-img">
+			<div class="row">
+				<div class="col-lg-5 col-lg-offset-1">
+					<h3>Fabric</h3>
+					<img src="/static/img/fabrics/{{ fabric.image_url }}" width="200" height="200" class="img-thumbnail">
+				</div>
+				<div class="col-lg-6">
+					<h3>Style</h3>
+					<img src="/static/img/styles/{{ style.image_url }}"   width="200" height="200" class="img-thumbnail">
+				</div>
+			</div>
+		</div>
+
+
 		<br>
-		<div class="dashboard-button-panel">
-			<a href="{% url 'suave:tailorStartOrder' order.main_order_id %}" class="btn btn-success btn-md">start job</a>
-		<a href="{% url 'suave:tailorDashboard' %}" class="btn btn-warning btn-md">go back</a>
+		<div class="">
+		<hr style="border-color:#90A4AE">
+			<a href="{% url 'suave:tailorStartOrder' order.main_order_id %}" class="btn btn-success btn-lg">start job</a>
+		<a href="{% url 'suave:tailorDashboard' %}" class="btn btn-danger btn-lg">go back</a>
 		</div>
 
 	<br><br>

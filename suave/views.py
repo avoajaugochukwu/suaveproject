@@ -18,12 +18,7 @@ from suave.forms import UserForm, ClientRegisterForm, OrderForm, UserFormLogin, 
 from suave.helper import *
 
 
-""" 
-	@Todo
-	>>>>>>>>>>>>>>>>>>>>>>>
-	Change Size to have foreign key of Order so we can delete it along with Order-> Client-> and User
-	>>>>>>>>>>>>>>>>>>>>>>>
-
+"""
 	@Todo
 	add estimated time of delivery after order is started
 
@@ -35,9 +30,6 @@ from suave.helper import *
 	Make email field in User model unique that is test for email availability before registering users client or tailor
 
 	@Todo
-	Add notes option to order use the details field
-
-	@Todo
 	Tailor details view should show only service cost i.e cost that relates to the tailor
 
 	@????
@@ -46,19 +38,10 @@ from suave.helper import *
 	@Optimize join tailorRegister and clientRegister into one
 
 	@Todo
-	Scrutinize Inches and Sizes model
-
-	@Todo
 	Clients should edit their orders up to a certain time
 
 	@Todo
-	Write function to check if form feilds of order is valid
-
-	@Todo
 	Sex should be radio button that dictates size table display
-
-	@Todo
-	Tailor order view should include image of fabric and style,
 
 	@Todo
 	Email blast to client one order is completed
@@ -308,6 +291,7 @@ def tailorStartOrder(request, main_order_id):
 	order.tailor = tailor
 	order.status = 'IN PROGRESS'
 	order.save()
+
 	return redirect('suave:tailorDashboard')
 
 @login_required

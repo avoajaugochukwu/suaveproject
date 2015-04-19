@@ -1,14 +1,5 @@
 @import url(bootstrap-3.min.css);
 /* for django errors*/
-.tailorPage-color {
-  background: #90A4AE;
-  background: #BDBDBD;
-  background: #B2EBF2;
-  background: #d8f0f3;
-  background: #e8f2f3;
-  background: #f6f1c4;
-}
-
 .errorlist {
   color: red;
   line-height: 20px;
@@ -315,6 +306,13 @@ a:hover {
     line-height: 50px;
   }
 }
+/* styling for all Tailor pages */
+/* To differentiate it from other pages */
+.tailorPage-color {
+  background: #ECEFF1;
+  background: #E8EAF6;
+}
+
 .below-jumbotron-tailor {
   background: #212121;
   color: #80DEEA;
@@ -357,6 +355,21 @@ a:hover {
     line-height: 40px;
   }
 }
+.tailor-order-details {
+  box-shadow: 0px 0px 10px #bbb;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.tailor-order-details-img {
+  padding: 0 auto;
+  text-align: center;
+}
+
+.tailor-order-details-img img {
+  box-shadow: 0px 0px 10px #bbb;
+}
+
 .new_user_check {
   background: #AD1457;
   color: #ff0;
@@ -458,7 +471,6 @@ label {
 
 .fabric {
   text-align: center;
-  border-bottom: 1px solid #cec;
   padding: 10px;
 }
 
@@ -490,10 +502,6 @@ label input:checked ~ .size-container, label input:checked ~ .fabric {
   -moz-border-radius: 0 !important;
   -ms-border-radius: 0 !important;
   border-radius: 0 !important;
-}
-
-.page-header {
-  border-bottom: 1px #000 dotted;
 }
 
 body {

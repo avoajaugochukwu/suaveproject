@@ -6,6 +6,7 @@
 @import "signup";
 @import "home";
 @import "tailor/tailorHome";
+@import "tailor/tailorOrderDetails";
 @import "client/dashboard";
 @import "client/order";
 /* Variables */
@@ -27,7 +28,6 @@
 	// margin: 0;
 }
 .page-header {
-	border-bottom: 1px #000 dotted;
 }
 body {
 	color: #000;
