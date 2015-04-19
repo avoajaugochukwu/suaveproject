@@ -17,6 +17,7 @@ from suave.forms import UserForm, ClientRegisterForm, OrderForm, UserFormLogin, 
 
 from suave.helper import *
 
+
 """ 
 	@Todo
 	>>>>>>>>>>>>>>>>>>>>>>>
@@ -55,6 +56,12 @@ from suave.helper import *
 
 	@Todo
 	Sex should be radio button that dictates size table display
+
+	@Todo
+	Tailor order view should include image of fabric and style,
+
+	@Todo
+	Email blast to client one order is completed
 """
 
 
@@ -150,18 +157,22 @@ def createOrder(request):
 		#create list from inputs not in a form
 		check_input = ['fabric', 'style', 'size']
 
-		checker = checkInput(request, check_input)
+		input_checker = checkInput(request, check_input)
 
-		if order_form.is_valid() and checker == True:
+		if order_form.is_valid() and input_checker == True:
 			delivery_option = request.POST.get('delivery_option')
 
-			fabric = Fabric.objects.get(id=request.POST.get('fabric'))
-
-			style = Style.objects.get(id=request.POST.get('style'))
+			fabric = request.POST.get('fabric')
+			style = request.POST.get('style')
 
 			service_option = request.POST.get('service_option')
 
-			total_cost = totalOrderCost(fabric, style, service_option)
+
+
+			# get objects of Fabric and Style to compute total_cost
+			fabric_obj = Fabric.objects.get(id=request.POST.get('fabric'))
+			style_obj = Style.objects.get(id=request.POST.get('style'))
+			total_cost = totalOrderCost(fabric_obj, style_obj, service_option)
 
 			size_table = request.POST.get('size')
 
@@ -191,7 +202,7 @@ def createOrder(request):
 		else:
 			context['order_form'] = order_form
 			context['error'] = 'Something went wrong - please fill all required fields'
-			context['static_errors'] = str(checker)
+			context['static_errors'] = str(input_checker)
 			render(request, 'i/client/order.html', context)
 
 	return render(request, 'i/client/order.html', context)
@@ -282,7 +293,10 @@ def tailorOrderDetails(request, main_order_id):
 	context['tailorPage'] = True
 	context['order'] = order
 	print 'order', order.fabric
-	# context['size'] = serializers.serialize("python", Size.objects.filter(id=order.size.id))
+	# get object of order fabric and style to get the name & image in template
+	context['fabric'] = Fabric.objects.get(id=order.fabric)
+	context['style'] = Style.objects.get(id=order.style)
+
 	context['size'] = serializers.serialize("python", SizeTable.objects.filter(id=order.sizetable.id))
 	return render(request, 'i/tailor/order_details.html', context)
 
@@ -291,16 +305,15 @@ def tailorOrderDetails(request, main_order_id):
 def tailorStartOrder(request, main_order_id):
 	order = Order.objects.get(main_order_id=main_order_id)
 	tailor = Tailor.objects.get(user=request.user)
-	# print user
 	order.tailor = tailor
 	order.status = 'IN PROGRESS'
 	order.save()
-	print 'yes'
 	return redirect('suave:tailorDashboard')
 
 @login_required
 def tailorWorkInProgress(request):
 	context = {}
+	context['tailorPage'] = True
 	tailor_obj = Tailor.objects.get(user=request.user)
 	context['work'] = Order.objects.filter(tailor=tailor_obj, status='IN PROGRESS')
 

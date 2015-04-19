@@ -493,7 +493,7 @@ label input:checked ~ .size-container, label input:checked ~ .fabric {
 }
 
 .page-header {
-  font-family: 'GothamRoundedMedium';
+  border-bottom: 1px #000 dotted;
 }
 
 body {
