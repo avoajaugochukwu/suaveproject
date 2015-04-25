@@ -45,6 +45,9 @@ from suave.helper import *
 
 	@Todo
 	Email blast to client one order is completed
+
+	@Todo
+	Create light box for Fabric and Style images
 """
 
 
