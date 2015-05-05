@@ -24,9 +24,9 @@ def mainOrderId():
 	orderID += str(datetime.datetime.today().year)
 	orderID = orderID[2:]
 
-	orderID += lenOf((datetime.datetime.today().month))
+	orderID += lenOf(datetime.datetime.today().month)
 
-	orderID += lenOf((datetime.datetime.today().day))
+	orderID += lenOf(datetime.datetime.today().day)
 
 	for i in range(0, 4):
 		orderID += str(randint(0, 9))
