@@ -35,7 +35,6 @@ def mainOrderId():
 	return orderID
 
 
-print random.randrange(10, 100, 7)
 """
 		Sum cost of fabric, style and service charge (made up of choice of service)
 """
