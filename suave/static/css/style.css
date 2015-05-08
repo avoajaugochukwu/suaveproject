@@ -1,5 +1,6 @@
-@import url(bootstrap-3.min.css);
+@import url(framework/bootstrap-3.min.css);
 /* for django errors*/
+@import url(client/jquery.lightbox-0.5.css);
 .errorlist {
   color: red;
   line-height: 20px;
@@ -306,6 +307,7 @@ a:hover {
     line-height: 50px;
   }
 }
+/* creates line by the side of text */
 /* styling for all Tailor pages */
 /* To differentiate it from other pages */
 .tailorPage-color {
@@ -491,6 +493,24 @@ label input:checked ~ .size-container, label input:checked ~ .fabric {
   background: #FF8F00 !important;
 }
 
+/* light box CSS */
+img {
+  border: 0;
+  max-width: 100%;
+}
+
+/** reset lightbox position **/
+#lightbox-container-image-data-box {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+#thumbnails li {
+  list-style: none;
+}
+
+/* end of light box CSS */
 /* Variables */
 /* header */
 #header {
@@ -502,6 +522,11 @@ label input:checked ~ .size-container, label input:checked ~ .fabric {
   -moz-border-radius: 0 !important;
   -ms-border-radius: 0 !important;
   border-radius: 0 !important;
+}
+
+.page-header {
+  text-align: center;
+  overflow: hidden;
 }
 
 body {

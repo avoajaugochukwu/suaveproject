@@ -1,4 +1,4 @@
-@import "bootstrap-3.min.css";
+@import "framework/bootstrap-3.min.css";
 @import "variables";
 @import "header";
 @import "jumbotron";
@@ -7,6 +7,7 @@
 @import "home";
 @import "tailor/tailorHome";
 @import "tailor/tailorOrderDetails";
+@import "client/jquery.lightbox-0.5.css";
 @import "client/dashboard";
 @import "client/order";
 /* Variables */
@@ -28,6 +29,8 @@
 	// margin: 0;
 }
 .page-header {
+	text-align: center;
+	overflow: hidden;
 }
 body {
 	color: #000;

@@ -21,20 +21,33 @@
 						<div class="order-tab-content" style="">
 							<div class="form-group">
 								<!-- Choose Fabric -->
-								<div class="row">
+								
 									<h4>Select choice of fabric</h4>
+									<div class="row">
 									{% for fabric in fabrics %}
 
-										<div class="fabric col-sm-3">
-											<label for="{{ fabric.image_url }}">
-												<input type="radio" id="{{ fabric.image_url }}" name="fabric" value="{{ fabric.id }}">
-												<img class="suave-lightbox" src="/static/img/fabrics/{{ fabric.image_url }}" height="200" width="200">
-											</label>
-											<p>{{ fabric.name }}</p>
+										<div id="thumbnails">
+											<ul class="">
+
+												<div class="fabric col-lg-3" style="background:#;height:px">
+													<label for="{{ fabric.image_url }}">
+														<input type="radio" id="{{ fabric.image_url }}" name="fabric" value="{{ fabric.id }}">
+														<li>
+															<a href="/static/img/fabrics/{{ fabric.image_url }}" title="{{ fabric.name }}">
+															<img src="/static/img/fabrics/{{ fabric.image_url }}" alt="{{ fabric.name }}">
+															</a>
+														</li>
+													</label>
+													<p>{{ fabric.name }}</p>
+												</div>
+
+											</ul>
 										</div>
 									{% endfor %}
+									</div>
 
-								</div>
+
+
 
 
 

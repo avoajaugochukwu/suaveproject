@@ -25,7 +25,8 @@
 			$(this).addClass('size-new-color');
 		});
 
-		$(".suave-lightbox").colorbox({rel:'suave-lightbox'});
+
+		$('#thumbnails a').lightBox();
 
 		// $('.client-order-form-male, .client-order-form-female').hide();
 

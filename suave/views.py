@@ -48,6 +48,9 @@ from suave.helper import *
 
 	@Todo
 	Create light box for Fabric and Style images
+
+	@Todo
+	Build out staff module to include fabric addition have main iage and auxillary iages
 """
 
 

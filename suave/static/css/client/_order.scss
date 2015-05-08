@@ -107,3 +107,19 @@ label input:checked ~ .size-container, label input:checked ~ .fabric {
 	background: #FF8F00 !important;
 }
 
+
+
+/* light box CSS */
+img { border: 0; max-width: 100%; }
+
+/** reset lightbox position **/
+#lightbox-container-image-data-box {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+#thumbnails li {
+	list-style: none;
+}
+
+/* end of light box CSS */
