@@ -209,27 +209,23 @@ a:hover {
 .footer {
   min-height: 300px;
   background: #f2f2f2;
-  padding: 50px;
-  border-top: 2px #e0dada solid;
+  border-top: 4px #FF5722 solid;
 }
 
-.footer-left-left {
-  height: 150px;
-}
-
-.footer-left-right {
-  height: 150px;
-  border-left: 1px #cec solid;
-}
-
-.footer-left-base {
-  height: 10px;
-  border-top: 1px #cec solid;
+.footer-left {
+  min-height: 300px;
+  background: #1565C0;
 }
 
 .footer-right {
-  height: 150px;
-  border-left: 1px #cec solid;
+  padding: 50px;
+  background: #FF5722;
+  color: #fff;
+  min-height: 300px;
+}
+
+.footer-right li {
+  list-style: none;
 }
 
 .form-signup {
@@ -395,16 +391,16 @@ a:hover {
 }
 
 .order-tabs.nav-tabs > li.active > a {
-  border: 1px solid #f00;
-  border-top-color: transparent;
-  margin-top: -1px;
+  padding: 10px 50px;
+}
+
+.order-tabs.nav-tabs > li > a {
+  padding: 10px 50px;
 }
 
 .order-tabs.nav-tabs {
-  border-top: 1px solid #ddd;
-  border-top: 1px solid #f00;
-  border-bottom-color: transparent;
-  margin-top: 0;
+  margin-bottom: 10px;
+  margin-top: 70px;
 }
 
 .order-tab-content {
@@ -494,11 +490,6 @@ label input:checked ~ .size-container, label input:checked ~ .fabric {
 }
 
 /* light box CSS */
-img {
-  border: 0;
-  max-width: 100%;
-}
-
 /** reset lightbox position **/
 #lightbox-container-image-data-box {
   -webkit-box-sizing: content-box;
@@ -508,6 +499,10 @@ img {
 
 #thumbnails li {
   list-style: none;
+}
+
+img {
+  max-width: 100%;
 }
 
 /* end of light box CSS */

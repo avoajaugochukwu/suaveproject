@@ -11,16 +11,14 @@
 }
 
 .order-tabs.nav-tabs>li.active>a {
-	border: 1px solid #f00;
-	border-top-color: transparent;
-	margin-top: -1px;
+	padding: 10px 50px;
+}
+.order-tabs.nav-tabs>li>a {
+	padding: 10px 50px;
 }
 .order-tabs.nav-tabs {
-  border-top: 1px solid #ddd;
-  border-top: 1px solid #f00;
-  border-bottom-color: transparent;
-  
-  margin-top: 0;
+  margin-bottom: 10px;
+  margin-top: 70px;
 }
 .order-tab-content {
 	min-height: 340px;
@@ -110,7 +108,6 @@ label input:checked ~ .size-container, label input:checked ~ .fabric {
 
 
 /* light box CSS */
-img { border: 0; max-width: 100%; }
 
 /** reset lightbox position **/
 #lightbox-container-image-data-box {
@@ -120,6 +117,10 @@ img { border: 0; max-width: 100%; }
 }
 #thumbnails li {
 	list-style: none;
+}
+
+img {
+	max-width: 100%;
 }
 
 /* end of light box CSS */

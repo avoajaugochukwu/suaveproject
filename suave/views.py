@@ -281,7 +281,6 @@ def tailorOrderDetails(request, main_order_id):
 	context['title'] = 'Order details -- SuaveStitches Nigeria'
 	context['tailorPage'] = True
 	context['order'] = order
-	print 'order', order.fabric
 	# get object of order fabric and style to get the name & image in template
 	context['fabric'] = Fabric.objects.get(id=order.fabric)
 	context['style'] = Style.objects.get(id=order.style)

@@ -6,8 +6,13 @@
 <div class="col-lg-6 col-lg-offset-3 tailor-order-details"><br>
 	<h1 class="page-header">{{ order.client }} <sup>( {{ order.sex }} )</sup></h1>
 	<div class="row alert" style="background:#0f6bba;color:#fff">
-		<h4 class="col-lg-6">ID : {{ order.main_order_id }}</h4>
-		<h4 class="col-lg-4 col-lg-offset-2">{{ order.delivery_option|lower }}</h4>
+		<h4 class="col-xs-4">ID : {{ order.main_order_id }}</h4>
+		{% if order.status == 'IN PROGRESS' %}
+			<h4 class="col-xs-4 shake-element">Job in progress</h4>
+		{% else %}
+			<h4 class="col-xs-4 shake-element">Job is available</h4>
+		{% endif %}
+		<h4 class="col-xs-4">{{ order.delivery_option|lower }}</h4>
 	</div>
 		<!-- <h3 class="alert alert-success"><b>Sex</b> {{ order.sex }}</h3> -->
 
@@ -47,7 +52,9 @@
 		<br>
 		<div class="">
 		<hr style="border-color:#90A4AE">
-			<a href="{% url 'suave:tailorStartOrder' order.main_order_id %}" class="btn btn-success btn-lg">start job</a>
+			{% if order.status != 'IN PROGRESS' %}
+				<a href="{% url 'suave:tailorStartOrder' order.main_order_id %}" class="btn btn-success btn-lg">start job</a>
+			{% endif %}
 		<a href="{% url 'suave:tailorDashboard' %}" class="btn btn-danger btn-lg">go back</a>
 		</div>
 

@@ -84,7 +84,7 @@
 												</div>
 											</div>
 										</div>
-										<div id=>
+										<div id="lightbox-container-image-data-box">
 											<div id="lightbox-container-image-data">
 												<div id="lightbox-image-details">
 													<span id="lightbox-image-details-caption"></span>
@@ -150,9 +150,9 @@
 	function _set_image_to_view(){
 		$('#lightbox-loading').show();
 		if(settings.fixedNavigation){
-			$('#lightbox-image,#lightbox-image-details-currentNumber').hide();
+			$('#lightbox-image,#lightbox-container-image-data-box,#lightbox-image-details-currentNumber').hide();
 		} else{
-			$('#lightbox-image,#lightbox-image-details-currentNumber').hide();
+			$('#lightbox-image,#lightbox-nav,#lightbox-nav-btnPrev,#lightbox-nav-btnNext,#lightbox-container-image-data-box,#lightbox-image-details-currentNumber').hide();
 		}
 		var objImagePreloader=new Image();
 		objImagePreloader.onload=function(){
@@ -189,6 +189,7 @@
 		}
 
 		$('#lightbox-container-image-data-box').css({width:intImageWidth});
+		$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({height:intImageHeight+(settings.containerBorderSize*2)});
 	};
 
 
@@ -196,6 +197,7 @@
 		$('#lightbox-loading').hide();
 		$('#lightbox-image').fadeIn(function(){
 			_show_image_data();
+			_set_navigation();
 		});
 		_preload_neighbor_images();
 	};
@@ -211,6 +213,64 @@
 		if(settings.imageArray.length>1){
 			$('#lightbox-image-details-currentNumber').html(settings.txtImage+' '+(settings.activeImage+1)+' '+settings.txtOf+' '+settings.imageArray.length).show();
 		}
+	}
+
+
+
+	function _set_navigation(){
+		$('#lightbox-nav').show();
+		$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({'background':'transparent url('+settings.imageBlank+') no-repeat'});
+		if(settings.activeImage!=0){
+			if(settings.fixedNavigation){
+				$('#lightbox-nav-btnPrev').css({'background':'url('+settings.imageBtnPrev+') left 15% no-repeat'})
+																	.unbind()
+																	.bind('click',function(){
+																								settings.activeImage=settings.activeImage-1;
+																								_set_image_to_view();
+																								return false;
+																				});
+			}else{
+				$('#lightbox-nav-btnPrev').unbind().hover(function(){
+					$(this).css({'background':'url('+settings.imageBtnPrev+') left 15% no-repeat'});
+				},
+				function(){
+					$(this).css({'background':'transparent url('+settings.imageBlank+') no-repeat'});
+				}).show().bind('click',function(){
+									settings.activeImage=settings.activeImage-1;
+									_set_image_to_view();
+									return false;
+								});
+			}
+		}
+
+		if(settings.activeImage!=(settings.imageArray.length-1)){
+			if(settings.fixedNavigation){
+				$('#lightbox-nav-btnNext').css({'background':'url('+settings.imageBtnNext+') right 15% no-repeat'})
+																	.unbind()
+																		.bind('click',function(){
+																			settings.activeImage=settings.activeImage+1;
+																			_set_image_to_view();
+																			return false;
+																		});
+			}else{
+				$('#lightbox-nav-btnNext')
+					.unbind()
+						.hover(function(){
+							$(this).css({'background':'url('+settings.imageBtnNext+') right 15% no-repeat'});
+						},
+						function(){
+							$(this).css({'background':'transparent url('+settings.imageBlank+') no-repeat'});
+						})
+						.show()
+							.bind('click',function(){
+								settings.activeImage=settings.activeImage+1;
+								_set_image_to_view();
+								return false;
+							});
+			}
+		}
+
+		_enable_keyboard_navigation();
 	}
 
 

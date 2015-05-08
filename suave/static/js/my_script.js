@@ -1,6 +1,7 @@
  jQuery(document).ready(function($) {
 
 		$('.new_user_check').shake({/*direction: "up", distance: 50*/ times: 6, speed: 60});
+		$('.shake-element').shake({/*direction: "up", distance: 50*/ times: 6, speed: 150});
 		$('.general-login-shake').shake({times: 3, speed: 80});
 		$('.new_user_check').delay(5000).slideUp(2000);
 		if ($('.new_user_check').is(':visible')){

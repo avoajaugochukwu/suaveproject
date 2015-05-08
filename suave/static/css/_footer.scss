@@ -2,26 +2,19 @@
 .footer {
 	min-height: 300px;
 	background: #f2f2f2;
-	padding: 50px;
-	border-top: 2px #e0dada solid;
+	border-top: 4px #FF5722 solid;
 }
-.footer-left {}
-
-.footer-left-left {
-	height: 150px;
-}
-
-.footer-left-right {
-	height: 150px;
-	border-left: 1px #cec solid;
-}
-
-.footer-left-base {
-	height: 10px;
-	border-top: 1px #cec solid;
+.footer-left {
+	min-height: 300px;
+	background: #1565C0;
 }
 
 .footer-right {
-	height: 150px;
-	border-left: 1px #cec solid;
+	padding: 50px;
+	background: #FF5722;
+	color: #fff;
+	min-height: 300px;
+}
+.footer-right li {
+	list-style: none;
 }
