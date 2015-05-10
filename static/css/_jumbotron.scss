@@ -2,7 +2,6 @@
 	height: 450px;
 	background-color: rgba(101, 123, 23, 0.5);
 	@include padding(10px, 50px, 50px, 90px);
-	color: #ff0;
 	color: #fff;
 }
 .jumbotron h1 {
@@ -16,17 +15,35 @@
 
 .jumbotron-home-page {
 	@extend .jumbotron;
-	// background-image: url('../img/Suave_Stiches.png');
 	background: #e5f1f8;
 	background: #97ccd8;
 	background: #03a9f4;
-	background-image: url('../img/Background_2.png');
+	background-image: url('../img/jumbotron/Background_2.png');
 }
 /* should rename this */
 .jumbotron-signup {
 	@extend .jumbotron;
-	background-image: url('../img/Suave_Stiches_3.png');
+	background-image: url('../img/jumbotron/Suave_Stiches_3.png');
 }
+
+.jumbrotron-stand-out {
+	@extend .jumbotron;
+	background-image: url('../img/jumbotron/praktica_film_camera_new.jpg');
+	background-position: center;
+	margin-bottom: 100px;
+}
+
+.jumbrotron-stand-out-inner {
+	
+	margin-top: 50px;
+	p {
+		font-size: 2.5em;
+		padding: 20px;
+		background: rgba(0,172,193, 0.5);
+	}
+}
+
+
 
 @media (max-width: 768px) {
 	.jumbotron {

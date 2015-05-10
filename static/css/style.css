@@ -14,7 +14,6 @@
 .benefit, .benefits-home, .benefits-tailor {
   margin: 30px 0;
   font-size: 1.4em;
-  border-bottom: 1px solid #C5E1A5;
 }
 
 .benefit .col-lg-6, .benefits-home .col-lg-6, .benefits-tailor .col-lg-6 {
@@ -154,15 +153,14 @@ a:hover {
     background-color: #e4f4e4;
   }
 }
-.jumbotron, .jumbotron-home-page, .jumbotron-signup {
+.jumbotron, .jumbotron-home-page, .jumbotron-signup, .jumbrotron-stand-out {
   height: 450px;
   background-color: rgba(101, 123, 23, 0.5);
   padding: 10px 50px 50px 90px;
-  color: #ff0;
   color: #fff;
 }
 
-.jumbotron h1, .jumbotron-home-page h1, .jumbotron-signup h1 {
+.jumbotron h1, .jumbotron-home-page h1, .jumbotron-signup h1, .jumbrotron-stand-out h1 {
   font-size: 5em;
 }
 
@@ -175,16 +173,31 @@ a:hover {
   background: #e5f1f8;
   background: #97ccd8;
   background: #03a9f4;
-  background-image: url("../img/Background_2.png");
+  background-image: url("../img/jumbotron/Background_2.png");
 }
 
 /* should rename this */
 .jumbotron-signup {
-  background-image: url("../img/Suave_Stiches_3.png");
+  background-image: url("../img/jumbotron/Suave_Stiches_3.png");
+}
+
+.jumbrotron-stand-out {
+  background-image: url("../img/jumbotron/praktica_film_camera_new.jpg");
+  background-position: center;
+  margin-bottom: 100px;
+}
+
+.jumbrotron-stand-out-inner {
+  margin-top: 50px;
+}
+.jumbrotron-stand-out-inner p {
+  font-size: 2.5em;
+  padding: 20px;
+  background: rgba(0, 172, 193, 0.5);
 }
 
 @media (max-width: 768px) {
-  .jumbotron, .jumbotron-home-page, .jumbotron-signup {
+  .jumbotron, .jumbotron-home-page, .jumbotron-signup, .jumbrotron-stand-out {
     font-size: 0.74em;
     padding: 10px 20px 20px 20px;
   }
@@ -195,7 +208,7 @@ a:hover {
     max-height: 300px !important;
   }
 
-  .jumbotron, .jumbotron-home-page, .jumbotron-signup {
+  .jumbotron, .jumbotron-home-page, .jumbotron-signup, .jumbrotron-stand-out {
     font-size: 0.74em;
     text-align: center;
     padding: 0px 20px 20px 20px;
@@ -215,11 +228,13 @@ a:hover {
 .footer-left {
   min-height: 300px;
   background: #1565C0;
+  background: #000;
 }
 
 .footer-right {
   padding: 50px;
   background: #FF5722;
+  background: #f40;
   color: #fff;
   min-height: 300px;
 }

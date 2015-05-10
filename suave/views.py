@@ -55,6 +55,9 @@ from suave.helper import *
 	@Todo
 	https://www.upwork.com/b/signup/user-type
 	use to build male and female parts of order
+
+	@Todo
+	Refactor CSS
 """
 
 
