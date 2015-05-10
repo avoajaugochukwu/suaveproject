@@ -51,6 +51,10 @@ from suave.helper import *
 
 	@Todo
 	Build out staff module to include fabric addition have main iage and auxillary iages
+
+	@Todo
+	https://www.upwork.com/b/signup/user-type
+	use to build male and female parts of order
 """
 
 

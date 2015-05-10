@@ -29,20 +29,20 @@
 
 		$('#thumbnails a').lightBox();
 
-		// $('.client-order-form-male, .client-order-form-female').hide();
 
-		//make it not function if it is checked
-		// $('#id_sex_0').click(function() {
-		// 	if ($('.client-order-form-male').is(':visible')) {
-		// 		$('.client-order-form-male').hide(500);
-		// 	};
-		// 	$('.client-order-form-female').slideToggle(500);
-		// });
+	// Snippet to make span slide up and down image
+	$(".photos").on("mouseenter", "li", showPhotos).on("mouseleave", "li", showPhotos);
+	  
+  function showPhotos() {
+  	$(this).find("span").slideToggle();
+  }
 
-		// $('#id_sex_1').click(function() {
-		// 		if ($('.client-order-form-female').is(':visible')) {
-		// 		$('.client-order-form-female').hide(500);
-		// 	};
-		// 	$('.client-order-form-male').slideToggle(500);
-		// });
+  // Snippet to make imput value change instantly in Page
+  $(document).ready(function() {
+  $("#nights").on("keyup", function() {
+    
+    $("#nights-count").text($(this).val());
+  });
+});
+
 });
