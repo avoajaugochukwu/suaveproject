@@ -58,6 +58,9 @@ from suave.helper import *
 
 	@Todo
 	Refactor CSS
+
+	@Todo
+	Rewrite lightbox plugin to take into account radio button selection
 """
 
 
@@ -154,7 +157,8 @@ def createOrder(request):
 		check_input = ['fabric', 'style', 'size']
 
 		input_checker = checkInput(request, check_input)
-
+		fabric = request.POST.get('fabric')
+		print 'mmmmmmmmmmmmmmm', fabric
 		if order_form.is_valid() and input_checker == True:
 			delivery_option = request.POST.get('delivery_option')
 

@@ -493,14 +493,15 @@ label {
 }
 
 label input:checked ~ .size-container, label input:checked ~ .fabric {
-  background: #000;
+  background: #545000;
 }
 
 .size-container:target {
   background: #000;
 }
 
-.size-new-color {
+/*changes background:  of fabric and style when selected*/
+.radio_select_new_color {
   background: #FF8F00 !important;
 }
 

@@ -17,17 +17,28 @@
 
 		//Code for selecting male and female size
 		$('.size-container').click(function() {
-			$('.size-container').removeClass('size-new-color');
-			$(this).addClass('size-new-color');
+			$('.size-container').removeClass('radio_select_new_color');
+			$(this).addClass('radio_select_new_color');
 		});
 
 		$('.fabric').click(function() {
-			$('.fabric').removeClass('size-new-color');
-			$(this).addClass('size-new-color');
+			$('.fabric').removeClass('radio_select_new_color');
+			$(this).addClass('radio_select_new_color');
 		});
 
 
-		$('#thumbnails a').lightBox();
+
+		// $('#thumbnails a').click(function(e) {
+		// 	e.preventDefault();
+		// 	e.stopPropagation();
+		// 	// var value = $(this).closest('.fabric').find('input:radio[name=fabric]').val();
+		// 	$(this).closest('.fabric').find('input:radio[name=fabric]').prop('checked', true);
+		// 	$(this).lightBox().delay(3000);
+		// });
+
+
+		// $('#thumbnails a').lightBox();
+
 
 
 	// Snippet to make span slide up and down image
