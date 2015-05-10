@@ -38,6 +38,7 @@
   }
 
   // Snippet to make imput value change instantly in Page
+  // use +$(..) to convert value to number
   $(document).ready(function() {
   $("#nights").on("keyup", function() {
     
