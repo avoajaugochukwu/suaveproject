@@ -1,13 +1,3 @@
-"""
-HTTP status ranges in a nutshell:
-
-1xx: hold on
-2xx: here you go
-3xx: go away
-4xx: you fucked up
-5xx: I fucked up
-"""
-
 from django.conf.urls import patterns, include, url
 from suave import views
 

@@ -84,18 +84,18 @@ label {
   cursor: pointer;
 }
 
-.fabric {
-	text-align: center;
-	padding: 10px;
-}
-.fabric input, .size-container input {
-	display: block;
-	display: none;
-}
+// .fabric {
+// 	text-align: center;
+// 	padding: 10px;
+// }
+// .fabric input, .size-container input {
+// 	display: block;
+// 	// display: none;
+// }
 
-label input:checked ~ .size-container, label input:checked ~ .fabric {
-	background: #545000;
-}
+// label input:checked ~ .size-container, label input:checked ~ .fabric {
+// 	background: #545000;
+// }
 
 
 
