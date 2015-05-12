@@ -80,8 +80,11 @@ class Order(models.Model):
 	service_option = models.CharField(max_length=100, null=True)
 	sex = models.CharField(max_length=2, default=' ')
 	status = models.CharField(max_length=20, default='OPEN') #*
-	cost = models.IntegerField(default=0000) # final cost of order
+	## final cost of order
+	cost = models.IntegerField(default=0000)
 	date = models.DateField(auto_now_add=True)
+	## Change to True on First Delete incase error was made
+	soft_delete = models.BooleanField(default=False)
 
 
 class Style(models.Model):

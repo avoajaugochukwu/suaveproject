@@ -17,6 +17,9 @@ urlpatterns = patterns('',
 
 		url(r'^Order/(?P<order_id>[\w\-]+)/Edit$', views.order_edit, name='order_edit'),
 
+
+		url(r'^Order/(?P<order_id>[\w\-]+)/Delete$', views.order_delete, name='order_delete'),
+
 		url(r'^Tailor/List$', views.tailor_list, name="tailor_list"),
 
 )

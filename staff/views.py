@@ -16,6 +16,9 @@ from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 	
 	@Todo
 	tailor_list page should be organised by approved
+
+	@Todo
+	create something for final delete
 """
 
 
@@ -28,7 +31,8 @@ def admin_gateway(request):
 
 def order_list(request):
 	context = {}
-	context['orders'] = Order.objects.all()
+	context['orders'] = Order.objects.filter(soft_delete=False)
+	context['orders_deleted'] = Order.objects.filter(soft_delete=True)
 	return render(request, 'i/staff/order_list.html', context)
 
 
@@ -52,6 +56,12 @@ def order_details(request, order_id):
 def order_edit(request, order_id):
 	return HttpResponse(order_id)
 
+
+def order_delete(request, order_id):
+	order_obj = Order.objects.get(main_order_id=order_id)
+	order_obj.soft_delete = True
+	order_obj.save()
+	return HttpResponse(order_obj)
 
 
 def tailor_list(request):
