@@ -21,21 +21,25 @@
 }
 
 /* creates line by the side of text */
-// h1:before,
-// h1:after {
-//   content: "";
-//   position: relative;
-//   display: inline-block;
-//   width: 50%;
-//   height: 2px;
-//   vertical-align: middle;
-//   background: #f0f0f0;
-// }
-// h1:before {
-//   left: -.5em;
-//   margin: 0 0 0 -50%;
-// }
-// h1:after {    
-//   left: .5em;
-//   margin: 0 -50% 0 0;
-// }
+.page-header-style {
+	// overflow: hidden;
+	text-align: center;
+}
+.page-header-style h1:before,
+.page-header-style h1:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 2px;
+  vertical-align: middle;
+  background: #f0f0f0;
+}
+.page-header-style h1:before {
+  // left: -.5em;
+  margin: 0 0 0 -50%;
+}
+.page-header-style h1:after {    
+  // left: .5em;
+  margin: 0 -50% 0 0;
+}

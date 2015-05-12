@@ -32,8 +32,13 @@ def admin_gateway(request):
 def order_list(request):
 	context = {}
 	context['orders'] = Order.objects.filter(soft_delete=False)
-	context['orders_deleted'] = Order.objects.filter(soft_delete=True)
 	return render(request, 'i/staff/order_list.html', context)
+
+def order_list_deleted(request):
+	context = {}
+	context['orders'] = Order.objects.filter(soft_delete=True)
+	return render(request, 'i/staff/order_list_deleted.html', context)
+
 
 
 def order_details(request, order_id):

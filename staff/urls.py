@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 		url(r'^adminGateWay/$', views.admin_gateway, name='admin_gateway'),
 
 		url(r'^Order/List$', views.order_list, name="order_list"),
+		url(r'^Order/List/Deleted$', views.order_list_deleted, name="order_list_deleted"),
 		url(r'^Order/Details/(?P<order_id>[\w\-]+)$', views.order_details, name='order_details'),
 
 		url(r'^Order/(?P<order_id>[\w\-]+)/Edit$', views.order_edit, name='order_edit'),

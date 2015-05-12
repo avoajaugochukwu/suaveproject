@@ -319,6 +319,29 @@ a:hover {
   }
 }
 /* creates line by the side of text */
+.page-header-style {
+  text-align: center;
+}
+
+.page-header-style h1:before,
+.page-header-style h1:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 2px;
+  vertical-align: middle;
+  background: #f0f0f0;
+}
+
+.page-header-style h1:before {
+  margin: 0 0 0 -50%;
+}
+
+.page-header-style h1:after {
+  margin: 0 -50% 0 0;
+}
+
 /* styling for all Tailor pages */
 /* To differentiate it from other pages */
 .tailorPage-color {
