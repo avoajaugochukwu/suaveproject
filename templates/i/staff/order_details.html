@@ -58,9 +58,9 @@
 		<div class="">
 		<hr style="border-color:#90A4AE">
 			
-		<a href="" class="btn btn-success btn-lg">Edit Details</a>
+		<a href="{% url 'staff:order_edit' order.main_order_id  %}" class="btn btn-success btn-lg">Edit Details</a>
 
-		<a href="{% url 'suave:tailorDashboard' %}" class="btn btn-danger btn-lg">go back</a>
+		<a href="{% url 'suave:tailorDashboard' %}" class="btn btn-danger btn-lg">Delete Order</a>
 		</div>
 
 	<br><br>

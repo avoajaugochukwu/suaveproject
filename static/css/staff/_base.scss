@@ -1,0 +1,19 @@
+.watermark {
+ position:fixed;
+ height: 100%;
+ width: 100%;
+ top:0;
+ left: 0;
+ z-index: -1;
+ color:white;
+
+ padding-top: 100px;
+ // padding-left: 40%;
+
+ p {
+ 	color: #0b5;
+ 	// opacity: 0.1;
+ 	width: 50%;
+ 	font-size: 15em;
+ }
+}

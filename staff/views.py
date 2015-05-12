@@ -40,7 +40,7 @@ def order_details(request, order_id):
 
 	context = {}
 	context['title'] = 'Order details -- SuaveStitches Nigeria'
-	context['tailorPage'] = True
+	# context['tailorPage'] = True
 	context['order'] = order
 	# get object of order fabric and style to get the name & image in template
 	context['fabric'] = Fabric.objects.get(id=order.fabric)
@@ -48,6 +48,11 @@ def order_details(request, order_id):
 
 	context['size'] = serializers.serialize("python", SizeTable.objects.filter(id=order.sizetable.id))
 	return render(request, 'i/staff/order_details.html', context)
+
+def order_edit(request, order_id):
+	return HttpResponse(order_id)
+
+
 
 def tailor_list(request):
 	context = {}
