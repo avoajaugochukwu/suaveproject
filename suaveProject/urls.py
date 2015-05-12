@@ -18,5 +18,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^suave/', include('suave.urls', namespace="suave")),
-    url(r'^suave/staff', include('staff.urls', namespace="staff")),
+    url(r'^suave/staff/', include('staff.urls', namespace="staff")),
 )

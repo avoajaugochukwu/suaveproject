@@ -33,6 +33,7 @@ class Tailor(models.Model):
 	phone_number = models.IntegerField(default=0)
 	address = address = models.CharField(max_length=300, null=True)
 	specialty = models.CharField(max_length=300, null=True)
+	approved = models.BooleanField(default=False)
 	# company_size = models.CharField(max_length=300, null=True)
 	# sample_pics = models.CharField(max_length=300, null=True) #image field
 

@@ -1,0 +1,16 @@
+{% extends "i/layout/staff_base.html" %}
+
+
+{% block main_section %}
+	<div class="container">
+		<div class="row">
+
+			<div class="col-lg-6 col-lg-offset-3">
+				<a href="{% url 'staff:order_list' %}" class="btn btn-lg btn-succes">Order</a>
+
+				<a href="{% url 'staff:tailor_list' %}" class="btn btn-lg btn-succes">Tailor</a>
+			</div>
+
+		</div>
+	</div>
+{% endblock %}

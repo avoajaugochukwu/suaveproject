@@ -1,11 +1,11 @@
-{% extends "i/layout/base.html" %}
+{% extends "i/layout/staff_base.html" %}
 
 
 {% block main_section %}
 
 
-<form class="form-horizontal col-lg-6 col-lg-offset-3" style="margin-top:100px;margin-bottom:100px;">
-
+<form class="form-horizontal col-lg-6 col-lg-offset-3" style="margin-top:70px;" method="post" action="{% url 'staff:signin' %}">
+	{% csrf_token %}
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h3 class="modal-title" id="exampleModalLabel">Staff Login</h3>
@@ -15,19 +15,19 @@
 
 
 	<div class="form-group">
-	  <label for="textinput"><h4>Username</h4></label>  
-	  <input id="textinput" name="textinput" type="text" placeholder="username@suavestiches" class="form-control input-md">
+	  <label for="textinput"><h4>E - mail</h4></label>  
+	  <input id="textinput" name="email" type="text" placeholder="username@suavestiches.com" class="form-control input-md">
 	</div>
 
 
 
 	<div class="form-group">
 		<label for="passwordinput"><h4>Password</h4></label>
-		<input id="passwordinput" name="passwordinput" type="password" placeholder="password" class="form-control input-md">
+		<input id="passwordinput" name="password" type="password" placeholder="password" class="form-control input-md">
 	</div>
 
 
-	<br><br><br>
+	<br>
 	<div class="form-group">
 	  <label class="control-label" for="button1id"></label>
 	  <div class="">

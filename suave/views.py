@@ -61,6 +61,10 @@ from suave.helper import *
 
 	@Todo
 	Rewrite lightbox plugin to take into account radio button selection
+
+	@Todo
+	Clients should be able to update their orders if they have not been started
+	if started they will send email to staff to inform the tailors
 """
 
 

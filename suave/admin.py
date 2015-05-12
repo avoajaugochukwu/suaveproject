@@ -9,7 +9,7 @@ class OrderAdmin(admin.ModelAdmin):
 	list_display = ('client', 'tailor', 'fabric', 'style', 'details', 'delivery_option', 'sex', 'status', 'cost', 'main_order_id', 'service_option', 'sizetable', 'date')
 
 class TailorAdmin(admin.ModelAdmin):
-	list_display = ('id', 'user', 'rate', 'phone_number', 'address', 'specialty')
+	list_display = ('id', 'user', 'rate', 'phone_number', 'address', 'specialty', 'approved')
 
 class FabricAdmin(admin.ModelAdmin):
 	list_display = ('name', 'cost', 'sex', 'pattern', 'image_url', 'description')
