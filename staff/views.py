@@ -47,7 +47,7 @@ def order_details(request, order_id):
 	context['style'] = Style.objects.get(id=order.style)
 
 	context['size'] = serializers.serialize("python", SizeTable.objects.filter(id=order.sizetable.id))
-	return render(request, 'i/staff/order_details.html', context)
+	return render(request, 'i/staff/staff_order_details.html', context)
 
 def order_edit(request, order_id):
 	return HttpResponse(order_id)
