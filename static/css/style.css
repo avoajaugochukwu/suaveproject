@@ -320,6 +320,7 @@ a:hover {
 }
 /* creates line by the side of text */
 .page-header-style {
+  overflow: hidden;
   text-align: center;
 }
 
@@ -335,10 +336,12 @@ a:hover {
 }
 
 .page-header-style h1:before {
+  left: -.5em;
   margin: 0 0 0 -50%;
 }
 
 .page-header-style h1:after {
+  left: .5em;
   margin: 0 -50% 0 0;
 }
 
@@ -543,6 +546,7 @@ img {
 }
 .watermark p {
   color: #0b5;
+  color: #F48FB1;
   width: 50%;
   font-size: 15em;
 }

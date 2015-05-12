@@ -59,14 +59,12 @@
 						<ul class="nav navbar-nav navbar-right">
 							<!-- <button type="button" class="action-button-signin" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button> -->
 							{% if user.is_authenticated and user.is_staff %}
-							<li><a href="{% url 'suave:signout' %}" class="">sign out</a></li>
-							
-								
+							<li><a href="{% url 'suave:signout' %}" style="color:#f00"><span class="fa fa-sign-out"></span>sign out</a></li>
 							<li><a class="">{{user}}</a></li>
 							{% else %}
 							<li><a role="button" class="" data-toggle="modal" data-target=".bs-example-modal-sm">sign in {deprecate}</a></li>
 							{% endif %}
-							<li><a style="background:#f60;color:#fff" class="fa fa-wrench fa-lg">&nbsp;</a></li>
+							<li><a style="background:#f60;color:#fff"><span class="fa fa-wrench fa-lg fa-spin">&nbsp;</span>&nbsp;</a></li>
 							{% if tailorPage %}
 								<li class=""><a class="" style="background:#126ee3;color:#fff">Tailor Page</a></li>
 							{% endif %}
@@ -126,12 +124,12 @@
 					
 						
 					{% endblock %}
-					
-
+			
+			
 			</div>
-		</div>
-		<div>
-			<!-- <a href="/suave" class="btn btn-primary btn-lg">Home</a> -->
+			{% if user.is_authenticated %}
+				<a href="{% url 'staff:index' %}" class="btn btn-primary btn-lg">Staff Home</a><br>
+			{% endif %}
 		</div>
 
 		<div class="footer">
@@ -181,7 +179,9 @@
 
 
 		<div class="watermark">
-			<p class="fa fa-wrench fa-5x"></p>
+			<!-- <p class="fa fa-wrench fa-5x"></p> -->
+			<!-- <p><span class="fa fa-spinner fa-spin"></span></p> -->
+			<p><span class="fa fa-wrench fa-spin"></span></p>
 		</div>
 	</body>
 	<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>

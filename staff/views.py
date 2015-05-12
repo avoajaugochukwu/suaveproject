@@ -3,7 +3,10 @@ from django.http import HttpResponse
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 from django.core import serializers
+
 
 
 from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
@@ -23,24 +26,32 @@ from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 
 
 def index(request):
-	# logout(request)
+	logout(request)
+
 	return render(request, 'i/staff/index.html')
 
+
+@login_required
 def admin_gateway(request):
+	# print 'request.user', request.user
 	return render(request, 'i/staff/admin_gateway.html')
 
+
+@login_required
 def order_list(request):
 	context = {}
 	context['orders'] = Order.objects.filter(soft_delete=False)
 	return render(request, 'i/staff/order_list.html', context)
 
+
+@login_required
 def order_list_deleted(request):
 	context = {}
 	context['orders'] = Order.objects.filter(soft_delete=True)
 	return render(request, 'i/staff/order_list_deleted.html', context)
 
 
-
+@login_required
 def order_details(request, order_id):
 	try:
 		order = Order.objects.get(main_order_id=order_id)
@@ -58,17 +69,20 @@ def order_details(request, order_id):
 	context['size'] = serializers.serialize("python", SizeTable.objects.filter(id=order.sizetable.id))
 	return render(request, 'i/staff/staff_order_details.html', context)
 
+
+@login_required
 def order_edit(request, order_id):
 	return HttpResponse(order_id)
 
 
+@login_required
 def order_delete(request, order_id):
 	order_obj = Order.objects.get(main_order_id=order_id)
 	order_obj.soft_delete = True
 	order_obj.save()
 	return HttpResponse(order_obj)
 
-
+@login_required
 def tailor_list(request):
 	context = {}
 	context['tailors'] =Tailor.objects.all()
