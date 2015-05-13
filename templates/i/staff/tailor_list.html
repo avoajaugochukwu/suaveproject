@@ -26,7 +26,10 @@
 							<td>{{ tailor.rate }}</td>
 							<td>{{ tailor.phone_number|lower }}</td>
 							<td>{{ tailor.address|lower }}</td>
-							<td style="color:#008;font-weight:bold">{{ tailor.specialty }}</td>
+							<td style="color:#008;font-weight:bold">{% for s in tailor.specialty %}
+								{{ s }}
+								{% endfor %}
+							</td>
 							<td>
 								{% if tailor.approved %}
 								<p class="fa fa-check-square-o fa-2x" style="color:#0b5"></p>
@@ -35,7 +38,7 @@
 								{% endif %}
 							</td>
 							<td>
-								
+
 								<a href="" class="btn btn-danger">Change Approval</a>
 							</td>
 						</tr>

@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core import serializers
 
 
-
+import ast
 from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 
 
@@ -82,10 +82,21 @@ def order_delete(request, order_id):
 	order_obj.save()
 	return HttpResponse(order_obj)
 
+
+
+
+
 @login_required
 def tailor_list(request):
 	context = {}
 	context['tailors'] =Tailor.objects.all()
+	tailor = Tailor.objects.get(id=3)
+	print 'tailor', tailor.specialty
+	print 'typof', type(tailor.specialty)
+	lst = ast.literal_eval(tailor.specialty)
+	print 'Resultttt', lst
+	# for i in tailor.specialty:
+	# 	print 'specialty', i
 	return render(request, 'i/staff/tailor_list.html', context)
 
 def signin(request):

@@ -237,7 +237,9 @@ def tailorRegister(request):
 		if user_form.is_valid() and tailor_form.is_valid():
 
 			data = user_form.cleaned_data
-
+			"""###########################
+			
+			################################"""
 			user_form_data = user_form.save()
 			#hash password with set_password() -> save
 			user_form_data.set_password(user_form_data.password)
