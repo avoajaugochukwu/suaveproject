@@ -23,4 +23,5 @@ urlpatterns = patterns('',
 
 		url(r'^Tailor/List$', views.tailor_list, name="tailor_list"),
 
+		url(r'^Tailor/Details/(?P<tailor_id>[\w\-]+)$', views.tailor_details, name='tailor_details'),
 )

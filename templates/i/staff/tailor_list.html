@@ -39,7 +39,7 @@
 							</td>
 							<td>
 
-								<a href="" class="btn btn-danger">Change Approval</a>
+								<a href="{% url 'staff:tailor_details' tailor.id %}" class="btn btn-danger">Change Approval</a>
 							</td>
 						</tr>
 						{% endfor %}
@@ -49,10 +49,7 @@
 					<div class="panel panel-danger">
 						<div class="panel-heading"><h3>Sorry</h3></div>
 						<div class="panel-body">
-							<h2>Nothing to work on</h2>
-							{% if work %}
-							You have {{ work }} work(s) in progress
-							{% endif %}
+							<h2>No tailor in system</h2>
 						</div>
 					</div>
 				{% endif %}

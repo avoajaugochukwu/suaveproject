@@ -30,7 +30,7 @@ class Tailor(models.Model):
 # 	#links UserProfile to django User model
 	user = models.OneToOneField(User)
 	rate = models.IntegerField(default=0)
-	phone_number = models.IntegerField(default=0)
+	phone_number = models.CharField(max_length=13, default=0)
 	address = address = models.CharField(max_length=300, null=True)
 	specialty = models.CharField(max_length=300, null=True)
 	approved = models.BooleanField(default=False)

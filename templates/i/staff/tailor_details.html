@@ -1,0 +1,92 @@
+{% extends "i/layout/staff_base.html" %}
+
+{% block title %} {{ order.client }} | {{ title }} {% endblock %}
+
+{% block main_section %}
+<div class="col-lg-6 col-lg-offset-3 tailor-order-details" style="padding:20px"><br>
+	<h1 class="page-header">
+
+		{{ tailor }}
+		{% if tailor.approved %}
+			<span class="fa fa-check-ban" style="color:#0b5"></span>
+		{% else %}
+			<span class="fa fa-ban" style="color:#ff0000"></span>
+		{% endif %}
+
+	</h1>
+	
+
+
+
+
+
+			<div class="row alert" style="background:#43A047;color:#fff">
+				<h2><span class="fa fa-phone-square fa-lg"></span>&nbsp;&nbsp;&nbsp; {{ tailor.phone_number }}</h2>
+			</div>
+
+
+			<div class="row alert" style="background:#E91E63;color:#fff">
+				<h2><span class="fa fa-money fa-lg"></span>&nbsp;&nbsp;&nbsp; &#x20A6; {{ tailor.rate }}</h2>
+			</div>
+
+
+			<div class="row alert" style="background:#FFAB00;color:#fff">
+				<h2><span class="fa fa-home fa-lg"></span>&nbsp;&nbsp;&nbsp; {{ tailor.address }}</h2>
+			</div>
+
+			<div style="margin:40px">
+				<div class="row alert" style="background:#;color:#000">
+					<h3 style="width:70%">Specialty<hr></h3>
+
+					{% for specialty in tailor.specialty %}
+						
+						<p><span class="fa fa-chevron-circle-right fa-lg" style="color:#43A047"></span>&nbsp;&nbsp;&nbsp; {{ specialty|lower }}</p>
+					{% endfor %}
+				<!-- </p> -->
+				</div>
+			</div>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<h4 class="col-xs-4">History : {{ order.main_order_id }}</h4>
+			
+				<h4 class="col-xs-4 text-center" style="background:#000;line-height:30px;">{{ order.tailor }}</h4>
+			
+				<h4 class="col-xs-4">Job is available</h4>
+			
+			<h4 class="col-xs-4">{{ order.delivery_option|lower }}</h4>
+		</div>
+		<!-- <h3 cl
+		</div>
+
+		<h1>
+			{{ tailor }}
+			{{ tailor.rate }}
+			{% for specialty in tailor.specialty %}
+				{{ specialty }}
+			{% endfor %}
+		</h1>
+		<br>
+		<div class="">
+		<hr style="border-color:#90A4AE">
+			
+		
+		</div>
+
+	<br><br>
+</div> -->
+
+{% endblock %}

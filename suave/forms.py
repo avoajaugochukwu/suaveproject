@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from suave.models import Client, Tailor, Order, Fabric, Style, SizeTable
+from django.utils.safestring import *
+from django.utils.html import *
 """
 	@Todo
 	Code for password verifier in comments
@@ -86,6 +88,7 @@ class OrderForm(forms.ModelForm):
 
 
 class TailorRegisterForm(forms.ModelForm):
+	naira = mark_safe("&#x20A6;")
 	SPECIALTY_SELECTION = (
 		("OFFICE PICKUP", "Office pickup"),
 		("HOME DELIVERY","Home Delivery"),
@@ -96,7 +99,7 @@ class TailorRegisterForm(forms.ModelForm):
 		)
 	address = forms.CharField(max_length=200, help_text="Address", required=False, widget=forms. Textarea (attrs={'class': 'form-control'}))
 	phone_number = forms.IntegerField(required=False, help_text="Phone number", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '08012345678'}))
-	rate = forms.IntegerField(required=False, help_text="Rate (in naira)", widget=forms.TextInput(attrs={'class': 'form-control'}))
+	rate = forms.IntegerField(required=False, help_text=format_html("Rate (" + mark_safe("&#x20A6;") + ")"), widget=forms.TextInput(attrs={'class': 'form-control'}))
 	specialty = forms.CharField(max_length=40, help_text="Specialty", required=False, widget=forms. Textarea (attrs={'class': 'form-control', 'placeholder': 'Men\'s wear, Women\'s wear, Children\'s wear'}))
 	specialty = forms.MultipleChoiceField(help_text="Specialty", required=False,
 	 widget=forms.CheckboxSelectMultiple, choices=SPECIALTY_SELECTION)

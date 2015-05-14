@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core import serializers
 
 
-import ast
+# import ast
 from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 
 
@@ -90,14 +90,36 @@ def order_delete(request, order_id):
 def tailor_list(request):
 	context = {}
 	context['tailors'] =Tailor.objects.all()
-	tailor = Tailor.objects.get(id=3)
-	print 'tailor', tailor.specialty
-	print 'typof', type(tailor.specialty)
-	lst = ast.literal_eval(tailor.specialty)
-	print 'Resultttt', lst
-	# for i in tailor.specialty:
-	# 	print 'specialty', i
+
+	# print 'tailor.newstate', type(specialty)
 	return render(request, 'i/staff/tailor_list.html', context)
+
+
+def tailor_details(request, tailor_id):
+	context = {}
+	tailor = Tailor.objects.get(id=1)
+
+	##returns [u'name', u'outlook'] -> a raw string
+	## BReak it into the individaul specialties
+	specialty = str(tailor.specialty)
+	## remove left and right sqaure brackets
+	specialty = specialty[:-1]
+	specialty = specialty[1:]
+	specialty = specialty.split(',')
+	print specialty
+	endpoint = []
+	for i in specialty:
+		choice = i.replace('u\'', '')
+		choice = choice[:-1]
+
+		endpoint.append(choice)
+
+	tailor.specialty = endpoint
+	context['tailor'] = tailor
+	return render(request, 'i/staff/tailor_details.html', context)
+
+
+
 
 def signin(request):
 	context = {}

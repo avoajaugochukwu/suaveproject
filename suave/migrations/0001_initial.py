@@ -54,6 +54,7 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(default=b'OPEN', max_length=20)),
                 ('cost', models.IntegerField(default=0)),
                 ('date', models.DateField(auto_now_add=True)),
+                ('soft_delete', models.BooleanField(default=False)),
                 ('client', models.ForeignKey(to='suave.Client', null=True)),
             ],
             options={
@@ -96,6 +97,7 @@ class Migration(migrations.Migration):
                 ('phone_number', models.IntegerField(default=0)),
                 ('address', models.CharField(max_length=300, null=True)),
                 ('specialty', models.CharField(max_length=300, null=True)),
+                ('approved', models.BooleanField(default=False)),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
             options={
