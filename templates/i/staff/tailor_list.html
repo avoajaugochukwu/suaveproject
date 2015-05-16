@@ -12,11 +12,11 @@
 					<thead>
 						<tr style="background:#2196F3;color:#fff">
 							<td>Name</td>
-							<td>Rate</td>
+							<td>Rate ( &#x20A6; )</td>
 							<td>Phone</td>
-							<td>Address</td>
-							<td>Specialty</td>
-							<td>Approved</td>
+							<!-- <td>Address</td> -->
+							<!-- <td>Specialty</td> -->
+							<td>Member Status</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -24,12 +24,9 @@
 						<tr>
 							<td>{{ tailor.user }}</td>
 							<td>{{ tailor.rate }}</td>
-							<td>{{ tailor.phone_number|lower }}</td>
-							<td>{{ tailor.address|lower }}</td>
-							<td style="color:#008;font-weight:bold">{% for s in tailor.specialty %}
-								{{ s }}
-								{% endfor %}
-							</td>
+							<td>0{{ tailor.phone_number }}</td>
+							<!-- <td>{{ tailor.address|lower }}</td> -->
+							<!-- <td style="color:#008;font-weight:bold"></td> -->
 							<td>
 								{% if tailor.approved %}
 								<p class="fa fa-check-square-o fa-2x" style="color:#0b5"></p>
@@ -39,7 +36,7 @@
 							</td>
 							<td>
 
-								<a href="{% url 'staff:tailor_details' tailor.id %}" class="btn btn-danger">Change Approval</a>
+								<a href="{% url 'staff:tailor_details' tailor.id %}" class="btn btn-primary">View Profile</a>
 							</td>
 						</tr>
 						{% endfor %}

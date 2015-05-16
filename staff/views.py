@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -22,11 +22,15 @@ from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 
 	@Todo
 	create something for final delete
+
+
+	@Todo
+	On rejection of tailor send email explaining and emcourage them to try to meet up
 """
 
 
 def index(request):
-	logout(request)
+	# logout(request)
 
 	return render(request, 'i/staff/index.html')
 
@@ -95,9 +99,11 @@ def tailor_list(request):
 	return render(request, 'i/staff/tailor_list.html', context)
 
 
+
+@login_required
 def tailor_details(request, tailor_id):
 	context = {}
-	tailor = Tailor.objects.get(id=1)
+	tailor = Tailor.objects.get(id=tailor_id)
 
 	##returns [u'name', u'outlook'] -> a raw string
 	## BReak it into the individaul specialties
@@ -118,6 +124,24 @@ def tailor_details(request, tailor_id):
 	context['tailor'] = tailor
 	return render(request, 'i/staff/tailor_details.html', context)
 
+
+@login_required
+def tailor_approve(request, tailor_id):
+	tailor = Tailor.objects.get(id=tailor_id)
+	tailor.approved = True
+	tailor.save()
+	return redirect('staff:tailor_list')
+
+
+
+@login_required
+def tailor_reject(request, tailor_id):
+
+	tailor = Tailor.objects.get(id=tailor_id)
+	tailor.approved = False
+	tailor.save()
+
+	return redirect('staff:tailor_list')
 
 
 

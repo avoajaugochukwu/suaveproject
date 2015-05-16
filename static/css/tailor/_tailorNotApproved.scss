@@ -1,0 +1,21 @@
+.tailor_not_approved {
+	// height: 100%;
+	text-align: center;
+
+	p span {
+		font-size: 20em;
+	}
+
+	div p {
+		padding: 5px;
+		font-size: 1.4em;
+	}
+	.not_approved_faq a {
+		color: #780633;
+		// text-decoration: underline;
+		padding: 0 10px;
+		border-bottom: 1px #780633 solid;
+		background: #e3cdd6;
+		margin-top: 20px;
+	}
+}

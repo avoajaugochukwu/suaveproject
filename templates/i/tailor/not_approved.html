@@ -1,0 +1,29 @@
+{% extends "i/layout/base.html" %}
+
+{% block title %} {{ title }} {% endblock %}
+
+
+
+{% block main_section %}
+	<br>
+<div class="container">
+	<div class="row col-lg-6 col-lg-offset-3">
+		<div class="tailor_not_approved">
+			<h1>Hello {{ user }}</h1>
+			<h2 style="color:#f00">Sorry you have not been approved.</h2>
+			<p><span class="fa fa-ban" style="color:#ff0000"></span></p>
+
+
+			<h2 style="color:#008">Why are my seeing this page</h2>
+			<div class="not_approved_faq">
+				<hr>
+				<p>Our approval process takes some time, but be assured that we are working as fast we can to approve you.<p> <hr>
+				<p>We advise you to check your registration details again to ensure that you gave provided all the requirements.</p><hr>
+				<p>When you are approved we will send you an email and call you on the number you submitted.</p><hr>
+				<p>If you feel the approval is taking too long send an email to <br> <i ><a href="mailto:tailor.support@suavestitches.com">tailor.support@suavestitches.com</a></i></p>
+			</div>
+		</div>
+	</div>
+</div>
+<br><br><br>
+{% endblock %}

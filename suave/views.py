@@ -38,13 +38,10 @@ from suave.helper import *
 	@Optimize join tailorRegister and clientRegister into one
 
 	@Todo
-	Clients should edit their orders up to a certain time
-
-	@Todo
 	Sex should be radio button that dictates size table display
 
 	@Todo
-	Email blast to client one order is completed
+	Email blast to client when order is completed
 
 	@Todo
 	Create light box for Fabric and Style images
@@ -65,12 +62,14 @@ from suave.helper import *
 	@Todo
 	Clients should be able to update their orders if they have not been started
 	if started they will send email to staff to inform the tailors
+
+	@Todo
+	Clients should edit their orders up to a certain time
 """
 
 
 def index(request):
 	"""This shows the client home page by default"""
-	# messages.success(request, 'Welcome son')
 	context = {}
 	context['title'] = 'SuaveStitches - All the greates tailors in Nigeria at your service'
 
@@ -276,6 +275,8 @@ def tailorRegister(request):
 
 @login_required
 def tailorDashboard(request):
+	if not request.user.tailor.approved:
+		return render(request, 'i/tailor/not_approved.html')
 	context = {}
 	context['title'] = 'Tailor - SuaveStitches Nigeria'
 	context['tailorPage'] = True

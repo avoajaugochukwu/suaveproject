@@ -72,6 +72,7 @@ DATABASES = {
 #         'PASSWORD': 'boys2men',
 #         'HOST': 'localhost',
 #         'PORT': '3307',
+#         # 'PORT': '3306',
 #     }
 # }
 

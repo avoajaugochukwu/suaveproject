@@ -7,6 +7,7 @@
 @import "home";
 @import "tailor/tailorHome";
 @import "tailor/tailorOrderDetails";
+@import "tailor/_tailorNotApproved";
 @import "client/jquery.lightbox-0.5.css";
 @import "client/dashboard";
 @import "client/order";
@@ -22,12 +23,10 @@
 }
 *:not(span) {
 	@include border-radius(0);
-	// @include padding(0, 0, 0, 0);
+
 }
-.container {
-	// @include padding(0, 0, 0, 0);
-	// padding: 0;
-	// margin: 0;
+li {
+	list-style: none;
 }
 .page-header {
 	text-align: center;

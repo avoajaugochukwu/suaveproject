@@ -24,4 +24,7 @@ urlpatterns = patterns('',
 		url(r'^Tailor/List$', views.tailor_list, name="tailor_list"),
 
 		url(r'^Tailor/Details/(?P<tailor_id>[\w\-]+)$', views.tailor_details, name='tailor_details'),
+
+		url(r'^Tailor/Approve/(?P<tailor_id>[\w\-]+)$', views.tailor_approve, name='tailor_approve'),
+		url(r'^Tailor/Reject/(?P<tailor_id>[\w\-]+)$', views.tailor_reject, name='tailor_reject'),
 )
