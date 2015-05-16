@@ -16,7 +16,7 @@ from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 """
 	@Todo
 	order_list page should be paginated
-	
+
 	@Todo
 	tailor_list page should be organised by approved
 
@@ -25,7 +25,7 @@ from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 
 
 	@Todo
-	On rejection of tailor send email explaining and emcourage them to try to meet up
+	On rejection/approval of tailor send email explaining and emcourage them to try to meet up
 """
 
 

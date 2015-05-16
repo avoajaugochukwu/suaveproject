@@ -21,8 +21,8 @@
 		{% if error %}
 			<div class="shakere"><h3 class="alert alert-danger">{{ error }}</h3></div>
 		{% endif %}
-		{% if static_errors %}
-			<div class="shakere"><h3 class="alert alert-warning">{{ static_errors }}</h3></div>
+		{% if input_errors %}
+			<div class="shakere"><h3 class="alert alert-warning">{{ input_errors }}</h3></div>
 		{% endif %}
 
 		{% csrf_token %}

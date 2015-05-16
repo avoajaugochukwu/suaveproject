@@ -24,7 +24,7 @@
 	<div class="col-lg-4">
 	</div>
 	<div class="col-lg-4 action-button-wrapper-home">
-		<a href="/suave/register" class="action-button-home">Get Started</a>
+		<a href="{% url 'suave:client_register' %}" class="action-button-home">Get Started</a>
 	</div>
 
 </div>
@@ -85,7 +85,6 @@
 {% block main_section %}
 <div class="container">
 	<div class="row">
-		<img src="/static/img/review_main_file_web.png">
 		<div class="review-container">
 			<div class="review">
 				<div class="review-background">

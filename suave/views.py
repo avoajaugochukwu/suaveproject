@@ -68,16 +68,24 @@ from suave.helper import *
 """
 
 
+"""This shows the client home page by default"""
 def index(request):
-	"""This shows the client home page by default"""
 	context = {}
 	context['title'] = 'SuaveStitches - All the greates tailors in Nigeria at your service'
 
 	return render(request, 'i/index.html', context)
 
 
-"""register Client"""
-def clientRegister(request):
+
+
+""" -> register Client,
+		-> log them in automatically,
+		-> take them to dashboard where they can start making orders
+
+		@var client_form -> for other attributes of a user
+		@var new_user_check::session used to create shake effect for only new users
+"""
+def client_register(request):
 	context = {}
 	context['title'] = 'SuaveStitches - Sign up'
 
@@ -89,7 +97,7 @@ def clientRegister(request):
 			data = user_form.cleaned_data
 
 			user_form_data = user_form.save()
-			#hash password with set_password() -> save
+			#hash password with set_password()
 			user_form_data.set_password(user_form_data.password)
 			user_form_data.save()
 
@@ -98,19 +106,18 @@ def clientRegister(request):
 			#make the client_form_data aware of its one to one relationship with the User
 			client_form_data.user = user_form_data
 
-			# save client along with user object
 			client_form_data.save()
 
-			#user is authenticated and login is automatic immediately after registering
+
 			user = authenticate(username=data['username'], password=data['password'])
 
 			if user is not None:
 				login(request, user)
 
-			# use ['new_user_check'] to make registration welcome notice display only once || on registration
 			request.session['new_user_check'] = 1
-			#redirect to clientDashboard view and its associated 'dashboard' page
-			return redirect('suave:clientDashboard')
+
+			return redirect('suave:client_dashboard')
+
 
 		else:
 			context['user_form'] = user_form
@@ -123,26 +130,41 @@ def clientRegister(request):
 	return render(request, 'i/client/register.html', context)
 
 
+
+""" -> check if client is new
+		-> fetch all orders of the client
+"""
 @login_required
-def clientDashboard(request):
+def client_dashboard(request):
 	context = {}
 	context['title'] = 'SuaveStitches Nigeria'
-	client = Client.objects.get(user=request.user)
+
 
 	# if new_user_check is 1 then display welcome message
 	if request.session['new_user_check'] == 1:
 		context['new_user_check'] = True
 		request.session['new_user_check'] = 2
 
-	context['orders'] = Order.objects.filter(client=client)
+
+	context['orders'] = Order.objects.filter(client=Client.objects.get(user=request.user))
 
 	return render(request, 'i/client/dashboard.html', context)
 
 
+"""	-> uses helper module
+		------> checkInput()			:: ensures all fields are filled
+ 		------> checkSex()				:: checks sex chosen by client
+ 		------> mainOrderId() 		:: creates unique id for each other || not ideal if order exceeds 5000
+ 		------> totalOrderCost()  :: calculates the final cost of each order
+		-> displays order page
+		-> creates order
+"""
 @login_required
 def createOrder(request):
 	context = {}
 	context['title'] = 'Create order SuaveStitches Nigeria'
+
+
 	context['order_form'] = OrderForm()
 	context['male_size_table'] = SizeTable.objects.filter(size_value__startswith='Ma')
 	context['female_size_table'] = SizeTable.objects.filter(size_value__startswith='Fe')
@@ -156,66 +178,62 @@ def createOrder(request):
 	if request.method == 'POST':
 		order_form = OrderForm(request.POST)
 
-		#create list from inputs not in a form
-		check_input = ['fabric', 'style', 'size']
 
-		input_checker = checkInput(request, check_input)
-		fabric = request.POST.get('fabric')
-		print 'mmmmmmmmmmmmmmm', fabric
-		if order_form.is_valid() and input_checker == True:
-			delivery_option = request.POST.get('delivery_option')
+		input_check = checkInput(request, ['fabric', 'style', 'size'])
 
-			fabric = request.POST.get('fabric')
-			style = request.POST.get('style')
 
-			service_option = request.POST.get('service_option')
-
+		if order_form.is_valid() and input_check == True:
+			
 
 
 			# get objects of Fabric and Style to compute total_cost
 			fabric_obj = Fabric.objects.get(id=request.POST.get('fabric'))
 			style_obj = Style.objects.get(id=request.POST.get('style'))
+			service_option = request.POST.get('service_option')
+
 			total_cost = totalOrderCost(fabric_obj, style_obj, service_option)
 
 			size_table = request.POST.get('size')
 
-
+			#use table choice to check sex
 			sex = checkSex(size_table)
-
-
 
 			new_size_table = SizeTable.objects.get(size_value=size_table)
 
-
 			order_form_data = order_form.save(commit=False)
+
 			order_form_data.main_order_id = mainOrderId()
 			order_form_data.client = client
 
-			order_form_data.delivery_option = delivery_option
-			order_form_data.fabric = fabric
-			order_form_data.service_option = service_option
+			# order_form_data.delivery_option = request.POST.get('delivery_option')
+			order_form_data.fabric = request.POST.get('fabric')
+
+			# order_form_data.service_option = service_option
 			order_form_data.cost = total_cost
 			order_form_data.sex = sex
-			order_form_data.style = style
+
+			order_form_data.style = request.POST.get('style')
 			order_form_data.sizetable = new_size_table
 
 			order_form_data.save()
-			return redirect('suave:clientDashboard')
+			return redirect('suave:client_dashboard')
 
 		else:
 			context['order_form'] = order_form
 			context['error'] = 'Something went wrong - please fill all required fields'
-			context['static_errors'] = str(input_checker)
-			render(request, 'i/client/order.html', context)
+			#should display only when fabric, style or size is false
+			if not input_check:
+				context['input_errors'] = str(input_check)
+			return render(request, 'i/client/order.html', context)
+
 
 	return render(request, 'i/client/order.html', context)
 
 
 def tailorHome(request):
 	context = {}
-	# context['form'] = ClientForm()
-	context['action'] = '/suave/account/tailor'
-	context['title'] = 'Tailor --- SuaveStitches Nigeria'
+
+	context['title'] = 'SuaveStitches -- Tailor home'
 	context['tailorPage'] = True
 
 	return render(request, 'i/tailor/tailor_home.html', context)
@@ -224,7 +242,7 @@ def tailorHome(request):
 
 def tailorRegister(request):
 	context = {}
-	context['title'] = 'Tailor Register --- SuaveStitches Nigeria'
+	context['title'] = 'SuaveStitches -- Tailor Register'
 	context['tailorPage'] = True
 	context['user_form'] = UserForm()
 	context['tailor_form'] = TailorRegisterForm()
@@ -364,9 +382,9 @@ def signin(request):
 			if client is None:
 				return redirect('suave:tailorDashboard')
 			else:
-				# instantiate session -> 'new_user_check' so  check won't throw undefined keyError in view::clientDashboard 
+				# instantiate session -> 'new_user_check' so  check won't throw undefined keyError in view::client_dashboard 
 				request.session['new_user_check'] = 2
-				return redirect('suave:clientDashboard')
+				return redirect('suave:client_dashboard')
 
 		else:
 			request.session['error'] = 'Login failed try again'

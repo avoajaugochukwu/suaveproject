@@ -57,17 +57,13 @@
 							
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<!-- <button type="button" class="action-button-signin" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button> -->
-							{% if user.is_authenticated and user.is_staff %}
-							<li><a href="{% url 'suave:signout' %}" style="color:#f00"><span class="fa fa-sign-out"></span>sign out</a></li>
+						{% if user.is_authenticated and user.is_staff %}
+							<li><a href="{% url 'suave:signout' %}" style="color:#f00"><span class="fa fa-sign-out">&nbsp;</span>sign out</a></li>
 							<li><a class="">{{user}}</a></li>
-							{% else %}
+						{% else %}
 							<li><a role="button" class="" data-toggle="modal" data-target=".bs-example-modal-sm">sign in {deprecate}</a></li>
-							{% endif %}
+						{% endif %}
 							<li><a style="background:#f60;color:#fff"><span class="fa fa-cog fa-lg fa-spin">&nbsp;</span>&nbsp;</a></li>
-							{% if tailorPage %}
-								<li class=""><a class="" style="background:#126ee3;color:#fff">Tailor Page</a></li>
-							{% endif %}
 						</ul>
 					</div>
 				</div>
@@ -107,25 +103,14 @@
 
 		<div class="container">
 			<div class="row">
-				{% if error_message %}
-				{{ error_message }}
-				{% endif %}
 
-				{% if my_debugger %}
-				{{ my_debugger }}
-				{% endif %}
-
-
-					
 					{% block main_section %}
-					
-					
-						
-					
-						
+
 					{% endblock %}
-			
-			
+
+
+
+
 			</div>
 			{% if user.is_authenticated %}
 				<a href="{% url 'staff:index' %}" class="btn btn-primary btn-lg">Staff Home</a><br>

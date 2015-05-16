@@ -8,10 +8,10 @@ urlpatterns = patterns('',
 
 
 		url(r'^$', views.index, name='index'),
-		url(r'^register/$', views.clientRegister, name='clientRegister'),
+		url(r'^register/$', views.client_register, name='client_register'),
 
 		url(r'^createOrder/$', views.createOrder, name='createOrder'),
-		url(r'^dashboard/$', views.clientDashboard, name='clientDashboard'),
+		url(r'^dashboard/$', views.client_dashboard, name='client_dashboard'),
 
 		url(r'^signin/$', views.signin, name='signin'),
 		url(r'^signout/$', views.signout, name='signout'),
