@@ -53,9 +53,9 @@
 		<div class="">
 		<hr style="border-color:#90A4AE">
 			{% if order.status != 'IN PROGRESS' %}
-				<a href="{% url 'suave:tailorStartOrder' order.main_order_id %}" class="btn btn-success btn-lg">start job</a>
+				<a href="{% url 'suave:tailor_start_order' order.main_order_id %}" class="btn btn-success btn-lg">start job</a>
 			{% endif %}
-		<a href="{% url 'suave:tailorDashboard' %}" class="btn btn-danger btn-lg">go back</a>
+		<a href="{% url 'suave:tailor_dashboard' %}" class="btn btn-danger btn-lg">go back</a>
 		</div>
 
 	<br><br>

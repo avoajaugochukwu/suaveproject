@@ -52,7 +52,7 @@
 						<!-- <ul class="nav navbar-nav navbar-right"> -->
 						<ul class="nav navbar-nav navbar-left">
 							<li class=""><a href style="background:#">explore</a></li>
-							<li class=""><a href="{% url 'suave:tailorHome' %}">people</a></li>
+							<li class=""><a href="{% url 'suave:tailor_home' %}">people</a></li>
 							<li class=""><a >about</a></li>
 							<li class=""><a >contact</a></li>
 
@@ -63,7 +63,7 @@
 							<!-- <li><a href="{% url 'suave:signout' %}" class="">sign out</a></li> -->
 							<li><a href="{% url 'suave:signout' %}" style="color:#f00"><span class="fa fa-sign-out">&nbsp;</span>sign out</a></li>
 								{% if user.tailor.rate %}
-									<li><a href="{% url 'suave:tailorDashboard' %}" class="">Dashboard</a></li>
+									<li><a href="{% url 'suave:tailor_dashboard' %}" class="">Dashboard</a></li>
 								{% else %}
 									<li><a href="{% url 'suave:client_dashboard' %}" class="">Dashboard</a></li>
 								{% endif %}
@@ -72,7 +72,7 @@
 							<li><a role="button" class="" data-toggle="modal" data-target=".bs-example-modal-sm">sign in</a></li>
 							{% endif %}
 							{% if tailorPage %}
-								<li><a style="background:#;color:#126ee3"><span class="fa fa-thumb-tack fa-lg fa-spin">&nbsp;</span>&nbsp;</a></li>
+								<li><a style="background:#;color:#126ee3"><span class="fa fa-thumb-tack fa-lg">&nbsp;</span>&nbsp;</a></li>
 							{% endif %}
 						</ul>
 					</div>

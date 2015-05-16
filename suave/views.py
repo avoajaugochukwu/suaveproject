@@ -65,6 +65,12 @@ from suave.helper import *
 
 	@Todo
 	Clients should edit their orders up to a certain time
+
+	@Todo
+	Send tailor email if order work takes too much time
+
+	@Todo
+	Use helper to check if email is unique using .exist()
 """
 
 
@@ -160,7 +166,7 @@ def client_dashboard(request):
 		-> creates order
 """
 @login_required
-def createOrder(request):
+def create_order(request):
 	context = {}
 	context['title'] = 'Create order SuaveStitches Nigeria'
 
@@ -224,13 +230,13 @@ def createOrder(request):
 			#should display only when fabric, style or size is false
 			if not input_check:
 				context['input_errors'] = str(input_check)
-			return render(request, 'i/client/order.html', context)
+
 
 
 	return render(request, 'i/client/order.html', context)
 
 
-def tailorHome(request):
+def tailor_home(request):
 	context = {}
 
 	context['title'] = 'SuaveStitches -- Tailor home'
@@ -239,8 +245,12 @@ def tailorHome(request):
 	return render(request, 'i/tailor/tailor_home.html', context)
 
 
-
-def tailorRegister(request):
+""" -> register Tailor,
+		-> log them in automatically,
+		-> take them to tailor dashboard
+		@var tailor_form -> for other attributes of a tailor
+"""
+def tailor_register(request):
 	context = {}
 	context['title'] = 'SuaveStitches -- Tailor Register'
 	context['tailorPage'] = True
@@ -254,15 +264,13 @@ def tailorRegister(request):
 		if user_form.is_valid() and tailor_form.is_valid():
 
 			data = user_form.cleaned_data
-			"""###########################
-			
-			################################"""
+
 			user_form_data = user_form.save()
 			#hash password with set_password() -> save
 			user_form_data.set_password(user_form_data.password)
 			user_form_data.save()
 
-			#tailor_form_data holds other client details like rate || specialty || address...
+			#tailor_form_data holds other tailor details like rate || specialty || address...
 			tailor_form_data = tailor_form.save(commit=False)
 			#make the tailor_form_data aware of its one to one relationship with the User
 			tailor_form_data.user = user_form_data
@@ -275,46 +283,59 @@ def tailorRegister(request):
 			if user is not None:
 				login(request, user)
 
-				return redirect('suave:tailorDashboard')
+				return redirect('suave:tailor_dashboard')
 
-		#invalid form:: return with errors
+
 		else:
 			context['user_form'] = user_form
 			context['tailor_form'] = tailor_form
 
-	#request not post instantiate forms
 	else:
 		context['user_form'] = UserForm()
 		context['tailor_form'] = TailorRegisterForm()
 
-	#display 'register' page
 	return render(request, 'i/tailor/form.html', context)
 
 
+"""	-> @use allow tailors to select order to work on
+		-> check if tailor has been approved
+				if false show not_approved page
+"""
 @login_required
-def tailorDashboard(request):
+def tailor_dashboard(request):
 	if not request.user.tailor.approved:
 		return render(request, 'i/tailor/not_approved.html')
+
 	context = {}
 	context['title'] = 'Tailor - SuaveStitches Nigeria'
 	context['tailorPage'] = True
-	orders = Order.objects.filter(status='OPEN')
-	context['orders'] = orders
+
+	#show only orders that are OPEN hence available to work on
+	context['orders'] = Order.objects.filter(status='OPEN')
 
 	tailor_obj = Tailor.objects.get(user=request.user)
+
+	#get the number of work in progress of current tailor
 	context['work'] = len(Order.objects.filter(tailor=tailor_obj, status='IN PROGRESS'))
+
 	return render(request, 'i/tailor/dashboard.html', context)
 
 
+
+""" -> @use Tailor sees all details of order before deciding to work on it
+		-> @ add module to inform that this order is taken *********
+"""
 @login_required
-def tailorOrderDetails(request, main_order_id):
+def tailor_order_details(request, main_order_id):
+
+	#check that order is valid
 	try:
 		order = Order.objects.get(main_order_id=main_order_id)
 	except Exception, e:
-		return HttpResponse('can\'t do that %s' %main_order_id) # write better response
+		return HttpResponse('can\'t do that %s' %main_order_id)
 
 	context = {}
-	context['title'] = 'Order details -- SuaveStitches Nigeria'
+	context['title'] = 'SuaveStitches || Order details'
 	context['tailorPage'] = True
 	context['order'] = order
 	# get object of order fabric and style to get the name & image in template
@@ -325,18 +346,28 @@ def tailorOrderDetails(request, main_order_id):
 	return render(request, 'i/tailor/order_details.html', context)
 
 
+
+"""	-> @use mark order as started
+		-> @add current tailor name to order and change status to 'IN PROGESS'
+"""
 @login_required
-def tailorStartOrder(request, main_order_id):
+def tailor_start_order(request, main_order_id):
+
 	order = Order.objects.get(main_order_id=main_order_id)
 	tailor = Tailor.objects.get(user=request.user)
+
+	#save tailor name and status in order
 	order.tailor = tailor
 	order.status = 'IN PROGRESS'
 	order.save()
 
-	return redirect('suave:tailorDashboard')
+	return redirect('suave:tailor_dashboard')
 
+
+"""	-> @use show current tailor jobs that are still going on 
+"""
 @login_required
-def tailorWorkInProgress(request):
+def tailor_work_in_progress(request):
 	context = {}
 	context['tailorPage'] = True
 	tailor_obj = Tailor.objects.get(user=request.user)
@@ -345,11 +376,11 @@ def tailorWorkInProgress(request):
 	return render(request, 'i/tailor/work.html', context)
 
 
-"""
-	corresponding url 'signin'
-	@use Single login logic for Clients and Tailors
-	@logic instantiate a 'client' variable, if it is None -> it means the current user is a tailor 
-	@return client dashboard if user is client or Tailor dashboard if user is tailor
+"""	-> @use Single login logic for Clients and Tailors
+		-> instantiate a 'client' variable 
+				if it is None 
+					it means the current user is a tailor 
+		@return client dashboard if user is client or Tailor dashboard if user is tailor
 """
 def signin(request):
 	context = {}
@@ -361,18 +392,18 @@ def signin(request):
 		# login() requires username and password:: use email to get username before authenticating
 
 		try:
-			checkUser = User.objects.get(email=email)
+			check_user = User.objects.get(email=email)
 		except Exception, e:
 			request.session['error'] = 'Incorrect email'
-			return redirect('suave:notLoggedIn')
+			return redirect('suave:login_failed')
 
-		user = authenticate(username=checkUser.username, password=password)
+		user = authenticate(username=check_user.username, password=password)
 
 		if user is not None:
 			login(request, user)
 
 			client = None
-			# try to get client or tailor
+			# try to get client or tailor object
 			try:
 				client = Client.objects.get(user=user)
 			except Exception, e:
@@ -380,15 +411,15 @@ def signin(request):
 
 			# if client is None means user is a tailor
 			if client is None:
-				return redirect('suave:tailorDashboard')
+				return redirect('suave:tailor_dashboard')
 			else:
-				# instantiate session -> 'new_user_check' so  check won't throw undefined keyError in view::client_dashboard 
+				# set 'new_user_check' to avoid error in view::client_dashboard 
 				request.session['new_user_check'] = 2
 				return redirect('suave:client_dashboard')
 
 		else:
 			request.session['error'] = 'Login failed try again'
-			return redirect('suave:notLoggedIn')
+			return redirect('suave:login_failed')
 
 	#request not post send to home page ::-> used as a last resort
 	else:
@@ -400,12 +431,13 @@ def signout(request):
 	return redirect('suave:index')
 
 
-def notLoggedIn(request):
+def login_failed(request):
 	context = {}
 
 	try:
 		if request.session['error'] == None:
 			request.session['error'] = 'please log in'
+			context['error'] = request.session['error']
 		else:
 			context['error'] = request.session['error']
 	except Exception, e:

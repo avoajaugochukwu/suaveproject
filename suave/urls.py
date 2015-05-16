@@ -10,7 +10,7 @@ urlpatterns = patterns('',
 		url(r'^$', views.index, name='index'),
 		url(r'^register/$', views.client_register, name='client_register'),
 
-		url(r'^createOrder/$', views.createOrder, name='createOrder'),
+		url(r'^createOrder/$', views.create_order, name='create_order'),
 		url(r'^dashboard/$', views.client_dashboard, name='client_dashboard'),
 
 		url(r'^signin/$', views.signin, name='signin'),
@@ -18,16 +18,16 @@ urlpatterns = patterns('',
 
 
 
-		url(r'^tailor/$', views.tailorHome, name='tailorHome'),
-		url(r'^tailor/register$', views.tailorRegister, name='tailorRegister'),
-		url(r'^tailor/dashboard$', views.tailorDashboard, name="tailorDashboard"),
-		# url(r'^tailor/view/order/$', views.tailorOrderDetails, name='tailorOrderDetails'), #(?P<category_name_slug>[\w\-]+)
-		url(r'^tailor/view/order/(?P<main_order_id>[\w\-]+)$', views.tailorOrderDetails, name='tailorOrderDetails'),
-		url(r'^tailor/view/workinprogress/$', views.tailorWorkInProgress, name="tailorWorkInProgress"),
-		url(r'^tailor/start/order/(?P<main_order_id>[\w\-]+)$', views.tailorStartOrder, name="tailorStartOrder"),
+		url(r'^tailor/$', views.tailor_home, name='tailor_home'),
+		url(r'^tailor/register$', views.tailor_register, name='tailor_register'),
+		url(r'^tailor/dashboard$', views.tailor_dashboard, name="tailor_dashboard"),
+
+		url(r'^tailor/view/order/(?P<main_order_id>[\w\-]+)$', views.tailor_order_details, name='tailor_order_details'),
+		url(r'^tailor/view/workInProgress/$', views.tailor_work_in_progress, name="tailor_work_in_progress"),
+		url(r'^tailor/start/order/(?P<main_order_id>[\w\-]+)$', views.tailor_start_order, name="tailor_start_order"),
 
 
 
-		url(r'^not/logged/in$', views.notLoggedIn, name='notLoggedIn'),
+		url(r'^not/logged/in$', views.login_failed, name='login_failed'),
 
 )

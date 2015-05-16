@@ -17,7 +17,7 @@
 		<h1 style="text-align:center">Create your outfit</h1>
 
 
-		<form class="form-order" method="POST" action="{% url 'suave:createOrder' %}">
+		<form class="form-order" method="POST" action="{% url 'suave:create_order' %}">
 		{% if error %}
 			<div class="shakere"><h3 class="alert alert-danger">{{ error }}</h3></div>
 		{% endif %}
