@@ -1,4 +1,5 @@
 #import string
+
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 
@@ -16,7 +17,24 @@ from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 from suave.forms import UserForm, ClientRegisterForm, OrderForm, UserFormLogin, TailorRegisterForm
 
 from suave.helper import *
-
+#    ,
+# _,,)\.~,,._
+# (()`  ``)\))),,_
+#  |     \ ''((\)))),,_          ____
+#  |6`   |   ''((\())) "-.____.-"    `-.-,
+#  |    .'\    ''))))'                  \)))
+#  |   |   `.     ''                     ((((
+#  \, _)     \/                          |))))
+#   `'        |                          (((((
+#             \                  |       ))))))
+#              `|    |           ,\     /((((((
+#               |   / `-.______.<  \   |  )))))
+#               |   |  /         `. \  \  ((((
+#               |  / \ |           `.\  | (((
+#               \  | | |             )| |  ))
+#                | | | |             || |  '
+# 				       | | | |             || |  
+# 				       | | | |             || |  
 
 """
 	@Todo
