@@ -1,0 +1,58 @@
+{% extends "i/layout/staff_base.html" %}
+
+
+{% block main_section %}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-10 col-lg-offset-1">
+				<h1>Make changes</h1>
+				<br><br>
+				{% if tailors %}
+				<table class="table table-hover table-bordered text-center">
+					<thead>
+						<tr style="background:#2196F3;color:#fff">
+							<td>Name</td>
+							<td>Rate ( &#x20A6; )</td>
+							<td>Phone</td>
+							<!-- <td>Address</td> -->
+							<!-- <td>Specialty</td> -->
+							<td>Member Status</td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for tailor in tailors %}
+						<tr>
+							<td>{{ tailor.user }}</td>
+							<td>{{ tailor.rate }}</td>
+							<td>0{{ tailor.phone_number }}</td>
+							<!-- <td>{{ tailor.address|lower }}</td> -->
+							<!-- <td style="color:#008;font-weight:bold"></td> -->
+							<td>
+								{% if tailor.approved %}
+								<p class="fa fa-check-square-o fa-2x" style="color:#0b5"></p>
+								{% else %}
+								<p class="fa fa-minus-circle fa-2x" style="color:#ff0000"></p>
+								{% endif %}
+							</td>
+							<td>
+
+								<a href="{% url 'staff:tailor_details' tailor.id %}" class="btn btn-primary">View Profile</a>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				{% else %}
+					<div class="panel panel-danger">
+						<div class="panel-heading"><h3>Sorry</h3></div>
+						<div class="panel-body">
+							<h2>No tailor in system</h2>
+						</div>
+					</div>
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+	<br><br><br><br>
+{% endblock %}

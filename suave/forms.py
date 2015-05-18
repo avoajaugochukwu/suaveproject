@@ -107,4 +107,3 @@ class TailorRegisterForm(forms.ModelForm):
 	class Meta:
 		model = Tailor
 		fields = ('rate', 'phone_number', 'specialty', 'address')
-

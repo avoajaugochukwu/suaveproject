@@ -1,0 +1,61 @@
+{% extends "i/layout/staff_base.html" %}
+
+{% block title %} {{ order.client }} | {{ title }} {% endblock %}
+
+{% block main_section %}
+<div class="col-lg-6 col-lg-offset-3 tailor-order-details" style="padding:20px"><br>
+	<h1 class="page-header">
+
+		{{ tailor }}
+		{% if tailor.approved %}
+			<span class="fa fa-check-square-o" style="color:#0b5"></span>
+		{% else %}
+			<span class="fa fa-ban" style="color:#ff0000"></span>
+		{% endif %}
+
+	</h1>
+
+
+
+
+
+
+			<div class="row alert" style="background:#43A047;color:#fff">
+				<h2><span class="fa fa-phone-square fa-lg"></span>&nbsp;&nbsp;&nbsp; 0{{ tailor.phone_number }}</h2>
+			</div>
+
+
+			<div class="row alert" style="background:#E91E63;color:#fff">
+				<h2><span class="fa fa-money fa-lg"></span>&nbsp;&nbsp;&nbsp; &#x20A6; {{ tailor.rate }}</h2>
+			</div>
+
+
+			<div class="row alert" style="background:#FFAB00;color:#fff">
+				<h2><span class="fa fa-home fa-lg"></span>&nbsp;&nbsp;&nbsp; {{ tailor.address }}</h2>
+			</div>
+
+
+			<div style="margin-right:40px;margin-bottom:40px;margin-left:40px">
+				<div class="row alert" style="background:#;color:#000">
+					<h3 style="width:70%">Specialty<hr></h3>
+
+
+					{% for specialty in tailor.specialty %}
+						<p><span class="fa fa-chevron-circle-right fa-lg" style="color:#43A047"></span>&nbsp;&nbsp;&nbsp; {{ specialty|lower }}</p>
+					{% endfor %}
+
+
+				</div>
+			</div>
+
+
+			<div class="row alert" style="border:1px solid #f00">
+				<h4 style="color:#f00">Special Zone <sup>(Thread softly)</sup></h4>
+				<a href="{% url 'staff:tailor_approve' tailor.id %}" class="btn btn-success">Approve Tailor</a>
+				<a href="{% url 'staff:tailor_reject' tailor.id %}" class="btn btn-danger">Reject Tailor</a>
+			</div>
+
+</div>
+
+
+{% endblock %}

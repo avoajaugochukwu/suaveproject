@@ -32,7 +32,7 @@ from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 def index(request):
 	# logout(request)
 
-	return render(request, 'i/staff/index.html')
+	return render(request, 'i/staff/index.login.html')
 
 
 @login_required
@@ -45,14 +45,14 @@ def admin_gateway(request):
 def order_list(request):
 	context = {}
 	context['orders'] = Order.objects.filter(soft_delete=False)
-	return render(request, 'i/staff/order_list.html', context)
+	return render(request, 'i/staff/order/order_list.html', context)
 
 
 @login_required
 def order_list_deleted(request):
 	context = {}
 	context['orders'] = Order.objects.filter(soft_delete=True)
-	return render(request, 'i/staff/order_list_deleted.html', context)
+	return render(request, 'i/staff/order/order_list_deleted.html', context)
 
 
 @login_required
@@ -71,7 +71,7 @@ def order_details(request, order_id):
 	context['style'] = Style.objects.get(id=order.style)
 
 	context['size'] = serializers.serialize("python", SizeTable.objects.filter(id=order.sizetable.id))
-	return render(request, 'i/staff/staff_order_details.html', context)
+	return render(request, 'i/staff/order/order_details.html', context)
 
 
 @login_required
@@ -96,7 +96,7 @@ def tailor_list(request):
 	context['tailors'] =Tailor.objects.all()
 
 	# print 'tailor.newstate', type(specialty)
-	return render(request, 'i/staff/tailor_list.html', context)
+	return render(request, 'i/staff/tailor/tailor_list.html', context)
 
 
 
@@ -122,7 +122,8 @@ def tailor_details(request, tailor_id):
 
 	tailor.specialty = endpoint
 	context['tailor'] = tailor
-	return render(request, 'i/staff/tailor_details.html', context)
+	return render(request, 'i/staff/tailor/tailor_details.html', context)
+
 
 
 @login_required
@@ -142,6 +143,36 @@ def tailor_reject(request, tailor_id):
 	tailor.save()
 
 	return redirect('staff:tailor_list')
+
+
+
+@login_required
+def style_home(request):
+	context = {}
+	context['styles'] = Style.objects.all();
+
+	return render(request, 'i/staff/style/style_home.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
