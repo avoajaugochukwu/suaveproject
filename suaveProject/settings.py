@@ -118,3 +118,8 @@ STATICFILES_DIRS = (
 )
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
+
+
+#media server for uploads
+MEDIA_URL = '/static/img/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
