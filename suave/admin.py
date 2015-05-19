@@ -15,7 +15,7 @@ class FabricAdmin(admin.ModelAdmin):
 	list_display = ('name', 'cost', 'sex', 'pattern', 'image_url', 'description')
 
 class StyleAdmin(admin.ModelAdmin):
-	list_display = ('name', 'cost', 'sex', 'pattern', 'image_url', 'description', 'picture')
+	list_display = ('name', 'cost', 'sex', 'pattern', 'image_url', 'description')
 
 class SizeTableAdmin(admin.ModelAdmin):
 	list_display = ('size_value', 'collar', 'waist', 'hips')

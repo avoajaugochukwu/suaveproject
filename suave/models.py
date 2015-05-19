@@ -95,7 +95,7 @@ class Style(models.Model):
 	image_url = models.CharField(max_length=150)
 	description = models.CharField(max_length=200, null=True)
 	#manipulat img to give them equal size and make different version before saving
-	picture = models.ImageField(upload_to='styles', blank=True)
+	# picture = models.ImageField(upload_to='styles', blank=True)
 
 
 

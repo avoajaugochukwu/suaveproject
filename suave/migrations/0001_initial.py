@@ -94,7 +94,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('rate', models.IntegerField(default=0)),
-                ('phone_number', models.IntegerField(default=0)),
+                ('phone_number', models.CharField(default=0, max_length=13)),
                 ('address', models.CharField(max_length=300, null=True)),
                 ('specialty', models.CharField(max_length=300, null=True)),
                 ('approved', models.BooleanField(default=False)),
