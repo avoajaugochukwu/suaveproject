@@ -25,6 +25,11 @@
 			</div>
 
 
+			<div class="row alert" style="background:#CB5BBB;color:#fff">
+				<h2><span class="fa fa-envelope fa-lg"></span>&nbsp;&nbsp;&nbsp; {{ tailor.user.email }}</h2>
+			</div>
+
+
 			<div class="row alert" style="background:#E91E63;color:#fff">
 				<h2><span class="fa fa-money fa-lg"></span>&nbsp;&nbsp;&nbsp; &#x20A6; {{ tailor.rate }}</h2>
 			</div>
@@ -33,6 +38,7 @@
 			<div class="row alert" style="background:#FFAB00;color:#fff">
 				<h2><span class="fa fa-home fa-lg"></span>&nbsp;&nbsp;&nbsp; {{ tailor.address }}</h2>
 			</div>
+			
 
 
 			<div style="margin-right:40px;margin-bottom:40px;margin-left:40px">
@@ -41,7 +47,7 @@
 
 
 					{% for specialty in tailor.specialty %}
-						<p><span class="fa fa-chevron-circle-right fa-lg" style="color:#43A047"></span>&nbsp;&nbsp;&nbsp; {{ specialty|lower }}</p>
+						<p><span class="fa fa-suitcase fa-lg" style="color:#43A047"></span>&nbsp;&nbsp;&nbsp; {{ specialty|lower }}</p>
 					{% endfor %}
 
 

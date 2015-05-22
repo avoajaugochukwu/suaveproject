@@ -106,21 +106,25 @@ def tailor_details(request, tailor_id):
 	tailor = Tailor.objects.get(id=tailor_id)
 
 	##returns [u'name', u'outlook'] -> a raw string
-	## BReak it into the individaul specialties
+	## Break it into the individaul specialties
 	specialty = str(tailor.specialty)
+	print
+	print specialty
+	print 
 	## remove left and right sqaure brackets
 	specialty = specialty[:-1]
 	specialty = specialty[1:]
+
 	specialty = specialty.split(',')
-	print specialty
-	endpoint = []
+
+	formatted_endpoint = []
 	for i in specialty:
 		choice = i.replace('u\'', '')
 		choice = choice[:-1]
 
-		endpoint.append(choice)
+		formatted_endpoint.append(choice)
 
-	tailor.specialty = endpoint
+	tailor.specialty = formatted_endpoint
 	context['tailor'] = tailor
 	return render(request, 'i/staff/tailor/tailor_details.html', context)
 

@@ -90,12 +90,14 @@ class OrderForm(forms.ModelForm):
 class TailorRegisterForm(forms.ModelForm):
 	naira = mark_safe("&#x20A6;")
 	SPECIALTY_SELECTION = (
-		("OFFICE PICKUP", "Office pickup"),
-		("HOME DELIVERY","Home Delivery"),
-		('F', 'Female'),
-		('M', 'Male'),
-		('BASIC', 'BASIC'),
-		('PREMIUM', 'PREMIUM'),
+		('CHILDREN BOYS', 'Children Boys'),
+		('CHILDREN GIRLS', 'Children Girls'),
+		('WOMEN TRADITIONAL','Women Traditional'),
+		('WOMEN WESTERN', 'Women Western'),
+		('WOMEN SUIT', 'Women Suit'),
+		('MEN TRADITIONAL', 'Men Traditional'),
+		('MEN WESTERN', 'Men Western'),
+		('MEN SUIT', 'Men Suit'),
 		)
 	address = forms.CharField(max_length=200, help_text="Address", required=False, widget=forms. Textarea (attrs={'class': 'form-control'}))
 	phone_number = forms.IntegerField(required=False, help_text="Phone number", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '08012345678'}))
