@@ -28,4 +28,5 @@ urlpatterns = patterns('',
 
 
 		url(r'^Style/$', views.style_home, name="style_home"),
+		url(r'^Style/style_add_form/$', views.style_add_form, name="style_add_form"),
 )

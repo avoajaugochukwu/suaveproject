@@ -11,6 +11,8 @@ from django.core import serializers
 # import ast
 from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 
+from staff.forms import *
+
 
 # Create your views here.
 """
@@ -26,6 +28,9 @@ from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 
 	@Todo
 	On rejection/approval of tailor send email explaining and emcourage them to try to meet up
+
+	@Todo
+	Refactor img upload code
 """
 
 
@@ -158,7 +163,29 @@ def style_home(request):
 	return render(request, 'i/staff/style/style_home.html', context)
 
 
+@login_required
+def style_add_form(request):
+	context = {}
+	context['style_form'] = StyleForm()
 
+	if request.method == 'POST':
+		style_form = StyleForm(request.POST)
+		#check if picture was set
+		if style_form.is_valid():
+			style = style_form.save(commit=False)
+
+			if 'style_img' in request.FILES:
+				style.style_img = request.FILES['style_img']
+				print 'ERERERERRERERERER', request.POST.get('style_img')
+
+			#save UserProfile model instance
+			print 'request.FILES,request.FILES', request.FILES
+			style.save()
+		else:
+			print 'ERERERERRERERERER', style_form.errors
+
+
+	return render(request, 'i/staff/style/style_add_form.html', context)
 
 
 

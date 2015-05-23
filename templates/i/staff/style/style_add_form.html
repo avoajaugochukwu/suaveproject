@@ -6,22 +6,28 @@
 		<div class="row">
 
 
-			<div class="col-lg-10 col-lg-offset-1">
+			<div class="col-lg-6 col-lg-offset-3">
 				<br><br><br><br>
 
 				<div class="row">
-					{% for style in styles %}
-				  <div class="col-sm-6 col-md-4">
-				    <div class="thumbnail">
-				      <img src="/static/img/styles/{{ style.image_url }}" alt="style.name" style="height:300px">
-				      <div class="caption">
-				        <h3>{{ style.name }}</h3>
-				        <p>{{ style.description }}</p>
-				        <p><a href="#" class="btn btn-primary" role="button">Edit</a> <a href="#" class="btn btn-info" role="button">Delete</a></p>
-				      </div>
-				    </div>
-				  </div>
-				  {% endfor %}
+					<form method="POST" action="{% url 'staff:style_add_form' %}" enctype="multipart/form-data">
+						{% csrf_token %}
+
+
+						{% for field in style_form.visible_fields %}
+						{{ field.errors }}
+						<h3>{{ field.help_text }}</h3>
+						{{ field }}
+						{% endfor %}
+
+						{% for field in client_form.visible_fields %}
+
+						<h3>{{ field.help_text }} &nbsp; &nbsp; &nbsp; {{ field.errors }}</h3>
+
+						{{ field }}
+						{% endfor %}
+						<input type="submit" class="btn btn-success btn-lg" value="Register">
+					</form>
 				</div>
 
 

@@ -84,6 +84,7 @@ class Migration(migrations.Migration):
                 ('pattern', models.CharField(max_length=150, null=True)),
                 ('image_url', models.CharField(max_length=150)),
                 ('description', models.CharField(max_length=200, null=True)),
+                ('style_img', models.ImageField(default=b'no_image.png', upload_to=b'styles', blank=True)),
             ],
             options={
             },
