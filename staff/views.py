@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 
 from django.contrib.auth.models import User
@@ -31,6 +31,9 @@ from staff.forms import *
 
 	@Todo
 	Refactor img upload code
+
+	@Todo
+	Create alert message that alerts if changes are made to stye fabric order or tailor
 """
 
 
@@ -188,7 +191,39 @@ def style_add_form(request):
 	return render(request, 'i/staff/style/style_add_form.html', context)
 
 
+def style_edit(request, style_id):
+	context = {}
 
+	old_values = Style.objects.filter(pk=style_id).values()[0]
+
+	style_obj = get_object_or_404(Style, pk=style_id)
+
+
+	context['style_form'] = StyleForm(old_values)
+	context['style_id'] = style_id
+
+
+	if request.method == 'POST':
+		style_form = StyleForm(request.POST,instance=style_obj)
+		#check if image was set
+		if style_form.is_valid():
+			style = style_form.save(commit=False)
+
+			if 'style_img' in request.FILES:
+				## check if input image is similar to the one in the database to avoid uploading another version
+				## and uploading with different name
+				if request.FILES['style_img'] != style_obj.style_img:
+					style.style_img = request.FILES['style_img']
+
+			style.save()
+
+			return redirect('staff:style_home')
+		else:
+			print 'ERERERERRERERERER', style_form.errors
+
+
+
+	return render(request, 'i/staff/style/style_edit_form.html', context)
 
 
 

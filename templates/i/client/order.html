@@ -75,9 +75,9 @@
 									{% for style in styles %}
 
 										<div class="fabric col-xs-3">
-											<label for="{{ style.image_url }}">
-												<input type="radio" id="{{ style.image_url }}" name="style" value="{{ style.id }}">
-												<img src="/static/img/styles/{{ style.image_url }}" height="200" width="200">
+											<label for="{{ style.style_img }}">
+												<input type="radio" id="{{ style.style_img }}" name="style" value="{{ style.id }}">
+												<img src="/static/img/{{ style.style_img }}" height="200" width="200">
 											</label>
 											<p>{{ style.name }}</p>
 										</div>

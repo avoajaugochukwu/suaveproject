@@ -1,0 +1,39 @@
+{% extends "i/layout/staff_base.html" %}
+
+
+{% block main_section %}
+	<div class="container">
+		<div class="row">
+
+
+			<div class="col-lg-6 col-lg-offset-3">
+				<br><br><br><br>
+
+				<div class="row">
+					<form method="POST" action="{% url 'staff:style_edit' style_id %}" enctype="multipart/form-data">
+						{% csrf_token %}
+
+
+						{% for field in style_form.visible_fields %}
+						{{ field.errors }}
+						<h3>{{ field.help_text }}</h3>
+						{{ field }}
+						{% endfor %}
+
+						{% for field in client_form.visible_fields %}
+
+						<h3>{{ field.help_text }} &nbsp; &nbsp; &nbsp; {{ field.errors }}</h3>
+
+						{{ field }}
+						{% endfor %}
+						<input type="submit" class="btn btn-success btn-lg" value="Register">
+					</form>
+				</div>
+
+
+
+			</div>
+
+		</div>
+	</div>
+{% endblock %}

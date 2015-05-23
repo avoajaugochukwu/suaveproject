@@ -34,12 +34,3 @@ urlpatterns = patterns('',
 		url(r'^not/logged/in$', views.login_failed, name='login_failed'),
 
 )
-
-# if settings.DEBUG:
-urlpatterns += patterns(
-		'django.views.static',
-		(r'^static/img/(<?path>.*)',
-			'serve',
-			{'document_root': settings.MEDIA_ROOT}),
-
-	)

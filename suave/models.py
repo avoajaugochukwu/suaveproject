@@ -92,7 +92,7 @@ class Style(models.Model):
 	sex = models.CharField(max_length=3)
 	cost = models.IntegerField(default=000)
 	pattern = models.CharField(max_length=150, null=True)
-	image_url = models.CharField(max_length=150)
+	# image_url = models.CharField(max_length=150)
 	description = models.CharField(max_length=200, null=True)
 	#manipulat img to give them equal size and make different version before saving
 	style_img = models.ImageField(upload_to='styles', blank=True, default='no_image.png')

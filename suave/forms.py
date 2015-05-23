@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from suave.models import Client, Tailor, Order, Fabric, Style, SizeTable
-from django.utils.safestring import *
+# from django.utils.safestring import *
 from django.utils.html import *
 """
 	@Todo
