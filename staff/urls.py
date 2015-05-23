@@ -28,6 +28,6 @@ urlpatterns = patterns('',
 
 
 		url(r'^Style/$', views.style_home, name="style_home"),
-		url(r'^Style/style_add_form/$', views.style_add_form, name="style_add_form"),
-		url(r'^Style/style/(?P<style_id>[\w\-]+)/Edit$', views.style_edit, name="style_edit"),
+		url(r'^Style/Add/$', views.style_add_form, name="style_add_form"),
+		url(r'^Style/(?P<style_id>[\w\-]+)/Edit$', views.style_edit, name="style_edit"),
 )
