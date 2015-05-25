@@ -1,7 +1,7 @@
 #import string
 
 from django.core.urlresolvers import reverse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.core import serializers
 
@@ -89,6 +89,9 @@ from suave.helper import *
 
 	@Todo
 	Use helper to check if email is unique using .exist()
+
+	@Todo
+	Add logic to accomodate staff in the signin module below[[[[[IMPORTANT]]]]]
 """
 
 
@@ -164,10 +167,20 @@ def client_dashboard(request):
 	context['title'] = 'SuaveStitches Nigeria'
 
 
+	#@Todo
+	#write better message
+	#Access Control
+	check_user = get_object_or_404(Client, user=request.user)
+	if check_user is None:
+		return HttpResponse('<h1>Fuck OFF NO access</h1>')
+
 	# if new_user_check is 1 then display welcome message
 	if request.session['new_user_check'] == 1:
 		context['new_user_check'] = True
 		request.session['new_user_check'] = 2
+
+
+
 
 
 	context['orders'] = Order.objects.filter(client=Client.objects.get(user=request.user))

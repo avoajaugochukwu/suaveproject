@@ -48,7 +48,7 @@
 				</div>
 				<div class="col-lg-6">
 					<h3>Style</h3>
-					<img src="/static/img/styles/{{ style.image_url }}"   width="200" height="200" class="img-thumbnail">
+					<img src="/static/img/{{ style.style_img }}"   width="200" height="200" class="img-thumbnail">
 				</div>
 			</div>
 		</div>
@@ -67,9 +67,7 @@
 </div>
 
 <!--#################################################################
-		#################################################################
 								Modal HTML to confirm soft-deleting of Order
-		#################################################################
 		#################################################################-->
 
 
@@ -79,7 +77,7 @@
 			<div class="panel shake-element" style="background:#f00;color:#fff">
 				<div class="panel-heading">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color:#fff">&times;</span></button>
-					<h3 class="modal-title" id="exampleModalLabel">Delete confirmation. You want to delete <b>{{ user }}'s</b> order</h3>
+					<h3 class="modal-title" id="exampleModalLabel">Delete confirmation. Delete <b>{{ order.client }}'s</b> order ?</h3>
 				</div>
 			</div>
 

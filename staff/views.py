@@ -13,6 +13,8 @@ from suave.models import User, Client, Order, Tailor, Fabric, Style, SizeTable
 
 from staff.forms import *
 
+from staff.helper import *
+
 
 # Create your views here.
 """
@@ -34,19 +36,21 @@ from staff.forms import *
 
 	@Todo
 	Create alert message that alerts if changes are made to stye fabric order or tailor
+
+	@Todo
+	Sort order by date and client for easy search
 """
 
 
 def index(request):
-	# logout(request)
-
-	return render(request, 'i/staff/index.login.html')
+	context = init_context()
+	return render(request, 'i/staff/index.login.html', context)
 
 
 @login_required
 def admin_gateway(request):
-	# print 'request.user', request.user
-	return render(request, 'i/staff/admin_gateway.html')
+	context = init_context()
+	return render(request, 'i/staff/admin_gateway.html', context)
 
 
 @login_required
@@ -70,9 +74,8 @@ def order_details(request, order_id):
 	except Exception, e:
 		return HttpResponse('can\'t do that %s' %order_id) # write better response
 
-	context = {}
-	context['title'] = 'Order details -- SuaveStitches Nigeria'
-	# context['tailorPage'] = True
+
+	context = init_context()
 	context['order'] = order
 	# get object of order fabric and style to get the name & image in template
 	context['fabric'] = Fabric.objects.get(id=order.fabric)
@@ -100,7 +103,7 @@ def order_delete(request, order_id):
 
 @login_required
 def tailor_list(request):
-	context = {}
+	context = init_context()
 	context['tailors'] =Tailor.objects.all()
 
 	# print 'tailor.newstate', type(specialty)
@@ -110,7 +113,7 @@ def tailor_list(request):
 
 @login_required
 def tailor_details(request, tailor_id):
-	context = {}
+	context = init_context()
 	tailor = Tailor.objects.get(id=tailor_id)
 
 	##returns [u'name', u'outlook'] -> a raw string
@@ -160,7 +163,7 @@ def tailor_reject(request, tailor_id):
 
 @login_required
 def style_home(request):
-	context = {}
+	context = init_context()
 	context['styles'] = Style.objects.all();
 
 	return render(request, 'i/staff/style/style_home.html', context)

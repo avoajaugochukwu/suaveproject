@@ -1,6 +1,6 @@
 {% extends "i/layout/staff_base.html" %}
 
-
+{% block title %} Staff Home  | {{ title }} {% endblock %}
 {% block main_section %}
 	<div class="container">
 		<div class="row">
@@ -9,21 +9,31 @@
 			<div class="col-lg-6 col-lg-offset-3">
 				<br><br><br><br>
 				<div class="panel panel-primary">
-					<div class="panel-heading"><h3>Staff Gate</h3></div>
+					<div class="panel-heading"><h3>Staff GateWay</h3></div>
 					<div class="panel-body">
+						<div class="alert alert-info">
+						<div class="alert alert-success">
+						<div class="alert alert-danger">
+						<div class="alert alert-info">
+							<a href="{% url 'staff:order_list' %}" class="btn btn-block btn-lg btn-success">Order</a>
+						</div>
 
-						<a href="{% url 'staff:order_list' %}" class="btn btn-lg btn-success">Order</a>
+						<div class="alert alert-info">
+							<a href="{% url 'staff:tailor_list' %}" class="btn btn-block btn-lg btn-default">Tailor</a>
+						</div>
 
-						<a href="{% url 'staff:tailor_list' %}" class="btn btn-lg btn-default">Tailor</a>
-
-						<a href="{% url 'staff:style_home' %}" class="btn btn-lg btn-info">Style</a>
+						<div class="alert alert-info">
+							<a href="{% url 'staff:style_home' %}" class="btn btn-block btn-lg btn-info">Style</a>
+						</div>
+						</div>
+						</div>
+						</div>
 					</div>
+
+
 				</div>
 
-
-
 			</div>
-
 		</div>
 	</div>
 {% endblock %}

@@ -1,16 +1,18 @@
 {% extends "i/layout/staff_base.html" %}
 
-{% block title %} {{ order.client }} | {{ title }} {% endblock %}
+{% block title %} {{ tailor }} - Details | {{ title }} {% endblock %}
 
 {% block main_section %}
-<div class="col-lg-6 col-lg-offset-3 tailor-order-details" style="padding:20px"><br>
-	<h1 class="page-header">
+<div class="col-lg-6 col-lg-offset-3 tailor-order-details" style="padding:20px">
 
+	<h1 class="page-header">
 		{{ tailor }}
+
+		<!-- approved glyphicon logic -->
 		{% if tailor.approved %}
 			<span class="fa fa-check-square-o" style="color:#0b5"></span>
 		{% else %}
-			<span class="fa fa-ban" style="color:#ff0000"></span>
+			<span class="fa fa-ban" style="color:#f00"></span>
 		{% endif %}
 
 	</h1>
@@ -20,22 +22,22 @@
 
 
 
-			<div class="row alert" style="background:#43A047;color:#fff">
+			<div class="row alert" style="background:#0ccadb;color:#fff">
 				<h2><span class="fa fa-phone-square fa-lg"></span>&nbsp;&nbsp;&nbsp; 0{{ tailor.phone_number }}</h2>
 			</div>
 
 
-			<div class="row alert" style="background:#CB5BBB;color:#fff">
+			<div class="row alert" style="background:#ed2d6c;color:#fff">
 				<h2><span class="fa fa-envelope fa-lg"></span>&nbsp;&nbsp;&nbsp; {{ tailor.user.email }}</h2>
 			</div>
 
 
-			<div class="row alert" style="background:#E91E63;color:#fff">
+			<div class="row alert" style="background:#c41caa;color:#fff">
 				<h2><span class="fa fa-money fa-lg"></span>&nbsp;&nbsp;&nbsp; &#x20A6; {{ tailor.rate }}</h2>
 			</div>
 
 
-			<div class="row alert" style="background:#FFAB00;color:#fff">
+			<div class="row alert" style="background:#43A047;color:#fff">
 				<h2><span class="fa fa-home fa-lg"></span>&nbsp;&nbsp;&nbsp; {{ tailor.address }}</h2>
 			</div>
 			
@@ -47,7 +49,7 @@
 
 
 					{% for specialty in tailor.specialty %}
-						<p><span class="fa fa-suitcase fa-lg" style="color:#43A047"></span>&nbsp;&nbsp;&nbsp; {{ specialty|lower }}</p>
+						<p><span class="fa fa-gear fa-lg fa-spin" style="color:#5b93e8"></span>&nbsp;&nbsp;&nbsp; {{ specialty|lower }}</p>
 					{% endfor %}
 
 
