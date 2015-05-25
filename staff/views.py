@@ -39,6 +39,9 @@ from staff.helper import *
 
 	@Todo
 	Sort order by date and client for easy search
+
+	@Todo
+	Pattern should be added by admin and is a drop down menu
 """
 
 

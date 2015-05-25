@@ -12,25 +12,36 @@
 				<h1 class="page-header">All Styles</h1>
 
 				<div class="row">
-					<div class="alert alert-info">
-						<a href="{% url 'staff:style_add_form' %}" class="btn btn-default">Add new style</a>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<a href="{% url 'staff:style_add_form' %}" class="btn btn-default">Add new style</a>
+							<a href="{% url 'staff:style_add_form' %}" class="btn btn-default">Add Pattern</a>
+						</div>
 					</div>
+
+
 					{% for style in styles %}
-				  <div class="col-sm-6 col-md-4">
-				    <div class="thumbnail">
-				      <img src="/static/img/{{ style.style_img }}" alt="style.name" style="height:300px">
-				      <div class="caption">
-				        <h3>{{ style.name }}</h3>
-				        <p>{{ style.description }}</p>
-				        <p>
-				        	<a href="{% url 'staff:style_edit' style.id %}" class="btn btn-primary">Edit</a>
-				        	<a href="#" class="btn btn-info">Delete</a>
-				        	<a class="btn pull-right" style="border:1px #f40b68 solid;color:#f40b68"> &#x20A6; {{ style.cost }} </a>
-				        </p>
-				      </div>
-				    </div>
-				  </div>
-				  {% endfor %}
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail">
+							<div class="panel panel-info">
+								<div class="panel-heading">
+									{{ style.pattern }}
+								</div>
+							</div>
+							
+							<img src="/static/img/{{ style.style_img }}" alt="style.name" style="height:300px">
+							<div class="caption">
+								<h3>{{ style.name }}</h3>
+								<p>{{ style.description }}</p>
+								<p>
+									<a href="{% url 'staff:style_edit' style.id %}"  style="border:1px #52c816 solid;color:#52c816" class="btn">Edit</a>
+									<a href="#" class="btn btn-sm" style="border:0px #f00 solid;color:#f00">Delete</a>
+									<a class="btn pull-right" style="border:1px #f13781 solid;color:#f13781"> &#x20A6; <b>{{ style.cost }}</b> </a>
+								</p>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
 				</div>
 
 
