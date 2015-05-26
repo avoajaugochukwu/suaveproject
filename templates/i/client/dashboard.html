@@ -38,7 +38,7 @@
 				<tbody>
 					{% for order in orders %}
 					<tr>
-						<td style="color:#008"><span>{{ order.main_order_id }}</span></td>
+						<td><code>{{ order.main_order_id }}</code></td>
 						<td>{{ order.sex }}</td>
 						<td>{{ order.delivery_option|lower }}</td>
 						<td>{{ order.status|lower }}</td>

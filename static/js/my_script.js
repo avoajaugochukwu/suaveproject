@@ -20,10 +20,19 @@
 			$('.size-container').removeClass('radio_select_new_color');
 			$(this).addClass('radio_select_new_color');
 		});
-
+		// code for selecting fabric
 		$('.fabric').click(function() {
-			$('.fabric').removeClass('radio_select_new_color');
-			$(this).addClass('radio_select_new_color');
+			$('.fabric').closest('.thumbnail').removeClass('selection-gallery');
+			$(this).closest('.thumbnail').addClass('selection-gallery');
+		});
+
+		$('.style').click(function() {
+			$('.style').closest('.thumbnail').removeClass('selection-gallery');
+			$(this).closest('.thumbnail').addClass('selection-gallery');
+		});
+
+		$(".fabric, .style").hover(function() {
+			$(this).closest('.thumbnail').find('.thumbnail-hidden-caption').slideToggle();
 		});
 
 
@@ -43,18 +52,18 @@
 
 	// Snippet to make span slide up and down image
 	$(".photos").on("mouseenter", "li", showPhotos).on("mouseleave", "li", showPhotos);
-	  
-  function showPhotos() {
-  	$(this).find("span").slideToggle();
-  }
+		
+	function showPhotos() {
+		$(this).find("span").slideToggle();
+	}
 
-  // Snippet to make imput value change instantly in Page
-  // use +$(..) to convert value to number
-  $(document).ready(function() {
-  $("#nights").on("keyup", function() {
-    
-    $("#nights-count").text($(this).val());
-  });
+	// Snippet to make imput value change instantly in Page
+	// use +$(..) to convert value to number
+	$(document).ready(function() {
+	$("#nights").on("keyup", function() {
+		
+		$("#nights-count").text($(this).val());
+	});
 });
 
 });
