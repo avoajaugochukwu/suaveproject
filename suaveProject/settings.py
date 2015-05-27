@@ -123,6 +123,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/ 
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
 
 LOGIN_URL = '/suave/not/logged/in'
 
@@ -136,9 +140,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	"django.contrib.messages.context_processors.messages",
 )
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
