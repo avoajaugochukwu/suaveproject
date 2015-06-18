@@ -10,8 +10,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
-
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -70,17 +68,6 @@ WSGI_APPLICATION = 'suaveProject.wsgi.application'
 # 	}
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'suaveStitches',
-#         'USER' : 'avoaja',
-#         'PASSWORD': 'boys2men',
-#         'HOST': 'localhost',
-#         # 'PORT': '3307',
-#         'PORT': '3306',
-#     }
-# }
 
 if 'RDS_DB_NAME' in os.environ:
     DATABASES = {
@@ -93,6 +80,7 @@ if 'RDS_DB_NAME' in os.environ:
             'PORT': os.environ['RDS_PORT'],
         }
     }
+    # DEBUG = False
 else:
     DATABASES = {
 	    'default': {
@@ -105,12 +93,13 @@ else:
 	        'PORT': '3306',
 	    }
 		}
+		# DEBUG = True
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC + 1'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -123,6 +112,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/ 
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+
+#media server for uploads
+MEDIA_URL = '/static/img/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img/')
 
 LOGIN_URL = '/suave/not/logged/in'
 
@@ -136,13 +133,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	"django.contrib.messages.context_processors.messages",
 )
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 
-#media server for uploads
-MEDIA_URL = '/static/img/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img/')
+
