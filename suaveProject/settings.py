@@ -101,8 +101,8 @@ else:
 	        'USER' : 'avoaja',
 	        'PASSWORD': 'boys2men',
 	        'HOST': 'localhost',
-	        'PORT': '3307',
-	        # 'PORT': '3306',
+	        # 'PORT': '3307',
+	        'PORT': '3306',
 	    }
 		}
 # Internationalization
